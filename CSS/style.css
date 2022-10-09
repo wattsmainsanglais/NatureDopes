@@ -1,0 +1,265 @@
+*{
+    font-family: 'Figtree', sans-serif;
+}
+
+nav{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
+}
+
+.logotext{
+    font-family: 'Indie Flower', cursive;
+    color: #5B9240;
+}
+
+.navitems{
+    float: right;
+    margin-left: auto;
+    margin-right: 8%;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.links{
+    padding: 0% 4%;
+
+}
+
+.links:hover{
+    color: #5B9240;
+}
+
+links:active{
+    color: #cdfcb6;
+}
+
+links:visited{
+    color: inherit;
+}
+
+.links a:hover{
+    color: #5B9240;
+}
+
+links a:active{
+    color: #cdfcb6;
+}
+
+links a:visited{
+    color: inherit;
+}
+
+.banner, .nftbanner{
+    width: 100%;
+    height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+   
+}
+
+.banner::before{
+    
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-image: url("johann-siemens-EPy0gBJzzZU-unsplash.jpg");
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.7;
+}
+
+
+.nftbanner::before{
+    width: 100%;
+    height: 600px;
+    background-size: contain; 
+    background-image: url("Campanula.jpg");
+    content: "";
+    position: absolute;
+    opacity: 0.2;
+
+}
+
+.welcome{
+
+    position: relative;
+    width: 30%;
+    height: auto;
+    padding: 6% 3%;
+    background-color: transparent;
+    /*background: radial-gradient(#5B9240, #E7EBE8);*/
+    /*background-image: url("master\ new\ alt\ 1.jpg");*/
+    opacity: 1;
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 10%;
+
+}
+
+.welcome, .nft_intro h1{
+    font-size: 3.5rem;
+    color: #5B9240;
+    font-weight: 800;
+    text-shadow: 3px 3px 2px #eff7f2 ;
+    font-family: 'Indie Flower', cursive;
+}
+
+.welcome, .nft_intro h2{
+    font-size: 2rem;
+    color: #5B9240;
+    font-weight: 500;
+    font-family: 'Indie Flower', cursive;
+}
+
+.nft_intro h3{
+
+    color: #5B9240;
+    font-weight: 500;
+    font-family: 'Indie Flower', cursive;
+}
+
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.main{
+    margin-top: 1em;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #d8f3ca;
+    
+}
+
+.feature-title{
+    font-size: 3rem;
+    font-family: 'Indie Flower', cursive;
+    color: #5B9240;
+    margin-top: 1em;
+}
+
+.feature{
+    margin-top: 0.6rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem; 
+}
+
+.piccontainer{
+   margin-bottom: .3rem;
+}
+
+.flowerfeature{
+    width: 270px;    
+    height: 300px;
+    border: 1px solid #5B9240;
+    box-shadow: 1px 2px 2px #265011;
+
+}
+
+.gallery{
+    margin-top: 1.2rem;
+    width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    grid-auto-rows: auto;
+}
+
+.gallery-item{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery-item .flowerfeature:hover {
+    border-right: 1.5px solid #3bbcf0;
+    border-left: none;
+    border-top: none;
+    border-bottom: 1.5px solid #3bbcf0;;
+    box-shadow: 1px 2px 2px #023549;
+
+}
+
+.Social-links{
+    margin: 2rem 3rem;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: 'Indie Flower', cursive;
+    color: #5B9240;
+    font-size: 3rem;
+    flex-direction: column;
+    border-top: 2px solid #5B9240;
+
+
+}
+
+.social-logos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.2rem .8rem;
+
+}
+
+.social{
+    width: 100px;
+    margin: 0px 1.5rem;
+    height: auto;
+
+
+
+}
+
+.nft_intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nft_about{
+    margin-top: 2rem;
+    width: 75%;
+}
+
+#nfth2{
+    text-align: center;
+    margin-bottom: 1rem;
+    color: blueviolet;
+    font-weight: 700;
+}
+
+.nftgallery{
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    
+    margin-top: .1rem;
+
+}
