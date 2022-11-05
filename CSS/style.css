@@ -1,14 +1,11 @@
-*{
-    font-family: 'Figtree', sans-serif;
-}
+
 
 nav{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     z-index: 1;
-    font-family: 'Figtree', sans-serif;
-    font-weight: 800;
+    
 }
 
 .logotext{
@@ -20,6 +17,8 @@ nav{
     float: right;
     margin-left: auto;
     margin-right: 8%;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
 }
 
 ul{
@@ -30,6 +29,9 @@ ul{
 
 .links{
     padding: 0% 4%;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
+
 
 }
 
