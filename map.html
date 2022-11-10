@@ -11,6 +11,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
 
+    <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
 
 </head>
 
@@ -41,43 +43,18 @@
 </header>
 
 <main>
-    <div class ="nftbanner">
-    <section class="nft_intro">
-
-        <div class="nftheader">
-            <h1> Welcome to the Nature Dopes nft space</h1>
-
-        </div>
-        <div class="nft_about">
-            <h2 id="nfth2">What are Nft's?</h2>
-            <h2>NFT stands for 'Non Funigble Token' which represents a unique and unmutable token written onto a blockchain. In the case of Nature Dopes, Several digital art pieces have been created of our favorite flowers. Please check some of them out below</h2>
-
-        </div>
     
+    <section class="map-overlay">
 
-    </section>
-    </div>
-
-    <section class="nftgallery">
-        <div class="gallery-item">
-            <div class="piccontainer">
-                <img class="flowerfeature" src="Images\Bistorta.jpg" alt="nft of Bistorta">
-            </div>
-            
-        </div>
-        <div class="gallery-item">
-            <div class="piccontainer">
-                <img class="flowerfeature" src="Images\Ipomoea.jpg" alt="nft of Ipomoea">
-            </div>
-            
-        </div>
-        <div class="gallery-item">
-            <div class="piccontainer">
-                <img class="flowerfeature" src="Images\Saponaria.jpg" alt="nft of Soapwort">
-            </div>
-            
-        </div>
-
+        <div id='map' style='width: 1000px; height: 500px;'></div>
+            <script>
+                var map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
+                center: [-74.5, 40], // starting position [lng, lat]
+                zoom: 1 // starting zoom
+                });
+            </script>
 
 
     </section>

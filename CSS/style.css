@@ -233,7 +233,7 @@ main{
     margin: 0px 1.5rem;
     height: auto;
 
-
+/* NFT page CSS */
 
 }
 
@@ -264,4 +264,10 @@ main{
     
     margin-top: .1rem;
 
+}
+
+/* map css */
+
+#map{
+    margin-bottom: 5%;
 }
