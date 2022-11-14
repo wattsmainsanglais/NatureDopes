@@ -47,22 +47,39 @@
     <section class="map-overlay">
 
         <div id='map' style='width: 1000px; height: 500px;'></div>
-            <script>
-                var map = new maplibregl.Map({
-                container: 'map',
-                style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL', // stylesheet location
-                center: [-74.5, 40], // starting position [lng, lat]
-                zoom: 1 // starting zoom
-               
-                });
-
-                var marker = new maplibregl.Marker()
-                            .setLngLat([30.5, 50.5])
-                            .addTo(map);
-            </script>
-
+            
+            
+            <form>
+                <label for="firstRef">Enter First Grid Reference</label>
+                <input name="firstRef" id="firstRef" type="number">
+                <hr>
+                <label for="secondRef">Enter Second Grid Reference</label>
+                <input name="secondRef" id="secondRef" type="number">
+                <input type="submit" onclick="newMark()">
+            </form>
+            <hr>
 
     </section>
+
+    <script>
+        var map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL', // stylesheet location
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 1 // starting zoom
+       
+        });
+       
+      function newMark(){
+        let firstRef = document.getElementById("firstRef").value;
+        let secondRef = document.getElementById("secondRef").value;
+        var marker = new maplibregl.Marker()
+            .setLngLat([firstRef, secondRef])
+            .addTo(map);
+      }
+
+       
+    </script>
 
     
 </main>
