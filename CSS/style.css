@@ -193,7 +193,7 @@ main{
     flex-wrap: wrap;
 }
 
-.gallery-item .flowerfeature:hover {
+.nftflowerfeature:hover, .flowerfeature:hover {
     border-right: 1.5px solid #3bbcf0;
     border-left: none;
     border-top: none;
@@ -263,6 +263,16 @@ main{
     justify-content: space-between;
     
     margin-top: .1rem;
+
+}
+
+.nftflowerfeature{
+
+    width: 228px;    
+    height: 300px;
+    border: 1px solid #5B9240;
+    box-shadow: 1px 2px 2px #265011;
+
 
 }
 
