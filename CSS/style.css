@@ -1,4 +1,4 @@
-
+/*Nav bar css*/
 
 nav{
     display: flex;
@@ -8,9 +8,19 @@ nav{
     
 }
 
+.logo{
+    width: auto;
+    display: flex;
+    /* margin-right: auto; */
+}
+
+
 .logotext{
     font-family: 'Indie Flower', cursive;
     color: #5B9240;
+    display: block;
+    margin-right: auto;
+    float: left;
 }
 
 .navitems{
@@ -58,6 +68,8 @@ links a:active{
 links a:visited{
     color: inherit;
 }
+
+/*Banner on homepage & NFT page (index.html & nft.html) css*/
 
 .banner, .nftbanner{
     width: 100%;
@@ -113,15 +125,17 @@ links a:visited{
 
 }
 
-.welcome, .nft_intro h1{
-    font-size: 3.5rem;
+
+
+.welcome h1, .nft_intro h1{
+    font-size: 4rem;
     color: #5B9240;
     font-weight: 800;
     text-shadow: 3px 3px 2px #eff7f2 ;
     font-family: 'Indie Flower', cursive;
 }
 
-.welcome, .nft_intro h2{
+.welcome h2, .nft_intro h2{
     font-size: 2rem;
     color: #5B9240;
     font-weight: 500;
@@ -136,6 +150,7 @@ links a:visited{
 }
 
 
+
 main{
     display: flex;
     justify-content: center;
@@ -144,7 +159,7 @@ main{
 }
 
 
-.main{
+.recent{
     margin-top: 1em;
     width: 1000px;
     display: flex;
@@ -164,6 +179,7 @@ main{
     margin-top: 0.6rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem; 
+    padding-bottom: 0.5rem;
 }
 
 .piccontainer{
@@ -176,6 +192,10 @@ main{
     border: 1px solid #5B9240;
     box-shadow: 1px 2px 2px #265011;
 
+}
+
+.flowerinfo{
+    font-family: 'Figtree', sans-serif; ;
 }
 
 .gallery{
@@ -194,10 +214,10 @@ main{
 }
 
 .nftflowerfeature:hover, .flowerfeature:hover {
-    border-right: 1.5px solid #3bbcf0;
+    border-right: 2px solid #3bbcf0;
     border-left: none;
     border-top: none;
-    border-bottom: 1.5px solid #3bbcf0;;
+    border-bottom: 2px solid #3bbcf0;;
     box-shadow: 1px 2px 2px #023549;
 
 }
@@ -280,4 +300,68 @@ main{
 
 #map{
     margin-bottom: 5%;
+}
+
+/* Css for mobile and smaller screen sizes */
+
+@media only screen and (max-width: 420px) {
+    body{
+        width: 100%;
+    }
+   
+    .logo{
+    max-width: 60%;
+    height: auto;
+    
+   }
+
+   .logo img{
+    width: 65px;
+   }
+
+   
+
+   .logotext{
+    font-size: .6rem;
+   }
+
+   .navitems{
+    font-size: .6rem;
+    margin-right: 12%;
+   }
+
+   .recent{
+    margin-top: 1em;
+    width: auto;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d8f3ca;
+    
+}
+
+    .banner, .nftbanner{
+    width: 100%;
+    height: 450px;
+}
+    .banner::before{
+    
+    width: 100%;
+    height: 450px;
+
+  }
+    
+    .welcome{
+        margin-left: 25%;
+    }
+
+    .welcome h1, .nft_intro h1{
+    font-size: 2.5rem;
+  }
+
+    .welcome h2, .nft_intro h2{
+    font-size: 1.5rem;
+  }
 }
