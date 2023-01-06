@@ -150,12 +150,22 @@ links a:visited{
 }
 
 
+/* Juicer Feed CSS */
+
+.juicer-feed{
+    /*border: 2px solid #5B9240;*/
+    box-shadow: 2px 2px #3bbcf0;
+    
+}
+
+
 
 main{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #cdeebc;
 }
 
 
@@ -164,7 +174,7 @@ main{
     width: 1000px;
     display: flex;
     justify-content: space-between;
-    background-color: #d8f3ca;
+    background-color: #a4e98200;
     
 }
 
