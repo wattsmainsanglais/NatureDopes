@@ -5,7 +5,6 @@ nav{
     justify-content: flex-start;
     align-items: center;
     z-index: 1;
-    
 }
 
 .logo{
@@ -26,15 +25,14 @@ nav{
 .navitems{
     float: right;
     margin-left: auto;
-    margin-right: 8%;
+    margin-right: 12%;
     font-family: 'Figtree', sans-serif;
     font-weight: 800;
 }
 
-ul{
+.navlinks{
     display: flex;
-    justify-content: space-around;
-
+    justify-content: space-between;
 }
 
 .links{
@@ -190,6 +188,7 @@ main{
     margin-left: 0.5rem;
     margin-right: 0.5rem; 
     padding-bottom: 0.5rem;
+    background-color: #eff7f2;
 }
 
 .piccontainer{
@@ -204,17 +203,31 @@ main{
 
 }
 
-.flowerinfo{
-    font-family: 'Figtree', sans-serif; ;
+.flowerinfo {
+    font-family: 'Indie Flower', cursive; 
+    background-color: #eff7f2;
 }
+
+.flowerinfo-inside{
+    font-family: 'Indie Flower', cursive;
+    padding: 10%;
+    
+    font-size: 2.5rem;
+    background-color: #cdeebc;
+    text-align: center;
+    height: 100%;
+}
+
+/* gallery.html css */
 
 .gallery{
     margin-top: 1.2rem;
-    width: 1000px;
-    display: grid;
+    width: 80%;
+    /*display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    grid-auto-rows: auto;
+    grid-auto-rows: auto; */
+    display: flex;
 }
 
 .gallery-item{
@@ -317,6 +330,8 @@ main{
 @media only screen and (max-width: 420px) {
     body{
         width: 100%;
+        display: flex;
+        flex-direction: column;
     }
    
     .logo{
@@ -337,20 +352,53 @@ main{
 
    .navitems{
     font-size: .6rem;
-    margin-right: 12%;
+    margin-right: 15%;
    }
+
+   .links{
+    padding: 0% 2%;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
+
+
+}
 
    .recent{
     margin-top: 1em;
-    width: auto;
+    width: 90%;
     height: fit-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    background-color: #d8f3ca;
-    
+    justify-content: flex-start;
+    background-color: #cdeebc;
 }
+    .feature-title{
+        font-size: 2rem;
+    }
+
+    .feature{
+        padding-bottom: 0;
+    }
+
+    .flowerfeature{
+    width: 90px;
+    height: 100px;
+    }
+
+    .flowerinfo{
+        font-size: 60%;
+    }
+
+    .flowerinfo-inside{
+        font-family: 'Indie Flower', cursive;
+        padding: 10%;
+        
+        font-size: 60%;
+        background-color: #cdeebc;
+        text-align: center;
+        height: 100%;
+    }
 
     .banner, .nftbanner{
     width: 100%;
@@ -374,4 +422,24 @@ main{
     .welcome h2, .nft_intro h2{
     font-size: 1.5rem;
   }
+
+    
+
+    .juicer-feed.modern li.feed-item {
+        background: transparent;
+        border: none;
+        max-width: 100%;
+      }
+
+    .Social-links{
+        font-size: 2rem;
+
+    }
+
+    .social{
+        width: 45px;
+    }
+
+    
+
 }
