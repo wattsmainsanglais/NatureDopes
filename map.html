@@ -13,7 +13,7 @@
 
     <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
-
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
 </head>
 
 <body>
@@ -43,26 +43,54 @@
 </header>
 
 <main>
+
+    <h1 id="screen-warning"></h1>
     
+    <script>
+    
+    
+    let message = 'Please Rotate Device for mobiles';
+    
+    function resizeMessage(){    
+    
+        let w = window.innerWidth;
+        if(w < 500){
+        document.getElementById('screen-warning').innerHTML = message;
+        
+        } else {
+        document.getElementById('screen-warning').innerHTML = '';
+        }
+           
+        }
+    window.onresize = resizeMessage    
+    console.log(window.innerWidth);
+
+    </script>
+
+
+
     <section class="map-overlay">
 
-        <div id='map' style='width: 1000px; height: 500px;'>
+        <div id='map'>
         </div>
             
             
-            <form>
-                <label for="firstRef">Enter First Grid Reference</label>
+        <form class="map-form">
+                <label class="map-label" for="firstRef">Enter First Grid Reference</label>
                 <input name="firstRef" id="firstRef" type="number">
                 <hr>
-                <label for="secondRef">Enter Second Grid Reference</label>
+                <label class="map-label" for="secondRef">Enter Second Grid Reference</label>
                 <input name="secondRef" id="secondRef" type="number">
                 <button type="button" onclick="newMark()">Add</button>
-            </form>
+        </form>
             <hr>
-        <h4>Map supplied by<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a></h4>
+        
     </section>
 
-    <script>
+    <h4>Map supplied by<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a></h4>
+   
+   
+   <script>
         var map = new maplibregl.Map({
         container: 'map',
         style: 'https://api.maptiler.com/maps/streets/style.json?key=PSMy7BMmV1X1YJoVOzD1 ', // stylesheet location

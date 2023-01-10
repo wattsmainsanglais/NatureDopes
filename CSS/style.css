@@ -322,7 +322,37 @@ main{
 /* map css */
 
 #map{
+    
+    width: 1000px;
+    height: 500px;
+}
+
+.map-overlay{
+    margin-left: 2%;
+    margin-top: 2%;
     margin-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.map-form{
+    margin-left: 2%;
+    width: 15%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #eff7f2;
+    font-family: 'Figtree', sans-serif;
+    font-size: 0.8rem;
+    padding: .5%;
+}
+
+#screen-warning{
+    margin-top: 2px;
+    font-family: 'Figtree', sans-serif;
+    color: red;
+    background-color: #eff7f2;
+    text-align: center;
 }
 
 /* Css for mobile and smaller screen sizes */
@@ -440,6 +470,35 @@ main{
         width: 45px;
     }
 
-    
 
+    #map{
+    
+        width: 350px;
+        height: 175px;
+    }
+    
+    .map-overlay{
+        width: auto;
+        margin-left: 2%;
+        margin-top: 2%;
+        margin-bottom: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .map-form{
+        margin-top: 2%;
+        width: auto;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        background-color: #eff7f2;
+        font-family: 'Figtree', sans-serif;
+        font-size: 0.8rem;
+        padding: .5%;
+    }
+    .maplibregl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-right{
+        font-size: .4rem;
+    }
 }
