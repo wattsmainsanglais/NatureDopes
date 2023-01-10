@@ -501,6 +501,46 @@ main{
         padding: .5%;
     }
     .maplibregl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-right{
-        font-size: .4rem;
+        font-size: .3rem;
     }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1000px) {
+    
+    .logo img{
+        width: 90px;
+       }
+    
+
+    .navitems{
+        font-size: .8rem;
+        margin-right: 15%;
+       }
+    
+    .map-overlay{
+        width: auto;
+        margin-left: 2%;
+        margin-top: 2%;
+        margin-bottom: 5%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    #map{
+    
+        width: 650px;
+        height: 325px;
+    }
+
+    .map-form{
+        margin-top: 3px;
+        width: 50%;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-left: 0;
+
+
 }
