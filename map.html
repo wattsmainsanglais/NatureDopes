@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet"> 
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
-
+   
     <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
@@ -71,7 +71,7 @@
 
     <section class="map-overlay">
 
-        <div id='map'>
+        <div id='map' alt="awaiting map, please wait">
         </div>
             
             
@@ -91,14 +91,21 @@
    
    
    <script>
-        var map = new maplibregl.Map({
+        async function awaitmap(){ 
+        let map = await new maplibregl.Map({
         container: 'map',
         style: 'https://api.maptiler.com/maps/streets/style.json?key=PSMy7BMmV1X1YJoVOzD1 ', // stylesheet location
         center: [-74.5, 40], // starting position [lng, lat]
         zoom: 1 // starting zoom
-       
-        });
-       
+            
+        }); 
+        return map
+
+        }
+
+        awaitmap();
+
+
       function newMark(){
         let firstRef = document.getElementById("firstRef").value;
         let secondRef = document.getElementById("secondRef").value;

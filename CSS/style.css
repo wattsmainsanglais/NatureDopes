@@ -325,9 +325,11 @@ main{
     
     width: 1000px;
     height: 500px;
+    border: 1px solid grey;
 }
 
 .map-overlay{
+   
     margin-left: 2%;
     margin-top: 2%;
     margin-bottom: 5%;
