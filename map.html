@@ -74,7 +74,7 @@
            
         </div>
         
-            
+       
             
         <form class="map-form">
                 <h2 class="map-h2">Welcome to our Map page</h2>
@@ -92,8 +92,9 @@
                 <label class="map-label" for="secondRef">Enter Second Grid Reference</label>
                 <input class="map-input" name="secondRef" id="secondRef" type="number">
                 <div class="button div">
-                <button class="map-button" type="button" onclick="newMark()">Add</button>
-                </div>
+                <button id="map-button" class="map-button" type="button" onclick="newMark()">Add</button>
+                <div id="radom"></div>
+            </div>
             </form>
           
         
@@ -116,18 +117,35 @@
         }); 
        
 
-      
+        
 
 
-      function newMark(){
-       
+      async function newMark(){
+        
+        let imageThumb = document.getElementById('imageThumb');
         let speciesName = document.getElementById('species-name').value; 
         let firstRef = document.getElementById("firstRef").value;
         let secondRef = document.getElementById("secondRef").value;
         var marker = new maplibregl.Marker()
             .setLngLat([firstRef, secondRef])
+            .setPopup(new maplibregl.Popup().setHTML(speciesName))
             .addTo(map);
+        changeColor();
+        
       }
+
+      function changeColor(){
+        let change = document.getElementById("map-button" );
+        change.style.color = "red";
+      }
+
+      
+        
+       
+        //console.log(newMarker);
+        
+      
+
 
        
     </script>

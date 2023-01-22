@@ -152,7 +152,7 @@ links a:visited{
 
 .juicer-feed{
     /*border: 2px solid #5B9240;*/
-    box-shadow: 2px 2px #3bbcf0;
+    /*box-shadow: 2px 2px #000000;*/
     
 }
 
@@ -555,6 +555,11 @@ main{
         font-size: .8rem;
         margin-right: 15%;
        }
+
+    .recent{
+        margin-top: 1em;
+        width: 90%;
+    }
     
     .map-overlay{
         width: auto;
