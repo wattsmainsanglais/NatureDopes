@@ -75,9 +75,7 @@ links a:visited{
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-
-   
+    justify-content: center;
 }
 
 .banner::before{
@@ -110,17 +108,18 @@ links a:visited{
 .welcome{
 
     position: relative;
-    width: 30%;
     height: auto;
     padding: 6% 3%;
     background-color: transparent;
-    /*background: radial-gradient(#5B9240, #E7EBE8);*/
-    /*background-image: url("master\ new\ alt\ 1.jpg");*/
+
+/*background: radial-gradient(#5B9240, #E7EBE8);*/
+
+/*background-image: url("master\ new\ alt\ 1.jpg");*/
     opacity: 1;
     text-align: center;
     border-radius: 10px;
-    margin-left: 10%;
-
+    margin-left: 3%;
+    margin-right: 55%;
 }
 
 
@@ -220,7 +219,7 @@ main{
 
 /* gallery.html css */
 
-.gallery{
+.gallery, .nftgallery{
     margin-top: 1.2rem;
     width: 80%;
     /*display: grid;
@@ -228,6 +227,7 @@ main{
     gap: 20px;
     grid-auto-rows: auto; */
     display: flex;
+    justify-content: space-around;
 }
 
 .gallery-item{
@@ -275,17 +275,22 @@ main{
     width: 100px;
     margin: 0px 1.5rem;
     height: auto;
-
+}
 /* NFT page CSS */
 
-}
+
 
 .nft_intro{
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
+}
+
+.nftheader{
+    text-align: center;
 }
 
 .nft_about{
@@ -300,14 +305,14 @@ main{
     font-weight: 700;
 }
 
-.nftgallery{
+/*.nftgallery{
     width: 900px;
     display: flex;
     justify-content: space-between;
     
     margin-top: .1rem;
 
-}
+}*/
 
 .nftflowerfeature{
 
@@ -401,6 +406,7 @@ main{
 @media only screen and (max-width: 420px) {
     body{
         width: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
     }
@@ -471,7 +477,8 @@ main{
         height: 100%;
     }
 
-    .banner, .nftbanner{
+
+    .banner{
     width: 100%;
     height: 450px;
 }
@@ -483,14 +490,16 @@ main{
   }
     
     .welcome{
-        margin-left: 25%;
+        margin-left: 10%;
+        margin-right: 10%;
+        /* margin-left: 25%; */
     }
 
-    .welcome h1, .nft_intro h1{
+    .welcome h1{
     font-size: 2.5rem;
   }
 
-    .welcome h2, .nft_intro h2{
+    .welcome h2{
     font-size: 1.5rem;
   }
 
@@ -542,10 +551,74 @@ main{
     .maplibregl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-right{
         font-size: .3rem;
     }
+
+    
+    .nftbanner::before{
+        width: 100%;
+        height: 450px;
+        background-size: contain; 
+        background-image: url("Campanula.jpg");
+        content: "";
+        position: absolute;
+        opacity: 0.2;
+    
+    }
+
+    .nftbanner{
+        width: 100%;
+        height: 450px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+      
+    .nftflowerfeature{
+
+        width: 100px;    
+        height: 131px;
+        border: 1px solid #5B9240;
+        box-shadow: 1px 2px 2px #265011;
+        margin: 0px 2px;
+    }
+
+    .nft_intro{
+       
+        align-content: center;
+    }
+
+    .nftheader{
+       text-align: center;
+    }
+
+    .nftheader h1{
+        font-size: 1.5rem;
+    }
+    
+    .nft_about{
+        
+        margin-top: 0.5rem;
+        width: 80%;
+    }
+
+    .nft_about h2{
+        font-size: 1.2rem;
+        
+    }
+    
+    #nfth2{
+        text-align: center;
+        margin-bottom: 0.3rem;
+        color: blueviolet;
+        font-weight: 700;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 1100px) {
-    
+    body{
+        height: auto;
+    }
+
+
     .logo img{
         width: 90px;
        }
@@ -561,6 +634,15 @@ main{
         width: 90%;
     }
     
+    .flowerfeature{
+        width: 135px;
+        height: 150px;
+    }
+
+    .flowerinfo-inside{
+        font-size: 1.8rem;
+    }
+
     .map-overlay{
         width: auto;
         margin-left: 2%;
