@@ -167,7 +167,7 @@ main{
 
 
 .recent{
-    margin-top: 1em;
+    
     width: 1000px;
     display: flex;
     justify-content: space-between;
@@ -175,11 +175,69 @@ main{
     
 }
 
+.about{
+    margin-top: 2em;
+    margin-bottom: 1em;;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.about p{
+    font-family: 'Figtree', sans-serif;
+    color: #5B9240;
+    font-weight: 800;
+    padding: 3% 3% 3% 0%;
+    
+    background-color: #ffffff;
+    line-height: 1.2;
+    
+}
+
+.slide-wrapper{
+    position: relative;
+    overflow: hidden;
+    width: 92%;
+    height: 235px;
+    background-color: #ffffff ;
+}
+
+
+
+.slide{
+    width: 92%;
+    position: absolute;
+    right: -900px;
+    transition: 1s;
+
+    height: 235px;
+}
+
+.slide-wrapper:hover .slide{
+    transition: 1s;
+    right: 0; /* SET THE SLIDER TO BE 0 */
+
+}
+
 .feature-title{
+    padding-top: 2rem;
+    border-top: 2px solid #5B9240;
+}
+
+.feature-title, .about-title, .gallery-title{
     font-size: 3rem;
     font-family: 'Indie Flower', cursive;
     color: #5B9240;
-    margin-top: 1em;
+    
+    
+}
+
+.about-title{
+    padding-bottom: 2%;
+    
 }
 
 .feature{
@@ -449,8 +507,15 @@ main{
     align-items: center;
     justify-content: flex-start;
     background-color: #cdeebc;
-}
-    .feature-title{
+    }
+
+    .about{
+    margin-top: 1em;
+    width: 90%;
+
+    }
+
+    .feature-title, .about-title{
         font-size: 2rem;
     }
 
