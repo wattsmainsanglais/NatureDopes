@@ -16,9 +16,11 @@ const postMarker = async () => {
         });
             if(response.ok){
           const jsonResponse = await response.json();
-          console>log(jsonResponse);
+          console.log(jsonResponse);
         }
       } catch (error) {
         console.log(error);
       }
     }
+
+    export {postMarker}; 

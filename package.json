@@ -1,0 +1,22 @@
+{
+  "name": "naturedopes",
+  "version": "1.0.0",
+  "description": "Nature dopes web project",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wattsmainsanglais/NatureDopes.git"
+  },
+  "author": "A Watts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wattsmainsanglais/NatureDopes/issues"
+  },
+  "homepage": "https://github.com/wattsmainsanglais/NatureDopes#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

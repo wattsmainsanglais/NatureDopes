@@ -35,6 +35,11 @@ let markerList = [
 
 ]
 
+app.post('/markerlist', addMarkerToArray, (req, res, next) => {
+    console.log(req.body);
+    res.status(200).send('New discovery added to array');
+})
+
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
 })
