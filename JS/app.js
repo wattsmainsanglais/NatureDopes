@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const store = new session.MemoryStore();``
 
 
 const PORT = process.env.PORT || 4001;
@@ -19,6 +21,16 @@ app.use((req, res, next) => {
     }
     next();
   });
+
+  app.use(
+    session({
+      secret: 'random',
+      cookie: {maxAge: 172800000, secure: false, sameSite: 'none'},
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
+
 
   app.use(bodyParser.json());
 
@@ -59,6 +71,7 @@ app.post('/markerlist', addMarkerToArray, (req, res, next) => {
     console.log(req.body);
     res.status(201).send(req.body);
     console.log(markerList);
+    console.log(req.session);
 })
 
 app.listen(PORT, () =>{

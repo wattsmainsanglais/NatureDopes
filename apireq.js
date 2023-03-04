@@ -5,8 +5,6 @@ const fetchMarkerSubmit = document.getElementById('map-button');
  
 
 
-
-
 const postMarker = async (speciesName, firstRef, secondRef) => {
 
   const data = JSON.stringify({'speciesName': speciesName, 'firstRef': firstRef, 'secondRef': secondRef});
