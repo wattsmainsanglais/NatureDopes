@@ -7,9 +7,12 @@ const store = new session.MemoryStore();``
 
 const PORT = process.env.PORT || 4001;
 
-app.use(express.static('../NatureDopes'));
+app.use(express.static(__dirname + '/views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
-app.use((req, res, next) => {
+
+/*app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
       "Access-Control-Allow-Methods",
@@ -20,7 +23,7 @@ app.use((req, res, next) => {
       return res.sendStatus(200);
     }
     next();
-  });
+  });*/
 
   app.use(bodyParser.json());
   
@@ -67,12 +70,18 @@ let markerList = [
 
 ]
 
+
+
 app.post('/markerlist', addMarkerToArray, (req, res, next) => {
     console.log(req.body);
     res.status(201).send(req.body);
     console.log(markerList);
     console.log(req.session);
-})
+});
+
+app.get('/maplogin', (req, res,) =>{
+  res.render('map');
+});
 
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
