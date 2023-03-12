@@ -2,14 +2,12 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const store = new session.MemoryStore();
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const store = new session.MemoryStore();``
 
 
 const PORT = process.env.PORT || 4001;
 
-app.use(express.static('NatureDopes'));
+app.use(express.static('../NatureDopes'));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
