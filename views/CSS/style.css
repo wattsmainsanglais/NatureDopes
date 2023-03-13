@@ -485,6 +485,11 @@ button {
     cursor: pointer;
     width: 100%;
   }
+
+  button.register {
+    background-color: red;
+
+  }
   
   /* Add a hover effect for buttons */
   button:hover {
