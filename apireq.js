@@ -2,7 +2,6 @@
 const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
 
- 
 
 
 const postMarker = async (speciesName, firstRef, secondRef) => {

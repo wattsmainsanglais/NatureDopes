@@ -3,7 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const store = new session.MemoryStore();``
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const userRecords = require('./users');
 
+const { render } = require('ejs');
 
 const PORT = process.env.PORT || 4001;
 
@@ -37,10 +41,31 @@ app.set('view engine', 'html');
     })
   );
 
-/*const speciesName = document.getElementById('species-name');
-const firstRef = document.getElementById('firstRef');
-const secondRef = document.getElementById('secondRef');
-*/
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+
+  passport.use(new LocalStrategy(function(username, password, done){
+    username.findOne({username: username}, function(err, user){
+      if(err){
+        return done(err);
+      }
+      if(!user){
+        return done(null, false);
+      }
+      if(!user.verifyPassword(password)){
+        return done (null, false);
+      }
+      return done(null, user);
+
+    });
+  }));
+
+
+
 let markerListId = 3;
 
 function addMarkerToArray(req, res, next){
@@ -70,6 +95,9 @@ let markerList = [
 
 ]
 
+app.get('/index', (req, res) =>{
+  console.log(req.session);
+})
 
 
 app.post('/markerlist', addMarkerToArray, (req, res, next) => {
@@ -80,9 +108,36 @@ app.post('/markerlist', addMarkerToArray, (req, res, next) => {
 });
 
 app.get('/maplogin', (req, res,) =>{
+  console.log(req.session);
   res.render('map');
+});
+
+app.get('/register', (req, res, next) => {
+  console.log('This Route works');
+  res.render('maplogin');
+})
+
+app.post("/register", async (req, res) => {
+  console.log(req.body);
+  const { username, password } = req.body;
+  // Create new user:
+  const newUser = await userRecords.createUser({username, password});
+  // Add if/else statement with the new user as the condition:
+  if (newUser) {
+    // Send correct response if new user is created:
+    console.log('user created')
+    res.redirect('maplogin');
+    
+  } else {
+    // Send correct response if new user failed to be created:
+    res.status(500).json({
+      msg: "User was not created!"
+    });
+  }
+  
 });
 
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
+    
 })
