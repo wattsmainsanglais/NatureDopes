@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet"> 
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
+    <script src="apireq.js"></script>
    
     
         
@@ -48,8 +49,6 @@
     <h1 id="screen-warning"></h1>
     
     <script>
-    
-    
     let message = 'Please Rotate Device for mobiles';
     
     function resizeMessage(){    
@@ -65,6 +64,8 @@
         }
     window.onresize = resizeMessage    
     console.log(window.innerWidth);
+    
+    
 
     </script>
 
@@ -86,7 +87,7 @@
             class="close" title="Close Modal">&times;</span>
             
               <!-- Modal Content -->
-              <form class="modal-content animate" action="/maplogin" method="post">
+              <form class="modal-content animate" method="post">
                 <div class="imgcontainer">
                   <img src="images/logomini.png" alt="Avatar" class="avatar">
                 </div>
@@ -99,11 +100,12 @@
                   <input type="password" id='password' placeholder="Enter Password" name="password" required>
             
                   <button type="submit">Login</button>
-                  <button class='register' type="submit" formaction="/register">Register</button>
+                  <button class='register' id="register_button" formaction="/register" type="submit">Register</button>
                   <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                   </label>
                 </div>
+        
             
                 <div class="container" style="background-color:#f1f1f1">
                   <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
@@ -120,7 +122,7 @@
     <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
    
-    <script type='text/javascript' src="apireq.js"></script>
+    
    <script>
         
         
@@ -152,6 +154,8 @@
     </section>
 
 </main>
+
+
 
 <footer>
 

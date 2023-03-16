@@ -11,12 +11,12 @@ const { render } = require('ejs');
 
 const PORT = process.env.PORT || 4001;
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/views/'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
       "Access-Control-Allow-Methods",
@@ -27,9 +27,10 @@ app.set('view engine', 'html');
       return res.sendStatus(200);
     }
     next();
-  });*/
+  });
 
   app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({extended:true}));
   
   app.use(
     session({
@@ -49,7 +50,7 @@ app.set('view engine', 'html');
   });
 
   passport.use(new LocalStrategy(function(username, password, done){
-    username.findOne({username: username}, function(err, user){
+    userRecords.records.findOne({username: username}, function(err, user){
       if(err){
         return done(err);
       }
@@ -109,15 +110,16 @@ app.post('/markerlist', addMarkerToArray, (req, res, next) => {
 
 app.get('/maplogin', (req, res,) =>{
   console.log(req.session);
-  res.render('map');
-});
+  res.render('maplogin');
+}); 
 
 app.get('/register', (req, res, next) => {
   console.log('This Route works');
+
   res.render('maplogin');
 })
 
-app.post("/register", async (req, res) => {
+app.post("/register", async (req, res,) => {
   console.log(req.body);
   const { username, password } = req.body;
   // Create new user:
@@ -126,7 +128,8 @@ app.post("/register", async (req, res) => {
   if (newUser) {
     // Send correct response if new user is created:
     console.log('user created')
-    res.redirect('maplogin');
+    /*res.redirect('maplogin')*/
+    res.status(201).redirect('maplogin');
     
   } else {
     // Send correct response if new user failed to be created:

@@ -1,7 +1,7 @@
 
 const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
-
+const registerSubmit = document.getElementById('register_button');
 
 
 const postMarker = async (speciesName, firstRef, secondRef) => {
@@ -19,6 +19,7 @@ const postMarker = async (speciesName, firstRef, secondRef) => {
             if(response.ok){
           const jsonResponse = await response.json();
           console.log(jsonResponse);
+
         }
       } catch (error) {
         console.log('What is going on?', error);
@@ -32,6 +33,39 @@ const postMarker = async (speciesName, firstRef, secondRef) => {
       console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef);
     })
+
+const postRegister = async (username, password) => {
+      console.log('The username is' + username);
+      const data = JSON.stringify({'username': username, 'password': password});
+      const urlToPostSubmit = 'http://localhost:4001/register';
+      
+
+      try{
+        const response = await fetch(urlToPostSubmit, {
+          method: 'POST',
+          body: data,
+          headers: {
+            'Content-type': 'application/x-www-form-urlencoded',     
+          }  
+      });
+          if(response.ok){
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+        window.alert('Thank you, Registration Complete. Please login');
+      }
+    } catch (error) {
+      console.log('What is going on?', error);
+    }
+  }
+
+  /*registerSubmit.addEventListener('click', () => {
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    
+    console.log(username);
+    postRegister(username, password);
+  })*/
+
    
 
     /*fetchRandomButton.addEventListener('click', () => {
@@ -48,3 +82,5 @@ const postMarker = async (speciesName, firstRef, secondRef) => {
       });
     });
     */
+
+    
