@@ -6,6 +6,7 @@ const store = new session.MemoryStore();``
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const userRecords = require('./users');
+const bcrypt = require('bcrypt');
 
 const { render } = require('ejs');
 
@@ -73,8 +74,10 @@ app.use((req, res, next) => {
         console.log('user not found' + username)
         return done(null, false);
       }
-      if(user.password != password){
-        console.log('passowrd incorrect')
+      const matchedPassword = bcrypt.compare(password, user.password);
+
+      if(!matchedPassword){
+        console.log('password incorrect')
         return done (null, false);
       }
       console.log('user found')
@@ -149,8 +152,14 @@ app.get('/register', (req, res, next) => {
 app.post("/register", async (req, res,) => {
   console.log(req.body);
   const { username, password } = req.body;
+
+  //hash the password before storage
+
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+
   // Create new user:
-  const newUser = await userRecords.createUser({username, password});
+  const newUser = await userRecords.createUser({username, hash});
   // Add if/else statement with the new user as the condition:
   if (newUser) {
     // Send correct response if new user is created:
