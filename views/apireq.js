@@ -1,7 +1,7 @@
 
 const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
-const registerSubmit = document.getElementById('register_button');
+
 
 
 const postMarker = async (speciesName, firstRef, secondRef) => {
@@ -32,7 +32,7 @@ const postMarker = async (speciesName, firstRef, secondRef) => {
       let secondRef = document.getElementById('secondRef').value;
       console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef);
-    })
+    });
 
 const postRegister = async (username, password) => {
       console.log('The username is' + username);
@@ -44,8 +44,9 @@ const postRegister = async (username, password) => {
         const response = await fetch(urlToPostSubmit, {
           method: 'POST',
           body: data,
+
           headers: {
-            'Content-type': 'application/x-www-form-urlencoded',     
+            'Content-type': 'application/json',     
           }  
       });
           if(response.ok){
@@ -58,29 +59,19 @@ const postRegister = async (username, password) => {
     }
   }
 
-  /*registerSubmit.addEventListener('click', () => {
-    let username = document.getElementById('username').value;
+  
+  
+    document.getElementById('register_button').addEventListener('submit', () => {
+    /*let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     
     console.log(username);
-    postRegister(username, password);
-  })*/
-
+    postRegister(username, password); */
+    alert("something"); 
+    });
+  
    
 
-    /*fetchRandomButton.addEventListener('click', () => {
-      fetch('/api/quotes/random')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          renderError(response);
-        }
-      })
-      .then(response => {
-        renderQuotes([response.quote]);
-      });
-    });
-    */
+    
 
     

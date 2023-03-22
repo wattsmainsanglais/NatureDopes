@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const store = new session.MemoryStore();``
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const userRecords = require('./users');
 
 const { render } = require('ejs');
@@ -49,17 +49,35 @@ app.use((req, res, next) => {
     done(null, user.id);
   });
 
+  passport.deserializeUser((id, done) => {
+    userRecords.findById(id, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+      done(null, user);
+    });
+  });
+  
+
+
   passport.use(new LocalStrategy(function(username, password, done){
-    userRecords.records.findOne({username: username}, function(err, user){
+    console.log('passport starting')
+    console.log(username)
+    
+    userRecords.findByUsername(username, function(err, user){
       if(err){
+        console.log('error')
         return done(err);
       }
       if(!user){
+        console.log('user not found' + username)
         return done(null, false);
       }
-      if(!user.verifyPassword(password)){
+      if(user.password != password){
+        console.log('passowrd incorrect')
         return done (null, false);
       }
+      console.log('user found')
       return done(null, user);
 
     });
@@ -110,13 +128,22 @@ app.post('/markerlist', addMarkerToArray, (req, res, next) => {
 
 app.get('/maplogin', (req, res,) =>{
   console.log(req.session);
-  res.render('maplogin');
+  if(req.user) {
+    res.redirect('map');
+  } else {
+    res.render('maplogin');
+  }
+}); 
+
+app.get('/map', (req, res,) =>{
+  console.log(req.session);
+  res.render('map', { user: req.user });
 }); 
 
 app.get('/register', (req, res, next) => {
   console.log('This Route works');
 
-  res.render('maplogin');
+  res.render('/maplogin');
 })
 
 app.post("/register", async (req, res,) => {
@@ -138,6 +165,13 @@ app.post("/register", async (req, res,) => {
     });
   }
   
+});
+
+// POST request for logging in
+app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maplogin" }), (req, res) => {
+      console.log(req.session.user)
+      res.redirect("map");
+    
 });
 
 app.listen(PORT, () =>{

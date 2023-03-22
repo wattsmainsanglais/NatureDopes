@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet"> 
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
-    <script src="apireq.js"></script>
+    
    
     
         
@@ -36,7 +36,7 @@
                     <li class="links"><a href="gallery.html">Gallery</a></li>
                     <li class="links">About</li>
                     <li class="links">Links</li>
-                    <li class="links"><a href="map.html">Map</a></li>
+                    <li class="links"><a href="maplogin">Map</a></li>
                     <li class="links"><a href="nft.html">NFT</a></li>
                 </ul>
         </div>
@@ -87,7 +87,7 @@
             class="close" title="Close Modal">&times;</span>
             
               <!-- Modal Content -->
-              <form class="modal-content animate" method="post">
+              <form class="modal-content animate" id="register_button" method="post" >
                 <div class="imgcontainer">
                   <img src="images/logomini.png" alt="Avatar" class="avatar">
                 </div>
@@ -99,8 +99,8 @@
                   <label for="password"><b>Password</b></label>
                   <input type="password" id='password' placeholder="Enter Password" name="password" required>
             
-                  <button type="submit">Login</button>
-                  <button class='register' id="register_button" formaction="/register" type="submit">Register</button>
+                  <button type="submit" formaction="/maplogin">Login</button>
+                  <button class='register' type="submit" id="register_button" formaction="/register" >Register</button>
                   <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                   </label>
@@ -118,7 +118,7 @@
           
         
     </section>
-
+    
     <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
    
@@ -162,6 +162,6 @@
 
 </footer>
 
-
+<script src="apireq.js"></script>
 </body>
 </html>
