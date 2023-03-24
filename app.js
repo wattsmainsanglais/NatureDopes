@@ -74,15 +74,18 @@ app.use((req, res, next) => {
         console.log('user not found' + username)
         return done(null, false);
       }
-      const matchedPassword = bcrypt.compare(password, user.password);
+      bcrypt.compare(password, user.password, function (err, result){
+          if(!result){
+          console.log('password incorrect')
+          return done (null, false);
+          }
+          if(result){
 
-      if(!matchedPassword){
-        console.log('password incorrect')
-        return done (null, false);
-      }
-      console.log('user found')
-      return done(null, user);
+          console.log('user found')
+          return done(null, user);
+          }
 
+      });
     });
   }));
 
@@ -157,7 +160,7 @@ app.post("/register", async (req, res,) => {
 
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
-
+  console.log(hash);
   // Create new user:
   const newUser = await userRecords.createUser({username, hash});
   // Add if/else statement with the new user as the condition:
@@ -177,7 +180,7 @@ app.post("/register", async (req, res,) => {
 });
 
 // POST request for logging in
-app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maplogin" }), (req, res) => {
+app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maplogin"}), (req, res) => {
       console.log(req.session.user)
       res.redirect("map");
     

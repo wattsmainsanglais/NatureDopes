@@ -2,7 +2,7 @@ let records = [
     {
       id: 1, 
       username: "sam",
-      password: "codec@demy10",
+      password: "$2b$10$mTCI2RiwG6wZ7.aO2Gc9a.446QdOzHnsjd0Q8w82.BpEsUVLyRf2W",
     },
     {
       id: 2,
