@@ -149,13 +149,6 @@ links a:visited{
 
 /* Juicer Feed CSS */
 
-.juicer-feed{
-    /*border: 2px solid #5B9240;*/
-    /*box-shadow: 2px 2px #000000;*/
-    
-}
-
-
 
 main{
     display: flex;
@@ -276,6 +269,10 @@ main{
 }
 
 /* gallery.html css */
+
+.gallery-title{
+    margin-top: 2%;
+}
 
 .gallery, .nftgallery{
     margin-top: 1.2rem;

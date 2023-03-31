@@ -61,14 +61,15 @@ const postRegister = async (username, password) => {
 
   
   
-    document.getElementById('register_button').addEventListener('submit', () => {
-    /*let username = document.getElementById('username').value;
+    /*document.getElementById('register_button').addEventListener('submit', () => {
+    let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     
     console.log(username);
-    postRegister(username, password); */
+    postRegister(username, password); 
     alert("something"); 
     });
+    */
   
    
 

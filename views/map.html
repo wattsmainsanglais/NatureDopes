@@ -124,7 +124,10 @@
         let speciesName = document.getElementById('species-name').value; 
         let firstRef = document.getElementById("firstRef").value;
         let secondRef = document.getElementById("secondRef").value;
-        var marker = new maplibregl.Marker()
+        var marker = new maplibregl.Marker({
+            color: '#5B9240',
+            scale: .5,
+        })
             .setLngLat([firstRef, secondRef])
             .setPopup(new maplibregl.Popup().setHTML(speciesName))
             .addTo(map);
