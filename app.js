@@ -141,6 +141,10 @@ app.get('/maplogin', (req, res,) =>{
   }
 }); 
 
+app.get('/maploginFail', (req, res) => {
+  res.render('maploginFail');
+});
+
 app.get('/map', (req, res,) =>{
   console.log(req.session);
   res.render('map', { user: req.user });
@@ -154,15 +158,16 @@ app.get('/register', (req, res, next) => {
 
 app.post("/register", async (req, res,) => {
   console.log(req.body);
-  const { username, password } = req.body;
+  let { username, password } = req.body;
 
   //hash the password before storage
 
   const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(password, salt);
+  let hash = await bcrypt.hash(password, salt);
   console.log(hash);
+  password = hash;
   // Create new user:
-  const newUser = await userRecords.createUser({username, hash});
+  const newUser = await userRecords.createUser({username, password});
   // Add if/else statement with the new user as the condition:
   if (newUser) {
     // Send correct response if new user is created:
@@ -180,7 +185,7 @@ app.post("/register", async (req, res,) => {
 });
 
 // POST request for logging in
-app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maplogin"}), (req, res) => {
+app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maploginFail", failureMessage: 'Password incorrect, please try again'}), (req, res) => {
       console.log(req.session.user)
       res.redirect("map");
     
