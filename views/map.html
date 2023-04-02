@@ -88,10 +88,10 @@
                 <label class="map-label" for="species-name">Enter the name of your find</label>
                 <input  class="map-input" name="species-name" id="species-name" type="text">
 
-                <label class="map-label" for="firstRef">Enter First Grid Reference</label>
+                <label class="map-label" for="firstRef">Enter Longditude</label>
                 <input class="map-input"  name="firstRef" id="firstRef" type="number">
                 
-                <label class="map-label" for="secondRef">Enter Second Grid Reference</label>
+                <label class="map-label" for="secondRef">Enter Latitude</label>
                 <input class="map-input" name="secondRef" id="secondRef" type="number">
                 <div class="button div">
                 <button id="map-button" class="map-button" type="button" onclick="newMark()">Add</button>
@@ -113,7 +113,7 @@
         let map = new maplibregl.Map({
         container: 'map',
         style: 'https://api.maptiler.com/maps/streets/style.json?key=PSMy7BMmV1X1YJoVOzD1 ', // stylesheet location
-        center: [-74.5, 40], // starting position [lng, lat]
+        center: [0, 46], // starting position [lng, lat]
         zoom: 1 // starting zoom
             
         }); 
@@ -126,12 +126,13 @@
         let secondRef = document.getElementById("secondRef").value;
         var marker = new maplibregl.Marker({
             color: '#5B9240',
-            scale: .5,
+            scale: 1,
         })
             .setLngLat([firstRef, secondRef])
             .setPopup(new maplibregl.Popup().setHTML(speciesName))
             .addTo(map);
         changeColor();
+        console.log(firstRef, secondRef);
         
         
       }
