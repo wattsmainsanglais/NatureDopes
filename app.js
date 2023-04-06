@@ -99,6 +99,7 @@ function addMarkerToArray(req, res, next){
     let species = req.body.speciesName;
     let first = req.body.firstRef;
     let second = req.body.secondRef;
+    let upload = req.body.upload;
     
     markerList.push({'id': id, 'speciesName': species, 'firstRef': first, 'secondRef': second});
     next()
