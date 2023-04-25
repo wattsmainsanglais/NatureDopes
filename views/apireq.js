@@ -1,4 +1,5 @@
 
+/* import maplibregl from 'maplibre-gl'; */
 const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
 
@@ -70,14 +71,31 @@ const postRegister = async (username, password) => {
     alert("something"); 
     });
     */
+
   
    const populateMarkers = async() => {
       try {
-        const response = fetch(urlToPost)
-          if (response.ok){
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-          }
+        const response = await fetch(urlToPost, { headers: {
+          'Content-type': 'application/json'     
+        }})
+        console.log('api sent');
+         
+            if(response.ok){
+            
+              const jsonResponse = await response.json();
+             
+              let array = jsonResponse.markerList;
+                for(let i in array){
+                  let first = array[i].firstRef;
+                  let second = array[i].secondRef;
+                  let name = array[i].speciesName;
+                  processPopulateMarkers(first, second, name);
+                  
+              }
+
+            } else {
+              console.log('not receiving response', response)
+            }
       }
       catch (error) {
         console.log(error);
@@ -85,6 +103,16 @@ const postRegister = async (username, password) => {
 
    }
 
-    
+ const processPopulateMarkers = (first, second, name) => {
+  
+  var marker = new maplibregl.Marker({
+    color: '#5B9240',
+    scale: 1,
+})
+
+    .setLngLat([first, second])
+    .setPopup(new maplibregl.Popup().setHTML(name))
+    .addTo(map);
+ }  
 
     

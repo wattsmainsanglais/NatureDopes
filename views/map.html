@@ -99,7 +99,7 @@
                 
                 <div class="button div">
                 <button id="map-button" class="map-button" type="button" onclick="newMark()">Add</button>
-                
+                <button id="map-button" class="map-button" type="button" onclick="populateMarkers()">Populate</button>
             </div>
             </form>
           
@@ -122,7 +122,7 @@
             
         }); 
 
-      async function newMark(){
+        function newMark(){
         
         let imageThumb = document.getElementById('imageThumb');
         let speciesName = document.getElementById('species-name').value; 
@@ -170,6 +170,7 @@
 </footer>
 
 <script src='apireq.js'>
+
     
 </script>
 </body>

@@ -141,8 +141,14 @@ app.post('/markerlist', addMarkerToArray, (req, res, next) => {
 });
 
 app.get('/markerlist', (req, res ,next) => {
-    console.log('Populate Get request received')
-    res.status(201).send(markerList);
+    console.log('Populate Get request received');
+
+    let obj = {markerList}
+    let markerListApi = JSON.stringify(obj);
+    
+
+    res.status(201).setHeader('content-type', 'application/json').send(markerListApi);
+    console.log('Populate Get request sent')
 });
 
 app.get('/maplogin', (req, res,) =>{
