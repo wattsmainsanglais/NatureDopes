@@ -7,6 +7,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const userRecords = require('./users');
 const bcrypt = require('bcrypt');
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const { render } = require('ejs');
 
@@ -125,12 +127,22 @@ app.get('/index', (req, res) =>{
   console.log(req.session);
 })
 
+app.post('/imgUpload', upload.single('imgToUpload'), (req, res, next) => {
+  console.log(req.file);
+  res.redirect('map');
+});
+
 
 app.post('/markerlist', addMarkerToArray, (req, res, next) => {
     console.log(req.body);
     res.status(201).send(req.body);
     console.log(markerList);
     console.log(req.session);
+});
+
+app.get('/markerlist', (req, res ,next) => {
+    console.log('Populate Get request received')
+    res.status(201).send(markerList);
 });
 
 app.get('/maplogin', (req, res,) =>{

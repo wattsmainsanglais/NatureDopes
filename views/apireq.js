@@ -71,7 +71,19 @@ const postRegister = async (username, password) => {
     });
     */
   
-   
+   const populateMarkers = async() => {
+      try {
+        const response = fetch(urlToPost)
+          if (response.ok){
+            const jsonResponse = await response.json();
+            console.log(jsonResponse);
+          }
+      }
+      catch (error) {
+        console.log(error);
+      }
+
+   }
 
     
 
