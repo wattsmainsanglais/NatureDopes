@@ -16,10 +16,13 @@ nav{
 
 .logotext{
     font-family: 'Indie Flower', cursive;
+    font-size: 1.2em;
+    font-weight: 800;
     color: #5B9240;
     display: block;
     margin-right: auto;
     float: left;
+
 }
 
 .navitems{

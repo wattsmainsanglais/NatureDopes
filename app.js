@@ -166,7 +166,12 @@ app.get('/maploginFail', (req, res) => {
 
 app.get('/map', (req, res,) =>{
   console.log(req.session);
-  res.render('map', { user: req.user });
+  if(req.user) {
+    res.render('map');
+  } else {
+    res.redirect('maplogin');
+  }
+ 
 }); 
 
 app.get('/register', (req, res, next) => {
