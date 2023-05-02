@@ -100,8 +100,16 @@
                 <div class="button div">
                 <button id="map-button" class="map-button" type="button" onclick="newMark()">Add</button>
                 <button id="map-button" class="map-button" type="button" onclick="populateMarkers()">Populate</button>
-            </div>
+                </div>
+                <aside id="info">
+
+
+                </aside>   
+            
             </form>
+        
+        
+
           
         
     </section>
@@ -141,13 +149,28 @@
         
       }
 
-      function changeColor(){
-        let change = document.getElementById("map-button" );
-        change.style.color = "red";
-      }
 
+      map.on('click', function (d) {
+        let pos = d.lngLat;
+        console.log(pos.lng);
+        
+        
+      });
     
-        //console.log(newMarker);
+    
+
+      map.on('mousemove', function (e) {
+       
+        document.getElementById('info').innerHTML =
+            // e.point is the x, y coordinates of the mousemove event relative
+            // to the top-left corner of the map
+        JSON.stringify(e.point) +
+        '<br />' +
+        // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat);
+        });
+    
+     
     
 
 
