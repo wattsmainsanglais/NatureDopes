@@ -151,15 +151,21 @@
 
 
       map.on('click', function (d) {
+     
         let pos = d.lngLat;
-        console.log(pos.lng);
         
+        let firstRef = pos.lng
+        console.log(firstRef);
+        let secondRef = pos.lat
+        
+        document.getElementById("firstRef").value = firstRef;
+        document.getElementById("secondRef").value = secondRef
         
       });
     
     
 
-      map.on('mousemove', function (e) {
+      /*map.on('mousemove', function (e) {
        
         document.getElementById('info').innerHTML =
             // e.point is the x, y coordinates of the mousemove event relative
@@ -170,7 +176,7 @@
         JSON.stringify(e.lngLat);
         });
     
-     
+     */
     
 
 
