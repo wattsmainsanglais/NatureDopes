@@ -4,18 +4,23 @@ const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
 
 
+// function to post new marker request to server with eventlistener
+const postMarker = async (speciesName, firstRef, secondRef, file) => {
 
-const postMarker = async (speciesName, firstRef, secondRef) => {
+  
+  const formdata = new FormData()
 
   const data = JSON.stringify({'speciesName': speciesName, 'firstRef': firstRef, 'secondRef': secondRef});
-      
+  formdata.append('data', data);    
+  formdata.append('file', file);
+
     try {
         const response = await fetch(urlToPost, {
             method: 'POST',
-            body: data,
-            headers: {
+            body: formdata,
+            /*headers: {
               'Content-type': 'application/json',     
-            }  
+            }  */
         });
             if(response.ok){
           const jsonResponse = await response.json();
@@ -31,11 +36,13 @@ const postMarker = async (speciesName, firstRef, secondRef) => {
       let speciesName = document.getElementById('species-name').value;
       let firstRef = document.getElementById('firstRef').value;
       let secondRef = document.getElementById('secondRef').value;
+      let file = document.getElementById('upload').value
       console.log(speciesName);
-      postMarker(speciesName, firstRef, secondRef);
+      postMarker(speciesName, firstRef, secondRef, file);
     });
 
-const postRegister = async (username, password) => {
+// Register new user api - this is not in use currently (currently handled by form submission)
+    const postRegister = async (username, password) => {
       console.log('The username is' + username);
       const data = JSON.stringify({'username': username, 'password': password});
       const urlToPostSubmit = 'http://localhost:4001/register';
@@ -72,7 +79,7 @@ const postRegister = async (username, password) => {
     });
     */
 
-  
+  // post request function to fetch markers/ objects from server and populate them on the map.
    const populateMarkers = async() => {
       try {
         const response = await fetch(urlToPost, { headers: {

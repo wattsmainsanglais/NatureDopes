@@ -127,14 +127,15 @@ app.get('/index', (req, res) =>{
   console.log(req.session);
 })
 
-app.post('/imgUpload', upload.single('imgToUpload'), (req, res, next) => {
-  console.log(req.file);
+app.post('/imgUpload',  (req, res, next) => {
+  
   res.redirect('map');
 });
 
 
-app.post('/markerlist', addMarkerToArray, (req, res, next) => {
-    console.log(req.body);
+app.post('/markerlist', addMarkerToArray, upload.single('upload'),(req, res, next) => {
+   console.log(req.file); 
+  console.log(req.body);
     res.status(201).send(req.body);
     console.log(markerList);
     console.log(req.session);
