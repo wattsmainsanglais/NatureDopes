@@ -32,14 +32,14 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
       }
     }
 
-    fetchMarkerSubmit.addEventListener('click', () => {
+   /* fetchMarkerSubmit.addEventListener('click', () => {
       let speciesName = document.getElementById('species-name').value;
       let firstRef = document.getElementById('firstRef').value;
       let secondRef = document.getElementById('secondRef').value;
       let file = document.getElementById('upload').value
       console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef, file);
-    });
+    }); */
 
 // Register new user api - this is not in use currently (currently handled by form submission)
     const postRegister = async (username, password) => {

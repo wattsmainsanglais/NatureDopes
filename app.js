@@ -136,7 +136,7 @@ app.post('/imgUpload',  (req, res, next) => {
 app.post('/markerlist', addMarkerToArray, upload.single('upload'),(req, res, next) => {
    console.log(req.file); 
   console.log(req.body);
-    res.status(201).send(req.body);
+    res.status(201).redirect('map');
     console.log(markerList);
     console.log(req.session);
 });
@@ -148,7 +148,7 @@ app.get('/markerlist', (req, res ,next) => {
     let markerListApi = JSON.stringify(obj);
     
 
-    res.status(201).setHeader('content-type', 'application/json').send(markerListApi);
+    res.status(200).setHeader('content-type', 'application/json').send(markerListApi);
     console.log('Populate Get request sent')
 });
 
