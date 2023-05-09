@@ -85,8 +85,8 @@
                 <p class="map-aside">Please enter the grid coordinates of your find below, 
                     A marker will appear on the map. Currently this marker will disappear once you refresh the browser  </p>
                  
-                <label class="map-label" for="species-name">Enter the name of your find</label>
-                <input  class="map-input" name="species-name" id="species-name" type="text">
+                <label class="map-label" for="speciesName">Enter the name of your find</label>
+                <input  class="map-input" name="speciesName" id="speciesName" type="text">
 
                 <label class="map-label" for="firstRef">Enter Longditude</label>
                 <input class="map-input"  name="firstRef" id="firstRef" type="text">
@@ -133,7 +133,7 @@
         function newMark(){
         
         let imageThumb = document.getElementById('imageThumb');
-        let speciesName = document.getElementById('species-name').value; 
+        let speciesName = document.getElementById('speciesName').value; 
         let firstRef = document.getElementById("firstRef").value;
         let secondRef = document.getElementById("secondRef").value;
         var marker = new maplibregl.Marker({

@@ -96,13 +96,17 @@ app.use((req, res, next) => {
 let markerListId = 3;
 
 function addMarkerToArray(req, res, next){
-    console.log(req.body);
-    const id = markerListId++;
-    let species = req.body.speciesName;
-    let first = req.body.firstRef;
-    let second = req.body.secondRef;
-    let upload = req.body.upload;
+    const obj = Object.assign({},req.body)
     
+    console.log(obj);
+    
+    const id = markerListId++;
+    let species = obj.speciesName;
+    let first = obj.firstRef;
+    let second = obj.secondRef;
+    let upload = req.body.upload; // will be on req.file 
+    
+
     markerList.push({'id': id, 'speciesName': species, 'firstRef': first, 'secondRef': second});
     next()
 }
@@ -132,10 +136,10 @@ app.post('/imgUpload',  (req, res, next) => {
   res.redirect('map');
 });
 
-
-app.post('/markerlist', addMarkerToArray, upload.single('upload'),(req, res, next) => {
-   console.log(req.file); 
-  console.log(req.body);
+/*, addMarkerToArray, */
+app.post('/markerlist',  upload.single('upload'), addMarkerToArray,(req, res, next) => {
+   
+    console.log(req.file);
     res.status(201).redirect('map');
     console.log(markerList);
     console.log(req.session);
