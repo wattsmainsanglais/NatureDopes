@@ -32,8 +32,8 @@
                 <ul class="navlinks">
                     <li class="links"><a href="index.html">Home</a></li>
                     <li class="links"><a href="gallery.html">Gallery</a></li>
-                    <li class="links">About</li>
-                    <li class="links">Links</li>
+                    <li class="links"><a href="#about" onclick="displayAbout()">About</a></li>
+                    <li class="links"><a href="#Social-links" onclick="displayAbout()">Links</a></li>
                     <li class="links"><a href="maplogin">Map</a></li>
                     <li class="links"><a href="nft.html">NFT</a></li>
                 </ul>
@@ -43,7 +43,7 @@
 </header>
 
 <main>
-    <div class="banner">
+    <div class="banner"  onwheel="displayAbout()">
         <div class="welcome">
             <h1>Nature Dopes</h1>
             <br>
@@ -52,16 +52,26 @@
 
     </div>
    
-    <section class="about">
+    <section id="about" onwheel="displayAbout" class="about" >
         <h1 class="about-title">About</h1>
-        <div class="slide-wrapper">
+        <article class="slide-wrapper_1" >
               
-            <p class="slide">Welcome to Naturedopes. We are based in Western Europe so the majority of resources found here relate to the natural Flora found in this region and the appreciation of them. No matter where you stand on Climate issues,
+            <p id="slide_1" class="slide_1" >Welcome to Naturedopes. We are based in Western Europe so the majority of resources found here relate to the natural Flora found in this region and the appreciation of them. No matter where you stand on Climate issues,
             few can argue that as our civilisation expands, our natural spaces are diminishing to make room. Be that in the form of fields for modern agriculture, logging practices or land for new homes.
-            More need's to be done to protect our natural spaces. The more we lose the more species we lose with it, which heightens the risk of further environmental breakdown in the future.
-            Declining Bee numbers are a testament to this. On this site, we believe that for people to appreciate nature, then first you have to understand it. Be that the tallest tree outside your window, or the smallest flower at the side of the road.
+            More need's to be done to protect our natural spaces. The more space we lose the more species we lose with it. <br><br> On this site, we believe that for people to appreciate nature, then first you have to understand it. Be that the tallest tree outside your window, or the smallest flower at the side of the road.
             This site is a blend of art & education, flower's and tree's are indentified in all our posts. In the hope that a working knowledge of all species can be passed on to whoever wishes to learn.   </p>
-        </div>
+        
+        </article>
+        <article class="slide-wrapper_2">
+            <p id="slide_2" class="slide_2">
+             This site features a Gallery page, a collection of photos of flowers & tree's found growing in nature. It's linked directly to our instagram account and is updated regularly. <br><br> There is a Map page, the aim is to allow users to create an account and then post photos of their own finds and their locations. 
+             The information will be stored in order to build a working database of where wildflowers & tree's are found. The map tool is still in beta testing so please visit the page and test it out. 
+             <br><br>There are links our other social media activities and a means of contacting us directly. Please come and enjoy the site.      
+            </p>
+        </article>
+
+       
+
     </section>
 
     <hr>
@@ -120,7 +130,7 @@
     
     </section>
 
-    <section class="Social-links">
+    <section id="Social-links" class="Social-links">
         <div class="socialmedia-title">
             <H1> Social Media & Links</H1>
         </div>
@@ -139,7 +149,15 @@
 
 
 
-
+<script>
+   
+   
+    function displayAbout(){
+        
+        document.getElementById("slide_1").classList.add("left");
+        document.getElementById("slide_2").classList.add("right");
+    };
+</script>
 
 
 </body>
