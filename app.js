@@ -73,7 +73,7 @@ app.use((req, res, next) => {
         return done(err);
       }
       if(!user){
-        console.log('user not found' + username)
+        console.log('user not found ' + username)
         return done(null, false);
       }
       bcrypt.compare(password, user.password, function (err, result){
@@ -187,7 +187,7 @@ app.get('/register', (req, res, next) => {
 
 app.post("/register", async (req, res,) => {
   console.log(req.body);
-  let { username, password } = req.body;
+  let { username, password, email } = req.body;
 
   //hash the password before storage
 
@@ -196,7 +196,7 @@ app.post("/register", async (req, res,) => {
   console.log(hash);
   password = hash;
   // Create new user:
-  const newUser = await userRecords.createUser({username, password});
+  const newUser = await userRecords.createUser({username, password, email});
   // Add if/else statement with the new user as the condition:
   if (newUser) {
     // Send correct response if new user is created:

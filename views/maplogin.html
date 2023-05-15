@@ -78,43 +78,89 @@
         </div>
         
        
-        <div class="form-side">   
-            <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+        <div class="form-side">  
+          <p> Please login or Register to access our Map section</p>
+          <button onclick="document.getElementById('id01').style.display='block'" class="loginButton">Login</button>
+          <button onclick="document.getElementById('id02').style.display='block'" class="registerButton">Register</button>
 
-            <!-- The Modal -->
-            <div id="id01" class="modal">
-              <span onclick="document.getElementById('id01').style.display='none'"
-            class="close" title="Close Modal">&times;</span>
-            
-              <!-- Modal Content -->
-              <form class="modal-content animate" id="register_button" method="post" >
-                <div class="imgcontainer">
-                  <img src="images/logomini.png" alt="Avatar" class="avatar">
-                </div>
-            
-                <div class="container">
-                  <label for="username"><b>Username</b></label>
-                  <input type="text" id='username' placeholder="Enter Username" name="username" required>
-            
-                  <label for="password"><b>Password</b></label>
-                  <input type="password" id='password' placeholder="Enter Password" name="password" required>
-            
-                  <button type="submit" formaction="/maplogin">Login</button>
-                  <button class='register' type="submit" id="register_button" formaction="/register" >Register</button>
-                  <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                  </label>
-                </div>
-        
-            
-                <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                  <span class="psw">Forgot <a href="#">password?</a></span>
-                </div>
-              </form>
-            </div>
-               
-        </div>
+
+          <!-- The Modal id01 ---------------------------------------------------->
+          <div id="id01" name="Login View" class="modal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+          class="close" title="Close Modal">&times;</span>
+          
+            <!-- Modal Content -->
+            <form class="modal-content animate" id="register_button" method="post" >
+              <div class="imgcontainer">
+                <img src="images/logomini.png" alt="Avatar" class="avatar">
+              </div>
+          
+              <div class="container">
+                <label for="username"><b>Username</b></label>
+                <input type="text" id='username' placeholder="Enter Username" name="username" required>
+
+                  
+
+                <label for="password"><b>Password</b></label>
+                <input type="password" id='password' placeholder="Enter Password" name="password" required>
+          
+              <div class="buttonDiv">
+                  <button class='loginButton' type="submit" formaction="/maplogin">Login</button>
+                 
+              </div>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+              </div>
+      
+          
+              <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+              </div>
+            </form>
+          </div>
+
+          <!--------------------Register Modal id02-------------------------------------->
+
+          <div id="id02" name="Register view" class="modal">
+            <span onclick="document.getElementById('id02').style.display='none'"
+          class="close" title="Close Modal">&times;</span>
+          
+            <!-- Modal Content -->
+            <form class="modal-content animate" id="register_button" method="post" >
+              <div class="imgcontainer">
+                <img src="images/logomini.png" alt="Avatar" class="avatar">
+              </div>
+          
+              <div class="container">
+                <label for="username"><b>Username</b></label>
+                <input type="text" id='username' placeholder="Enter Username" name="username" required>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" id="email" placeholder="Enter email address" name="email" required>
+
+                <label for="password"><b>Password</b></label>
+                <input type="password" id='password' placeholder="Enter Password" name="password" required>
+          
+              <div class="buttonDiv">
+                  
+                  <button class='registerButton' type="submit" id="register_button" formaction="/register" >Register</button>
+              </div>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+              </div>
+      
+          
+              <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+              </div>
+            </form>
+          </div>
+             
+      </div>
           
         
     </section>

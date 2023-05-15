@@ -45,7 +45,7 @@ let records = [
 
   exports.findByUsername = function (username, cb) {
     process.nextTick(function () {
-      console.log('finding user' + username)
+      console.log('finding user ' + username)
       for (let i = 0, len = records.length; i < len; i++) {
         let record = records[i];
         if (record.username === username) {
