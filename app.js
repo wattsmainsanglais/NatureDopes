@@ -220,6 +220,17 @@ app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maplog
     
 });
 
+
+//Post request for logging out of passportJS
+app.post('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    console.log('User logging out')
+    res.redirect('/maplogin');
+  });
+
+});
+
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
     

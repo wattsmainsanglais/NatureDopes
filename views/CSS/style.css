@@ -426,16 +426,41 @@ main{
 
 }
 
-.map-form{
+.mapSideBar{
     margin-left: 2%;
     width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eff7f2;
+    
+    
+}
+
+.mapAsideMsg{
+    background-color: #ffffff;
+}
+
+.mapAsideMsg p{
+    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
+    color: #5B9240;
+    padding: 2%;
+}
+
+
+.map-form{
+    
+    padding: 2%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     background-color: #eff7f2;
     font-family: 'Figtree', sans-serif;
     font-size: 0.8rem;
-    padding: .5%;
+    
 }
 
 .map-h2{
@@ -474,21 +499,19 @@ main{
 .aboutmap
 {
     background-color: #ffffff;
-    color: #020202;
-    padding: 4px;
+    padding: 1%;
     z-index: 0;
+    margin-top: 2%;
     margin-left: 2%;
     font-family: 'Figtree', sans-serif;
+    color: #5B9240;
+    font-weight: 800;
     margin-right: 7%;
+    border-radius: 8px;
 }
 
 
 /* Modal login Form */
-
-.form-side {
-    font-family: 'Figtree', sans-serif;
-    margin-left: 2%;
-}
 
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
@@ -570,6 +593,7 @@ input[type=text], input[type=password], input[type=email] {
 
  /* The Modal (background) */
  .modal {
+    font-family: 'Figtree', sans-serif;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 2; /* Sit on top */

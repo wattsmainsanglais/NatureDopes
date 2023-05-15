@@ -76,12 +76,12 @@
            
         </div>
         
-       
-            
-        <form class="map-form" action="/markerlist" method="post" enctype="multipart/form-data">
+        <aside class="mapSideBar">
+
+            <form class="map-form" action="/markerlist" method="post" enctype="multipart/form-data">
+                
                 <h2 class="map-h2">Welcome to our Map page</h2>
                 <p class="map-aside-test"> This is currently a work in progress but please feel free to come and test.</p>
-                
                 <p class="map-aside">Please enter the grid coordinates of your find below, 
                     A marker will appear on the map. Currently this marker will disappear once you refresh the browser  </p>
                  
@@ -106,7 +106,14 @@
 
                 </aside>   
             
+            </form> 
+            <form class="logout-box" method="post" action="/logout">
+                <button type="submit">Logout</button>
+
             </form>
+        </aside>
+            
+            
         
         
 
