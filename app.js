@@ -231,6 +231,29 @@ app.post('/logout', function(req, res, next) {
 
 });
 
+app.post('/forgotPassUser', function (req, res, next) {
+    console.log(req.body);
+    let email = req.body;
+    userRecords.findByEmail(email, function(err, record) {
+      if(err){
+        console.log(error)
+        res.redirect('/maplogin');
+      }
+      
+      if(!record){
+        console.log('This user/email address is not on record')
+        res.redirect('/mapThanks')
+      }
+
+      if(record){
+        console.log('email/user found, email being sent')
+        
+        res.redirect('/mapThanks');
+      }
+    })
+
+});
+
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
     

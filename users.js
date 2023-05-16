@@ -3,11 +3,13 @@ let records = [
       id: 1, 
       username: "sam",
       password: "$2b$10$.N/xc34vociUB0bw8qIs8uds/PnsZvoTgmI3pV7QdXcvsDJSAGMoC", //sam
+      email: "test@test.com",
     },
     {
       id: 2,
       username: "jill",
       password: "birthday",
+      email: "anothertest@test.com"
     },
   ];
   
@@ -53,6 +55,19 @@ let records = [
         }
       }
       return cb(null, null);
+    });
+  };
+
+  exports.findByEmail = function (email, cb) {
+    process.nextTick(function () {
+      console.log('finding email ' + email);
+      for (let i = 0, len = records.length; i < len; i++) {
+        let record = records[i];
+        if (record.email === email) {
+          return cb(null, record);
+        }
+      }
+      return cb (null, null)
     });
   };
   
