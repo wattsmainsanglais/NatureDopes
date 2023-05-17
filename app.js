@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require("dotenv").config();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const store = new session.MemoryStore();``
@@ -231,9 +232,9 @@ app.post('/logout', function(req, res, next) {
 
 });
 
-app.post('/forgotPassUser', function (req, res, next) {
+app.post('/reset-password-email', function (req, res, next) {
     console.log(req.body);
-    let email = req.body;
+    let email = req.body.email;
     userRecords.findByEmail(email, function(err, record) {
       if(err){
         console.log(error)
