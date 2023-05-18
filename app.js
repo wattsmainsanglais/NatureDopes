@@ -9,7 +9,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const userRecords = require('./users');
 const bcrypt = require('bcrypt');
 const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'uploads/' });
+const randtoken = require('rand-token'); //token generator for login/password reset
+const flash = require('express-flash');
 
 //database connection
 const Pool = require('pg').Pool
@@ -28,6 +30,7 @@ const PORT = process.env.PORT || 4001;
 app.use(express.static(__dirname + '/views/'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
+
 
 
 app.use((req, res, next) => {
@@ -55,6 +58,8 @@ app.use((req, res, next) => {
       store
     })
   );
+
+  app.use(flash());
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -245,7 +250,8 @@ app.post('/logout', function(req, res, next) {
 app.post('/reset-password-email', function (req, res, next) {
     console.log(req.body);
     let email = req.body.email;
-    userRecords.findByEmail(email, function(err, record) {
+   
+    /*userRecords.findByEmail(email, function(err, record) {
       if(err){
         console.log(error)
         res.redirect('/maplogin');
@@ -261,11 +267,55 @@ app.post('/reset-password-email', function (req, res, next) {
         
         res.redirect('/mapThanks');
       }
-    })
+    }) */
+
+    pool.query('SELECT * FROM users WHERE email = $1', [email], (err, results) => {
+      if (err) throw err;
+         
+        let type = ''
+        let msg = ''
+   
+        console.log(result[0]);
+     
+        if (result[0].email.length > 0) {
+ 
+           let token = randtoken.generate(20);
+ 
+           let sent = sendEmail(email, token);
+ 
+             if (sent != '0') {
+ 
+                let data = {
+                    token: token
+                }
+ 
+                connection.query('UPDATE users SET email = $1 WHERE email = $2', [data, email], function(err, results) {
+                    if(err) throw err
+         
+                })
+ 
+                type = 'success';
+                msg = 'The reset password link has been sent to your email address';
+ 
+            } else {
+                type = 'error';
+                msg = 'Something goes to wrong. Please try again';
+            }
+ 
+        } else {
+            console.log('2');
+            type = 'error';
+            msg = 'The Email is not registered with us';
+ 
+        }
+    
+        req.flash(type, msg);
+        res.redirect('/');
+    });
 
 });
 
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
     
-})
+});
