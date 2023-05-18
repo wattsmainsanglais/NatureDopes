@@ -11,6 +11,16 @@ const bcrypt = require('bcrypt');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
+//database connection
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'watts',
+  host: 'localhost',
+  database: 'Nature_dopes',
+  password: process.env.PASS,
+  port: 5432,
+})
+
 const { render } = require('ejs');
 
 const PORT = process.env.PORT || 4001;
