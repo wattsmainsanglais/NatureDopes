@@ -247,6 +247,10 @@ app.post('/logout', function(req, res, next) {
 
 });
 
+app.get('/reset-password-email', function(req, res, next){
+
+})
+
 app.post('/reset-password-email', function (req, res, next) {
     console.log(req.body);
     let email = req.body.email;
@@ -269,7 +273,7 @@ app.post('/reset-password-email', function (req, res, next) {
       }
     }) */
 
-    pool.query('SELECT * FROM users WHERE email = $1', [email], (err, results) => {
+    pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
       if (err) throw err;
          
         let type = ''
@@ -310,7 +314,7 @@ app.post('/reset-password-email', function (req, res, next) {
         }
     
         req.flash(type, msg);
-        res.redirect('/');
+        res.redirect('/maplogin');
     });
 
 });
