@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 require("dotenv").config();
 
 
-function resetPasswordMail(email, token){
+function sendMail(email, token){
 
     let transporter = nodemailer.createTransport({
         host: process.env.HOST,
@@ -15,10 +15,10 @@ function resetPasswordMail(email, token){
     });
 
     let mailOptions = {
-        from: test,
-        to: test,
+        from: 'naturedopes@gmx.fr',
+        to: email,
         subject: 'Reset Password Link - NatureDopes' ,
-        text: test,
+        text: 'please find password rest link',
         html: '<p>You requested for reset password, kindly use this <a href="http://localhost:4000/reset-password?token=' + token + '">link</a> to reset your password</p>',
     }
     
@@ -31,4 +31,4 @@ function resetPasswordMail(email, token){
     });
 }
 
-module.exports = resetPasswordMail;
+module.exports = sendMail;

@@ -12,6 +12,9 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const randtoken = require('rand-token'); //token generator for login/password reset
 const flash = require('express-flash');
+const nodemailer = require('nodemailer');
+const sendMail = require('./JS/sendmail');
+
 
 //database connection
 const Pool = require('pg').Pool
@@ -19,7 +22,7 @@ const pool = new Pool({
   user: 'watts',
   host: 'localhost',
   database: 'Nature_dopes',
-  password: process.env.PASS,
+  password: 'kwjibo',
   port: 5432,
 })
 
@@ -279,13 +282,13 @@ app.post('/reset-password-email', function (req, res, next) {
         let type = ''
         let msg = ''
    
-        console.log(result[0]);
+        console.log(result.rows[0]);
      
-        if (result[0].email.length > 0) {
+        if (result.rows[0].email.length > 0) {
  
            let token = randtoken.generate(20);
  
-           let sent = sendEmail(email, token);
+           let sent = sendMail(email, token);
  
              if (sent != '0') {
  
@@ -293,7 +296,7 @@ app.post('/reset-password-email', function (req, res, next) {
                     token: token
                 }
  
-                connection.query('UPDATE users SET email = $1 WHERE email = $2', [data, email], function(err, results) {
+                pool.query('UPDATE users SET token = $1 WHERE email = $2', [data, email], function(err, result) {
                     if(err) throw err
          
                 })
