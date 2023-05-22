@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-require("dotenv").config();
+const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const store = new session.MemoryStore();``
@@ -15,7 +15,7 @@ const flash = require('express-flash');
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
 
-
+dotenv.config();
 //database connection
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -281,28 +281,22 @@ app.post('/reset-password-email', function (req, res, next) {
          
         let type = ''
         let msg = ''
-   
-        console.log(result.rows[0]);
      
-        if (result.rows[0].email.length > 0) {
- 
+        if (result.rows.length > 0) {
+           console.log(result.rows[0].email) 
            let token = randtoken.generate(20);
  
            let sent = sendMail(email, token);
  
              if (sent != '0') {
  
-                let data = {
-                    token: token
-                }
- 
-                pool.query('UPDATE users SET token = $1 WHERE email = $2', [data, email], function(err, result) {
+                pool.query('UPDATE users SET token = $1 WHERE email = $2', [token, email], function(err, result) {
                     if(err) throw err
          
-                })
+                });
  
                 type = 'success';
-                msg = 'The reset password link has been sent to your email address';
+                msg = 'The reset password link has been sent to your email address, please check your inbox';
  
             } else {
                 type = 'error';
@@ -313,7 +307,7 @@ app.post('/reset-password-email', function (req, res, next) {
             console.log('2');
             type = 'error';
             msg = 'The Email is not registered with us';
- 
+            
         }
     
         req.flash(type, msg);
@@ -321,6 +315,68 @@ app.post('/reset-password-email', function (req, res, next) {
     });
 
 });
+
+app.get('/reset-password', function(req, res, next) {
+  res.render('reset-password', {
+  title: 'Reset Password Page',
+  token: req.query.token
+  });
+  
+  });
+
+app.post('/update-password', function(req, res, next) {
+ 
+  let token = req.body.token;
+  let password = req.body.password;
+  console.log(token);
+
+ pool.query('SELECT * FROM users WHERE token = $1', [token], function(err, result) {
+      if (err) throw err;
+      let type
+      let msg
+
+      let dbToken = result.rows[0].token;
+
+      console.log(dbToken + ' received');
+      if (token === dbToken) {
+            console.log(dbToken + ' is matched');
+            let saltRounds = 10;
+            let email= result.rows[0].email
+           // var hash = bcrypt.hash(password, saltRounds);
+
+          bcrypt.genSalt(saltRounds, function(err, salt) {
+                bcrypt.hash(password, salt, function(err, hash) {
+
+                  console.log(hash);
+                  let password = hash
+
+                  pool.query('UPDATE users SET password = $1 WHERE email = $2', [password, email] , function(err, result) {
+                      if(err) throw err
+                 
+                  });
+
+                  pool.query('UPDATE users SET token = NULL WHERE token = $1', [token], function(err, result) {
+                    if(err) throw err
+                  });
+
+                });
+            });
+
+          type = 'success';
+          msg = 'Your password has been updated successfully';
+            
+      } else {
+
+          console.log('2');
+          type = 'success';
+          msg = 'Invalid link; please try again';
+
+          }
+
+      req.flash(type, msg);
+      res.redirect('/maplogin');
+  });
+})
 
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
