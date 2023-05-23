@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const randtoken = require('rand-token'); //token generator for login/password reset
-const flash = require('express-flash');
+const flash = require('connect-flash');
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
 
@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 4001;
 
 app.use(express.static(__dirname + '/views/'));
 app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 
 
@@ -146,8 +146,19 @@ let markerList = [
 
 ]
 
+app.get('/', (req, res) =>{
+  console.log(req.session);
+  const flsh = (req.flash('type'))
+  res.render('index', {flsh});
+})
+
 app.get('/index', (req, res) =>{
   console.log(req.session);
+  res.render('index');
+})
+
+app.get('/gallery', (req, res) =>{
+  res.render('gallery');
 })
 
 app.post('/imgUpload',  (req, res, next) => {
@@ -251,6 +262,8 @@ app.post('/logout', function(req, res, next) {
 });
 
 app.get('/reset-password-email', function(req, res, next){
+  const flsh = (req.flash('type', 'testing'))
+  res.render('reset-password-email', {flsh});
 
 })
 
