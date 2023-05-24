@@ -39,16 +39,37 @@ nav{
 }
 
 .links{
-    padding: 0% 4%;
+    padding: 0% 3%;
+}
+
+.links a{
+    padding: 3px 8px 3px 8px;
     font-family: 'Figtree', sans-serif;
     font-weight: 800;
-
+    color: #000000;
+    position: relative;
 
 }
 
-.links:hover{
-    color: #5B9240;
+.links a::before{
+    background: #5b92406c;
+    border-right: #5B9240 solid 3px;
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
 }
+
+.links a:hover::before{
+    transform: scaleX(1);
+    transform-origin: left; 
+    
+}
+
+
 
 links:active{
     color: #cdfcb6;
@@ -58,9 +79,6 @@ links:visited{
     color: inherit;
 }
 
-.links a:hover{
-    color: #5B9240;
-}
 
 links a:active{
     color: #cdfcb6;
@@ -735,9 +753,12 @@ footer{
     padding: 0% 2%;
     font-family: 'Figtree', sans-serif;
     font-weight: 800;
-
-
+    font-size: .9em;
 }
+
+    .links a{
+    padding: 2% 2%;
+    }
 
    .recent{
     margin-top: 1em;
