@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const randtoken = require('rand-token'); //token generator for login/password reset
-const flash = require('connect-flash');
+const Flash = require('connect-flash');
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
 
@@ -62,7 +62,9 @@ app.use((req, res, next) => {
     })
   );
 
-  app.use(flash());
+  app.use(Flash({
+    passToView : true
+  }));
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -148,8 +150,8 @@ let markerList = [
 
 app.get('/', (req, res) =>{
   console.log(req.session);
-  const flsh = (req.flash('type'))
-  res.render('index', {flsh});
+  
+  res.render('index');
 })
 
 app.get('/index', (req, res) =>{
@@ -187,15 +189,19 @@ app.get('/markerlist', (req, res ,next) => {
 });
 
 app.get('/maplogin', (req, res,) =>{
+  
   console.log(req.session);
   if(req.user) {
     res.redirect('map');
   } else {
+    
     res.render('maplogin');
   }
 }); 
 
+
 app.get('/maploginFail', (req, res) => {
+  
   res.render('maploginFail');
 });
 
@@ -262,8 +268,8 @@ app.post('/logout', function(req, res, next) {
 });
 
 app.get('/reset-password-email', function(req, res, next){
-  const flsh = (req.flash('type', 'testing'))
-  res.render('reset-password-email', {flsh});
+  
+  res.render('reset-password-email');
 
 })
 
@@ -296,6 +302,7 @@ app.post('/reset-password-email', function (req, res, next) {
         let msg = ''
      
         if (result.rows.length > 0) {
+
            console.log(result.rows[0].email) 
            let token = randtoken.generate(20);
  
@@ -307,32 +314,40 @@ app.post('/reset-password-email', function (req, res, next) {
                     if(err) throw err
          
                 });
- 
-                type = 'success';
+                type = 'success'
                 msg = 'The reset password link has been sent to your email address, please check your inbox';
- 
+                msg = JSON.stringify(msg);
+                res.status(201).send(msg)
+                console.log(msg)
+
+
             } else {
                 type = 'error';
                 msg = 'Something goes to wrong. Please try again';
+                msg = JSON.stringify(msg);
+                res.status(201).send(msg)
+                console.log(msg)
+                
             }
  
         } else {
-            console.log('2');
-            type = 'error';
-            msg = 'The Email is not registered with us';
             
+            type = 'error';
+            msg = 'Sorry, this Email is not registered with us. Please create a new user';
+            msg = JSON.stringify(msg);
+            res.status(201).send(msg)
+                console.log(msg)
         }
     
-        req.flash(type, msg);
-        res.redirect('/maplogin');
+      
     });
-
 });
 
 app.get('/reset-password', function(req, res, next) {
+
   res.render('reset-password', {
   title: 'Reset Password Page',
-  token: req.query.token
+  token: req.query.token 
   });
   
   });
@@ -385,8 +400,8 @@ app.post('/update-password', function(req, res, next) {
           msg = 'Invalid link; please try again';
 
           }
-
-      req.flash(type, msg);
+      
+      
       res.redirect('/maplogin');
   });
 })
