@@ -333,7 +333,7 @@ app.post('/reset-password-email', function (req, res, next) {
         } else {
             
             type = 'error';
-            msg = 'Sorry, this Email is not registered with us. Please create a new user';
+            msg = 'Sorry, this Email is not registered with us. Please enter a different email address or create a new user';
             msg = JSON.stringify(msg);
             res.status(201).send(msg)
                 console.log(msg)

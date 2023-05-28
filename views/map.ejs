@@ -48,8 +48,13 @@
 </header>
 
 <main>
+   
+   <section class="map-header">
+    <h2 class="map-h2">Welcome to our Map page</h2>
+    <p class="map-aside-test"> This is currently a work in progress but please feel free to come and test.</p>
 
     <h1 id="screen-warning"></h1>
+   </section>  
     
     <script>
     
@@ -82,13 +87,23 @@
         
         <aside class="mapSideBar">
 
+            <div class="map-aside-header">
+                <h2 class="map-h2">Guide</h2>
+                <form class="logout-box" method="post" action="/logout">
+                    <button type="submit">Logout</button>
+    
+                </form>
+            </div>
+
             <form class="map-form" action="/markerlist" method="post" enctype="multipart/form-data">
                 
-                <h2 class="map-h2">Welcome to our Map page</h2>
-                <p class="map-aside-test"> This is currently a work in progress but please feel free to come and test.</p>
-                <p class="map-aside">Please enter the grid coordinates of your find below, 
-                    A marker will appear on the map. Currently this marker will disappear once you refresh the browser  </p>
-                 
+                
+                <p class="map-aside">1- Please enter the name of the species that you have found and would like to upload. <br><br>
+                    2- Then zoom in on the map to where you found it (try to be as accurate as possible). Click the location where and the grid references will fill in for you. <br><br> 
+                    3- Then click the browse button and upload your photo (this is currently an optional step).<br><br>
+                    4- Click 'Add record' and your find will be added to our logs.
+                </p>
+                <hr>
                 <label class="map-label" for="speciesName">Enter the name of your find</label>
                 <input  class="map-input" name="speciesName" id="speciesName" type="text">
 
@@ -102,7 +117,7 @@
                 <input type="file" id="upload" name="upload" accept= "image/jpg, image/png, image/jpeg" >
                 
                 <div class="button div">
-                <button id="map-button" class="map-button" type="submit" onclick="newMark()">Add</button>
+                <button id="map-button" class="map-button" type="submit" onclick="newMark()">Add record</button>
                 <button id="map-button" class="map-button" type="button" onclick="populateMarkers()">Populate</button>
                 </div>
                 <aside id="info">
@@ -111,10 +126,7 @@
                 </aside>   
             
             </form> 
-            <form class="logout-box" method="post" action="/logout">
-                <button type="submit">Logout</button>
-
-            </form>
+            
         </aside>
             
             

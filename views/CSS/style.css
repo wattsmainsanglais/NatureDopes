@@ -436,6 +436,28 @@ main{
     border: 1px solid grey;
 }
 
+.map-header{
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #eff7f2;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.map-header h2{
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    color: #5B9240;
+    font-weight: 800;
+    font-size: 1.7em;
+    text-decoration: underline;
+
+}
+
+
 .map-overlay{
    
     margin-left: 2%;
@@ -450,16 +472,34 @@ main{
 
 .mapSideBar{
     margin-left: 2%;
-    width: 20%;
+    width: 27%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #eff7f2;
-    
+    border-radius: 5px;
     
 }
+
+.map-aside-header{
+    padding-top: 1%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.map-aside-header h2{
+    color: #5B9240;
+    font-weight: 800;
+    font-family:'Indie Flower', cursive;
+    font-size: 1.3em;
+    text-decoration: underline;
+}
+
 
 .mapAsideMsg{
     background-color: #ffffff;
@@ -470,6 +510,11 @@ main{
     font-weight: 800;
     color: #5b9240;
     padding: 2%;
+}
+
+.mapSideBar hr {
+    width: 60%;
+    color: #5b9240;
 }
 
 
@@ -498,7 +543,7 @@ main{
 }
 
 .map-label{
-    padding: 3px 0px;
+    padding: 2px 0px;
     display: flex;
 }
 
@@ -506,9 +551,8 @@ main{
     margin-top: 3px;
     padding: 3px 0px;
     display:flex;
-    
-    
 }
+
 
 #screen-warning{
     margin-top: 2px;
@@ -537,8 +581,8 @@ main{
 
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
-    padding: 6px 10px;
-    margin: 6px 0;
+    padding: 2px 10px;
+    margin: 3px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
