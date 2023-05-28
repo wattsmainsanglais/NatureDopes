@@ -1,5 +1,9 @@
 /*Nav bar css*/
 
+body{
+    font-family: 'Figtree', sans-serif;
+}
+
 nav{
     display: flex;
     justify-content: flex-start;
@@ -716,7 +720,19 @@ footer{
     --_s: .3s;
   }
 
+#reset-password-email-input{
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
 
+#postReponse_reset-password-email-p{
+    color: red;
+    margin-top: 1%;
+}
+
+.thanks-password-reset{
+    padding: 5% 0% 
+}
 
 /* Css for mobile and smaller screen sizes */
 

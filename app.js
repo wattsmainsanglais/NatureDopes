@@ -349,7 +349,7 @@ app.get('/reset-password', function(req, res, next) {
   title: 'Reset Password Page',
   token: req.query.token 
   });
-  
+  console.log(req.token);
   });
 
 app.post('/update-password', function(req, res, next) {
@@ -402,9 +402,21 @@ app.post('/update-password', function(req, res, next) {
           }
       
       
-      res.redirect('/maplogin');
+      res.redirect('/update-password-thanks');
   });
 })
+
+  app.get('/update-password-thanks', function(req, res ,next) {
+   
+    res.render('Thanks-email')
+    next()
+
+    req.setTimeout(5000, function(){
+      res.redirect('maplogin');
+    })
+  
+  
+  });
 
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
