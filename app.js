@@ -74,12 +74,27 @@ app.use((req, res, next) => {
   });
 
   passport.deserializeUser((id, done) => {
-    userRecords.findById(id, function (err, user) {
+    /*userRecords.findById(id, function (err, user) {
       if (err) {
         return done(err);
       }
       done(null, user);
-    });
+    });*/
+    pool.query('SELECT * FROM users WHERE id = $1', [id], (err, user) => {
+      if(err){
+        
+        return done(err);
+      }
+      
+      if(user.rows[0] = id){
+        return done(null, user);
+      } else {
+        err = "User " + id + " does not exist";
+        return done(err);
+
+      }
+
+    })
   });
   
 
