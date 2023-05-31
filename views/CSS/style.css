@@ -553,6 +553,13 @@ main{
     display:flex;
 }
 
+.map-decor{
+    font-family: 'Indie Flower', cursive;
+    color: #5B9240;
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
 
 #screen-warning{
     margin-top: 2px;

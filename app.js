@@ -11,11 +11,12 @@ const bcrypt = require('bcrypt');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const randtoken = require('rand-token'); //token generator for login/password reset
-const Flash = require('connect-flash');
+
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
 
 dotenv.config();
+
 //database connection
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -49,6 +50,7 @@ app.use((req, res, next) => {
     next();
   });
 
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:true}));
   
@@ -62,9 +64,7 @@ app.use((req, res, next) => {
     })
   );
 
-  app.use(Flash({
-    passToView : true
-  }));
+  
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -87,8 +87,40 @@ app.use((req, res, next) => {
   passport.use(new LocalStrategy(function(username, password, done){
     console.log('passport starting')
     console.log(username)
+
+    pool.query('SELECT * FROM users WHERE username = $1', [username], (err, user) => {
+      if(err){
+        console.log(err);
+        return done(err);
+      }
+
+        if(user.rows.length > 0){ 
+          console.log(user.rows[0].username)
+         
+          const dbPass = user.rows[0].password;
+          bcrypt.compare(password, dbPass, function (err, res) {
+           
+            if(!res){
+              console.log('password incorrect')
+              return done (null, false);
+              }
+              if(res){
+
+                console.log('user found')
+                return done(null, user.rows[0]);
+              }
+          });
+        } 
+        if (user.rows.length === 0) {
+          
+          console.log('user not found ' + username)
+          return done(null, false);
+        }
+
+
+    });
     
-    userRecords.findByUsername(username, function(err, user){
+   /* userRecords.findByUsername(username, function(err, user){
       if(err){
         console.log('error')
         return done(err);
@@ -109,7 +141,9 @@ app.use((req, res, next) => {
           }
 
       });
-    });
+    });*/
+
+
   }));
 
 
@@ -344,7 +378,7 @@ app.post('/reset-password-email', function (req, res, next) {
 });
 
 app.get('/reset-password', function(req, res, next) {
-
+  
   res.render('reset-password', {
   title: 'Reset Password Page',
   token: req.query.token 
@@ -401,7 +435,7 @@ app.post('/update-password', function(req, res, next) {
 
           }
       
-      
+      console.log(msg)
       res.redirect('/update-password-thanks');
   });
 })
@@ -409,14 +443,13 @@ app.post('/update-password', function(req, res, next) {
   app.get('/update-password-thanks', function(req, res ,next) {
    
     res.render('Thanks-email')
-    next()
+    
 
-    req.setTimeout(5000, function(){
-      res.redirect('maplogin');
-    })
+  
+    });
   
   
-  });
+  
 
 app.listen(PORT, () =>{
     console.log('Server is listening on port 4001...' )
