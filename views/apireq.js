@@ -43,11 +43,12 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
     }); */
 
 // Register new user api - this is not in use currently (currently handled by form submission)
-    const postRegister = async (username, password) => {
-      console.log('The username is' + username);
-      const data = JSON.stringify({'username': username, 'password': password});
-      const urlToPostSubmit = 'http://localhost:4001/register';
+    const postRegister = async (username, password, email) => {
       
+      console.log('The username is' + username);
+      const data = JSON.stringify({'username': username, 'password': password, 'email': email});
+      const urlToPostSubmit = 'http://localhost:4001/register';
+      const displayTag = document.getElementById('postRegister-response-msg')
 
       try{
         const response = await fetch(urlToPostSubmit, {
@@ -61,24 +62,28 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
           if(response.ok){
         const jsonResponse = await response.json();
         console.log(jsonResponse);
-        window.alert('Thank you, Registration Complete. Please login');
+        displayTag.innerHTML = jsonResponse;
+       
       }
     } catch (error) {
+
       console.log('What is going on?', error);
+      displayTag.innerHTML = 'There is a problem with registration, please try again. If problem persists, please contact us.'
     }
   }
 
   
   
-    /*document.getElementById('register_button').addEventListener('submit', () => {
-    let username = document.getElementById('username').value;
-    let password = document.getElementById('password').value;
-    
+    document.getElementById('register_button').addEventListener('click', () => {
+      console.log('button clicked')
+    let username = document.getElementById('username_r').value;
+    let password = document.getElementById('password_r').value;
+    let email = document.getElementById('email').value;
     console.log(username);
-    postRegister(username, password); 
-    alert("something"); 
+    postRegister(username, password, email); 
+  
     });
-    */
+    
 
   // post request function to fetch markers/ objects from server and populate them on the map.
    const populateMarkers = async() => {

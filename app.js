@@ -6,7 +6,7 @@ const session = require('express-session');
 const store = new session.MemoryStore();``
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const userRecords = require('./users');
+const userFunctions = require('./users');
 const bcrypt = require('bcrypt');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
@@ -281,20 +281,36 @@ app.post("/register", async (req, res,) => {
   console.log(hash);
   password = hash;
   // Create new user:
-  const newUser = await userRecords.createUser({username, password, email});
+
+  userFunctions.registerNewUser(username, password, email, function(err, msg){
+    console.log(msg);
+    if (err){
+      res.status(500).send(err);
+    } 
+    
+    if(msg){
+      
+      const msgToClient = JSON.stringify(msg);
+      res.status(201).send(msgToClient);
+    }
+  })
+
+
+  
+  /*const newUser = await userRecords.createUser({username, password, email});
   // Add if/else statement with the new user as the condition:
   if (newUser) {
     // Send correct response if new user is created:
     console.log('user created')
-    /*res.redirect('maplogin')*/
+    res.redirect('maplogin')
     res.status(201).redirect('maplogin');
-    
+    /*
   } else {
     // Send correct response if new user failed to be created:
     res.status(500).json({
       msg: "User was not created!"
     });
-  }
+  } */
   
 });
 
@@ -372,7 +388,7 @@ app.post('/reset-password-email', function (req, res, next) {
 
             } else {
                 type = 'error';
-                msg = 'Something goes to wrong. Please try again';
+                msg = 'Something has gone wrong. Please try again. If problem persists, please contact us  ';
                 msg = JSON.stringify(msg);
                 res.status(201).send(msg)
                 console.log(msg)
