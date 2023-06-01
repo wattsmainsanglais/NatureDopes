@@ -646,6 +646,12 @@ input[type=text], input[type=password], input[type=email] {
   .container {
     padding: 16px;
   }
+
+  #postRegister-response-msg{
+    color: #5B9240;
+    font-weight: 800;
+    text-align: center;
+  }
   
   /* The "Forgot password" text */
   span.psw {
@@ -726,6 +732,7 @@ input[type=text], input[type=password], input[type=email] {
     to {transform: scale(1)}
   } 
 
+  /* end of modal css */
 
 footer{
     border-top: 2px solid #5B9240;

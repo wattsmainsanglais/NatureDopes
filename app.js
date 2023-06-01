@@ -280,7 +280,7 @@ app.post("/register", async (req, res,) => {
   let hash = await bcrypt.hash(password, salt);
   console.log(hash);
   password = hash;
-  // Create new user:
+  // Create new user, function stored in users.js:
 
   userFunctions.registerNewUser(username, password, email, function(err, msg){
     console.log(msg);
@@ -294,23 +294,6 @@ app.post("/register", async (req, res,) => {
       res.status(201).send(msgToClient);
     }
   })
-
-
-  
-  /*const newUser = await userRecords.createUser({username, password, email});
-  // Add if/else statement with the new user as the condition:
-  if (newUser) {
-    // Send correct response if new user is created:
-    console.log('user created')
-    res.redirect('maplogin')
-    res.status(201).redirect('maplogin');
-    /*
-  } else {
-    // Send correct response if new user failed to be created:
-    res.status(500).json({
-      msg: "User was not created!"
-    });
-  } */
   
 });
 

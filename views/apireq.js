@@ -42,7 +42,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
       postMarker(speciesName, firstRef, secondRef, file);
     }); */
 
-// Register new user api - this is not in use currently (currently handled by form submission)
+// Register new user api - post to /register & natureDopes postgresDB
     const postRegister = async (username, password, email) => {
       
       console.log('The username is' + username);
@@ -75,13 +75,20 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
   
   
     document.getElementById('register_button').addEventListener('click', () => {
-      console.log('button clicked')
+    let display = document.getElementById('postRegister-response-msg');
+      
+    console.log('button clicked');
     let username = document.getElementById('username_r').value;
     let password = document.getElementById('password_r').value;
     let email = document.getElementById('email').value;
-    console.log(username);
-    postRegister(username, password, email); 
-  
+    
+    if(username == "" || password == "" || email == ""){
+        
+      display.innerHTML  = 'Please complete all fields';
+    } else {
+       console.log(username);
+      postRegister( username, password, email); 
+    }
     });
     
 
