@@ -231,7 +231,7 @@ app.post('/markerlist',  upload.single('upload'), addMarkerToArray,(req, res, ne
     console.log(req.file);
     res.status(201).redirect('map');
     console.log(markerList);
-    console.log(req.session);
+   
 });
 
 app.get('/markerlist', (req, res ,next) => {
@@ -265,7 +265,7 @@ app.get('/maploginFail', (req, res) => {
 app.get('/map', (req, res,) =>{
   console.log(req.session);
   
-  console.log(req.user)
+  
   
   if(req.user) {
     res.render('map');

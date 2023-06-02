@@ -87,7 +87,7 @@ const pool = new Pool({
           }
           else {
             console.log(result.rows[0])
-            msg = 'Thankyou, a new account has been created for ' + result.rows[0].username;
+            msg = 'Thankyou, a new account has been created for ' + result.rows[0].username; + 'please proceed to login'
 
             return cb(null, msg);
           }

@@ -3,7 +3,7 @@
 /*import maplibregl from 'maplibre-gl';*/ 
 
 
-const urlToPost = 'http://localhost:4001/markerList'
+/*const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
 
 
@@ -34,7 +34,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
         console.log('What is going on?', error);
       }
     }
-
+*/
    /* fetchMarkerSubmit.addEventListener('click', () => {
       let speciesName = document.getElementById('species-name').value;
       let firstRef = document.getElementById('firstRef').value;
@@ -44,60 +44,13 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
       postMarker(speciesName, firstRef, secondRef, file);
     }); */
 
-// Register new user api - post to /register & natureDopes postgresDB
-    const postRegister = async (username, password, email) => {
-      
-      console.log('The username is' + username);
-      const data = JSON.stringify({'username': username, 'password': password, 'email': email});
-      const urlToPostSubmit = 'http://localhost:4001/register';
-      const displayTag = document.getElementById('postRegister-response-msg')
 
-      try{
-        const response = await fetch(urlToPostSubmit, {
-          method: 'POST',
-          body: data,
-
-          headers: {
-            'Content-type': 'application/json',     
-          }  
-      });
-          if(response.ok){
-        const jsonResponse = await response.json();
-        console.log(jsonResponse);
-        displayTag.innerHTML = jsonResponse + ' <a href="maplogin">login</a>';
-       
-      }
-    } catch (error) {
-
-      console.log('What is going on?', error);
-      displayTag.innerHTML = 'There is a problem with registration, please try again. If problem persists, please contact us.'
-    }
-  }
-
-  
-  
-    document.getElementById('register_button').addEventListener('click', () => {
-    let display = document.getElementById('postRegister-response-msg');
-      
-    console.log('button clicked');
-    let username = document.getElementById('username_r').value;
-    let password = document.getElementById('password_r').value;
-    let email = document.getElementById('email').value;
-    
-    if(username == "" || password == "" || email == ""){
-        
-      display.innerHTML  = 'Please complete all fields';
-    } else {
-       console.log(username);
-      postRegister( username, password, email); 
-    }
-    });
 
    
 
     const processPopulateMarkers = (first, second, name) => {
   
-      var marker = new maplibregl.Marker({
+      let marker = new maplibregl.Marker({
         color: '#5B9240',
         scale: 1,
     })
@@ -109,7 +62,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
     
 
     // post request function to fetch markers/ objects from server and populate them on the map.
-   const populateMarkers = async() => {
+   const populateMarkers = async () => {
       try {
         const response = await fetch(urlToPost, { headers: {
           'Content-type': 'application/json'     
@@ -139,41 +92,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
 
    }
 
+  // event listener for populate marker function
+   document.getElementById("populateMarkers_button").addEventListener('click', populateMarkers)
+    
  
-//post email address to server and handle response
-
-const emailPasswordResetURL = 'http://localhost:4001/reset-password-email'
-
-const handleEmail = async(email) => {
-
-  const displayTag = document.getElementById('postReponse_reset-password-email-p')
-  const data = JSON.stringify({'email': email})
-  try{
-    const response = await fetch(emailPasswordResetURL,{
-        method: 'POST',
-        body: data,
-
-        headers: {
-        'Content-type': 'application/json',     
-        }
-      });
-      
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        console.log(jsonResponse)
-        displayTag.innerHTML = jsonResponse;
-
-
-      }
-  }
-
-  catch(error){
-    console.log(error);
-
-  }
-}
-
-document.getElementById('reset-password-email-input-button').addEventListener('click', () =>{
-  let email = document.getElementById('reset-email-input').value;
-  handleEmail(email);
-})
