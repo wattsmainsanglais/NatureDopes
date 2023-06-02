@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/style.css">
@@ -15,8 +15,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
     
-    
-        
+
+    <script src='https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.css' rel='stylesheet' />   
    
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
 </head>
@@ -81,9 +82,72 @@
 
     <section class="map-overlay">
 
-        <div id='map' alt="awaiting map, please wait">
-           
-        </div>
+        <div id='map' alt="awaiting map, please wait"></div>
+            <script>
+        
+        
+         
+                let map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/streets/style.json?key=CMRIccwlZz6zI6QR2E5I ', // stylesheet location
+                center: [0, 46], // starting position [lng, lat]
+                zoom: 1 // starting zoom
+                    
+                }); 
+        
+                function newMark(){
+                
+                let imageThumb = document.getElementById('imageThumb');
+                let speciesName = document.getElementById('speciesName').value; 
+                let firstRef = document.getElementById("firstRef").value;
+                let secondRef = document.getElementById("secondRef").value;
+                var marker = new maplibregl.Marker({
+                    color: '#5B9240',
+                    scale: 1,
+                })
+                    .setLngLat([firstRef, secondRef])
+                    .setPopup(new maplibregl.Popup().setHTML(speciesName))
+                    .addTo(map);
+                changeColor();
+                console.log(firstRef, secondRef);
+                
+                
+              }
+        
+        
+              map.on('click', function (d) {
+             
+                let pos = d.lngLat;
+                
+                let firstRef = pos.lng
+                console.log(firstRef);
+                let secondRef = pos.lat
+                
+                document.getElementById("firstRef").value = firstRef;
+                document.getElementById("secondRef").value = secondRef
+                
+              });
+            
+            
+        
+              /*map.on('mousemove', function (e) {
+               
+                document.getElementById('info').innerHTML =
+                    // e.point is the x, y coordinates of the mousemove event relative
+                    // to the top-left corner of the map
+                JSON.stringify(e.point) +
+                '<br />' +
+                // e.lngLat is the longitude, latitude geographical position of the event
+                JSON.stringify(e.lngLat);
+                });
+            
+             */
+            
+        
+        
+               
+            </script>
+        
         
         <aside class="mapSideBar">
 
@@ -137,74 +201,8 @@
         
     </section>
     
-    <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
-    <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
    
-   
-   <script>
-        
-        
-         
-        let map = new maplibregl.Map({
-        container: 'map',
-        style: 'https://api.maptiler.com/maps/streets/style.json?key=CMRIccwlZz6zI6QR2E5I ', // stylesheet location
-        center: [0, 46], // starting position [lng, lat]
-        zoom: 1 // starting zoom
-            
-        }); 
 
-        function newMark(){
-        
-        let imageThumb = document.getElementById('imageThumb');
-        let speciesName = document.getElementById('speciesName').value; 
-        let firstRef = document.getElementById("firstRef").value;
-        let secondRef = document.getElementById("secondRef").value;
-        var marker = new maplibregl.Marker({
-            color: '#5B9240',
-            scale: 1,
-        })
-            .setLngLat([firstRef, secondRef])
-            .setPopup(new maplibregl.Popup().setHTML(speciesName))
-            .addTo(map);
-        changeColor();
-        console.log(firstRef, secondRef);
-        
-        
-      }
-
-
-      map.on('click', function (d) {
-     
-        let pos = d.lngLat;
-        
-        let firstRef = pos.lng
-        console.log(firstRef);
-        let secondRef = pos.lat
-        
-        document.getElementById("firstRef").value = firstRef;
-        document.getElementById("secondRef").value = secondRef
-        
-      });
-    
-    
-
-      /*map.on('mousemove', function (e) {
-       
-        document.getElementById('info').innerHTML =
-            // e.point is the x, y coordinates of the mousemove event relative
-            // to the top-left corner of the map
-        JSON.stringify(e.point) +
-        '<br />' +
-        // e.lngLat is the longitude, latitude geographical position of the event
-        JSON.stringify(e.lngLat);
-        });
-    
-     */
-    
-
-
-       
-    </script>
  
     <section class="aboutmap">
     

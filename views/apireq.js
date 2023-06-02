@@ -1,6 +1,8 @@
 
 
-/* import maplibregl from 'maplibre-gl'; */
+/*import maplibregl from 'maplibre-gl';*/ 
+
+
 const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
 
@@ -19,9 +21,9 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
         const response = await fetch(urlToPost, {
             method: 'POST',
             body: formdata,
-            /*headers: {
+            headers: {
               'Content-type': 'application/json',     
-            }  */
+            }  
         });
             if(response.ok){
           const jsonResponse = await response.json();
@@ -62,7 +64,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
           if(response.ok){
         const jsonResponse = await response.json();
         console.log(jsonResponse);
-        displayTag.innerHTML = jsonResponse;
+        displayTag.innerHTML = jsonResponse + ' <a href="maplogin">login</a>';
        
       }
     } catch (error) {
@@ -90,9 +92,23 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
       postRegister( username, password, email); 
     }
     });
+
+   
+
+    const processPopulateMarkers = (first, second, name) => {
+  
+      var marker = new maplibregl.Marker({
+        color: '#5B9240',
+        scale: 1,
+    })
+    
+        .setLngLat([first, second])
+        .setPopup(new maplibregl.Popup().setHTML(name))
+        .addTo(map);
+     }  
     
 
-  // post request function to fetch markers/ objects from server and populate them on the map.
+    // post request function to fetch markers/ objects from server and populate them on the map.
    const populateMarkers = async() => {
       try {
         const response = await fetch(urlToPost, { headers: {
@@ -123,18 +139,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
 
    }
 
- const processPopulateMarkers = (first, second, name) => {
-  
-  var marker = new maplibregl.Marker({
-    color: '#5B9240',
-    scale: 1,
-})
-
-    .setLngLat([first, second])
-    .setPopup(new maplibregl.Popup().setHTML(name))
-    .addTo(map);
- }  
-
+ 
 //post email address to server and handle response
 
 const emailPasswordResetURL = 'http://localhost:4001/reset-password-email'

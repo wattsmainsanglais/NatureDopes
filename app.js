@@ -11,6 +11,7 @@ const bcrypt = require('bcrypt');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const randtoken = require('rand-token'); //token generator for login/password reset
+const helmet = require('helmet')
 
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
@@ -27,6 +28,16 @@ const pool = new Pool({
   port: 5432,
 })
 
+
+/*app.use(
+    helmet({
+      contentSecurityPolicy: false, 
+      
+    })
+    
+  
+);*/
+
 const { render } = require('ejs');
 
 const PORT = process.env.PORT || 4001;
@@ -37,82 +48,26 @@ app.set('view engine', 'ejs');
 
 
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-    );
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    if (req.method === "OPTIONS") {
-      return res.sendStatus(200);
-    }
-    next();
-  });
+
 
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:true}));
-  
-  app.use(
-    session({
-      secret: 'random',
-      cookie: {maxAge: 172800000, secure: false, sameSite: 'none'},
-      resave: false,
-      saveUninitialized: false,
-      store
-    })
-  );
-
-  
-
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser((id, done) => {
-    /*userRecords.findById(id, function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      done(null, user);
-    });*/
-    pool.query('SELECT * FROM users WHERE id = $1', [id], (err, user) => {
-      if(err){
-        
-        return done(err);
-      }
-      
-      if(user.rows[0] = id){
-        return done(null, user);
-      } else {
-        err = "User " + id + " does not exist";
-        return done(err);
-
-      }
-
-    })
-  });
-  
-
 
   passport.use(new LocalStrategy(function(username, password, done){
     console.log('passport starting')
     console.log(username)
 
-    pool.query('SELECT * FROM users WHERE username = $1', [username], (err, user) => {
+    pool.query('SELECT * FROM users WHERE username = $1', [username], (err, result) => {
       if(err){
         console.log(err);
         return done(err);
       }
 
-        if(user.rows.length > 0){ 
-          console.log(user.rows[0].username)
+        if(result.rows.length > 0){ 
+          console.log(result.rows[0].username)
          
-          const dbPass = user.rows[0].password;
+          const dbPass = result.rows[0].password;
           bcrypt.compare(password, dbPass, function (err, res) {
            
             if(!res){
@@ -122,11 +77,11 @@ app.use((req, res, next) => {
               if(res){
 
                 console.log('user found')
-                return done(null, user.rows[0]);
+                return done(null, result.rows[0]);
               }
           });
         } 
-        if (user.rows.length === 0) {
+        if (result.rows.length === 0) {
           
           console.log('user not found ' + username)
           return done(null, false);
@@ -161,6 +116,59 @@ app.use((req, res, next) => {
 
   }));
 
+  passport.serializeUser((user, done) => {
+   
+    process.nextTick(function(){
+      done(null, user.id);
+      console.log(user.id + 'serialize')
+    }); 
+  });
+
+  passport.deserializeUser((id, done) => {
+    /*userRecords.findById(id, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+      done(null, user);
+    });*/
+    console.log('deserialize')
+    process.nextTick(function() {
+      pool.query('SELECT * FROM users WHERE id = $1', [id], (err, user) => {
+        if(err){
+          console.log('des error')
+          return done(err);
+        }
+      
+        if(user.rows[0] = id){
+          console.log('des sucess')
+          return done(null, user);
+        } else {
+
+          err = "User " + id + " does not exist";
+          console.log(err);
+          return done(err);
+
+        }
+
+      });
+    });
+    
+  });
+  
+  app.use(
+    session({
+      secret: 'random',
+      cookie: {maxAge: 172800000, secure: false, sameSite: 'lax'},
+      resave: false,
+      saveUninitialized: false,
+      store
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.use(passport.authenticate('session'));
 
 
 let markerListId = 3;
@@ -256,6 +264,9 @@ app.get('/maploginFail', (req, res) => {
 
 app.get('/map', (req, res,) =>{
   console.log(req.session);
+  
+  console.log(req.user)
+  
   if(req.user) {
     res.render('map');
   } else {
@@ -298,10 +309,8 @@ app.post("/register", async (req, res,) => {
 });
 
 // POST request for logging in
-app.post("/maplogin", passport.authenticate("local", { failureRedirect: "/maploginFail", failureMessage: 'Password incorrect, please try again'}), (req, res) => {
-      console.log(req.session.user)
-      res.redirect("map");
-    
+app.post("/maplogin", passport.authenticate("local", {failureRedirect: "/maploginFail", failureMessage: 'Password incorrect, please try again'}), function(req, res, next) {
+      res.redirect('map');
 });
 
 
