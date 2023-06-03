@@ -3,10 +3,10 @@
 /*import maplibregl from 'maplibre-gl';*/ 
 
 
-/*const urlToPost = 'http://localhost:4001/markerList'
+const urlToPost = 'http://localhost:4001/markerList'
 const fetchMarkerSubmit = document.getElementById('map-button');
 
-
+/*
 // function to post new marker request to server with eventlistener
 const postMarker = async (speciesName, firstRef, secondRef, file) => {
 
@@ -95,4 +95,19 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
   // event listener for populate marker function
    document.getElementById("populateMarkers_button").addEventListener('click', populateMarkers)
     
- 
+   function infoBoxReveal(){
+    document.querySelector('.map_aside_info_box').style.display = 'block';
+     }
+    let infoLogo =  document.getElementById('map_aside_info_logo')
+    const infoLogoOn = infoLogo.addEventListener('mouseover', infoBoxReveal);
+  
+    function infoBoxhide(){
+    document.querySelector('.map_aside_info_box').style.display = 'none';
+    }
+    const inforLogoOut = infoLogo.addEventListener('mouseout', infoBoxhide);
+
+    if(infoLogoOn){
+      infoBoxReveal();
+    } else if (inforLogoOut) {
+      infoBoxhide();
+    }

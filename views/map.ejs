@@ -27,7 +27,7 @@
 <header>
     <nav>
         <div class="logo">
-            <img src="Images\logomini.png" alt="small naturedopes logo">
+            <a href="index"><img src="Images\logomini.png" alt="small naturedopes logo" aria-label="Nature Dopes logo" ></a>
 
         </div>
         <div class="logotext">
@@ -38,8 +38,8 @@
                 <ul class="navlinks">
                     <li class="links"><a href="index">Home</a></li>
                     <li class="links"><a href="gallery">Gallery</a></li>
-                    <li class="links"><a href="#about" onclick="displayAbout()">About</a></li>
-                    <li class="links"><a href="#Social-links" onclick="displayAbout()">Links</a></li>
+                    <li class="links"><a href="index#about" onclick="displayAbout()">About</a></li>
+                    <li class="links"><a href="index#Social-links" onclick="displayAbout()">Links</a></li>
                     <li class="links"><a href="maplogin">Map</a></li>
                     <li class="links"><a href="nft">NFT</a></li>
                 </ul>
@@ -143,6 +143,9 @@
             
              */
             
+            
+                
+                    
         
         
                
@@ -152,7 +155,20 @@
         <aside class="mapSideBar">
 
             <div class="map-aside-header">
-                <h2 class="map-h2">Guide</h2>
+                <aside>
+                    <h2 class="map-h2">Guide</h2>
+                    <div id='map_aside_info_logo'>
+                        <img class="map_aside_info_logo"  src="Images/circle_customer_help_info_information_service_support_icon_123208.png">
+                    </div>
+                        <article class="map_aside_info_box">
+                       <h3>Map instructions </h3>
+                       <p> -Use the mouse wheel to zoom in and out of the map</p>
+                       <p> -Clicking anywhere on the map will add that position as grid references onto the form below</p>
+                       <p> -Clicking on a marker will reveal further information</p> 
+                        </article>
+                
+                    
+                </aside>    
                 <form class="logout-box" method="post" action="/logout">
                     <button type="submit">Logout</button>
     
@@ -180,7 +196,7 @@
                 <label class="map-label" for="upload">Please upload you image here</label>
                 <input type="file" id="upload" name="upload" accept= "image/jpg, image/png, image/jpeg" >
                 
-                <div class="button div">
+                <div class="map_aside_button_div">
                 <button id="map-button" class="map-button" type="submit" onclick="newMark()">Add record</button>
                 <button id="populateMarkers_button" class="map-button" type="button" >Populate</button>
                 </div>
@@ -225,7 +241,7 @@
 </footer>
 
 <script src='apireq.js'>
-
+                
     
 </script>
 </body>

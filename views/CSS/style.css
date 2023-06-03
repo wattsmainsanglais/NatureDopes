@@ -500,6 +500,40 @@ main{
     text-decoration: underline;
 }
 
+.map-aside-header aside{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: space-between;
+}
+
+.map_aside_info_logo{
+    opacity: 70%;
+    margin-left: 5%;
+    width: 20px;
+}
+
+.map_aside_info_box{
+    font-family: 'Figtree', sans-serif;
+    display: none;
+    width: 10%; 
+    position: absolute;
+    right: 31.5%;
+    
+    background-color: #eff7f2;
+    padding: 1%;
+    font-size: .8em;
+}
+
+.map_aside_info_box p{
+    padding: 2% 0 1% 0; 
+}
+
+.map_aside_info_box h3{
+    font-weight: 800;
+}
+
 
 .mapAsideMsg{
     background-color: #ffffff;
@@ -517,9 +551,7 @@ main{
     color: #5b9240;
 }
 
-
 .map-form{
-    
     padding: 2%;
     display: flex;
     flex-direction: column;
@@ -529,6 +561,20 @@ main{
     font-size: 0.8rem;
     
 }
+
+.map-form button, .map-form input[type=file]::file-selector-button, .map-form input[type=file], .logout-box button {
+  
+    font-family: 'Figtree', sans-serif;
+    padding: 0, 3% 0 3%;
+}
+
+.map-form button,  .logout-box button {
+    background-color:  #cdeebc;
+    border: .5px solid #5B9240;
+    
+}
+
+
 
 .map-h2{
     font-size: 1rem;
@@ -542,15 +588,13 @@ main{
     color: red;
 }
 
+.map_aside_button_div{
+    margin-top: 5%;
+}
+
 .map-label{
     padding: 2px 0px;
     display: flex;
-}
-
-.map-button{
-    margin-top: 3px;
-    padding: 3px 0px;
-    display:flex;
 }
 
 .map-decor{
