@@ -7,6 +7,8 @@ const pool = new Pool({
   port: 5432,
 })
 
+const validator = require('validator');
+
 
   const getNewId = (array) => {
     if (array.length > 0) {
@@ -65,40 +67,61 @@ const pool = new Pool({
       return cb (null, null);
     });
   };
-  
+
+
+   checkEmail = function(email, cb) {
+    const emailCheck = validator.isEmail(email)
+    console.log(emailCheck);
+    return cb(emailCheck)
+  } 
 
   exports.registerNewUser = function(username, password, email, cb){
     
-    let msg = ''; 
-    pool.query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email], function(err, result){
-      console.log(result.rows)
-      if(result.rows.length > 0){
-        console.log('this user already exisits')
-        msg = 'User ' + result.rows[0].username + ' already exists, please register with a different username/ email'
-        return cb(null, msg);
+  let msg = ''; 
+     checkEmail(email, function(check){
+      console.log(check);
+      if(!check){
+        msg = 'Please use a valid email address';
+        return cb(null, msg)
+      } else {
+
+        pool.query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email], function(err, result){
+          console.log(result.rows)
+          if (result.rows.length > 0){
+            console.log('this user already exisits')
+            msg = 'User ' + result.rows[0].username + ' already exists, please register with a different username/ email'
+            return cb(null, msg);
         
-      }
-      else if (result.rows == 0){
-        pool.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING username', [username, password, email], function(err, result){
-          if(err){
-            console.log(err)
-            msg = 'Error posting data to server '
-            return cb(null, msg);
           }
+          else if (result.rows == 0){
+            pool.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING username', [username, password, email], function(err, result){
+            if(err){
+              console.log(err)
+              msg = 'Error posting data to server '
+              return cb(null, msg);
+            }
+            else {
+              console.log(result.rows[0])
+              msg = 'Thankyou, a new account has been created for ' + result.rows[0].username + ' please proceed to '
+
+              return cb(null, msg);
+            }
+
+            })
+          }
+
           else {
-            console.log(result.rows[0])
-            msg = 'Thankyou, a new account has been created for ' + result.rows[0].username; + 'please proceed to login'
-
-            return cb(null, msg);
+          console.log(err)
+            return (null, null);
           }
 
-        })
-      }
+      })
+      
+    }
 
-      else {
-        console.log(err)
-        return (null, null);
-      }
+  }) 
+}
 
-    })
-  }
+ 
+
+

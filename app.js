@@ -12,6 +12,7 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const randtoken = require('rand-token'); //token generator for login/password reset
 const helmet = require('helmet')
+const validator = require('validator');
 
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
@@ -284,9 +285,9 @@ app.get('/register', (req, res, next) => {
 app.post("/register", async (req, res,) => {
   console.log(req.body);
   let { username, password, email } = req.body;
+ 
 
   //hash the password before storage
-
   const salt = await bcrypt.genSalt(10);
   let hash = await bcrypt.hash(password, salt);
   console.log(hash);

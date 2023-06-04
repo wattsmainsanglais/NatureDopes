@@ -17,9 +17,13 @@ const postRegister = async (username, password, email) => {
     });
         if(response.ok){
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
-      displayTag.innerHTML = jsonResponse + ' <a href="maplogin">login</a>';
-     
+      console.log(jsonResponse[0]);
+      if (jsonResponse[0] == 'T'){
+        console.log('true');
+        displayTag.innerHTML = jsonResponse + ' <a href="maplogin">login</a>';
+      } else {
+        displayTag.innerHTML = jsonResponse;
+      }
     }
   } catch (error) {
 
