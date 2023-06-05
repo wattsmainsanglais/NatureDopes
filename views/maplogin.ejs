@@ -14,6 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
     
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
     <script src='https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.css' rel='stylesheet' />   
    
@@ -152,7 +153,7 @@
               </div>
               
               <aside id="postRegister-response-msg" class="container" >
-
+                  Please complete the form below then click 'register' to create a new user. 
               </aside>
               <div class="container">
                 <label for="username_r"><b>Username</b></label>
@@ -173,7 +174,7 @@
       
           
               <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" id="cancelbtn">Cancel</button>
                 
               </div>
             </form>

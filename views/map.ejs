@@ -175,8 +175,10 @@
                 </form>
             </div>
 
+           
+
             <form class="map-form" action="/markerlist" method="post" enctype="multipart/form-data">
-                
+                 
                 
                 <p class="map-aside"><span class='map-decor'>1 -</span> Please enter the name of the species that you have found <br><br>
                     <span class='map-decor'>2 -</span> Then zoom in on the map to where you found it (try to be as accurate as possible). Click the location where and the grid references will fill in for you. <br><br> 
@@ -185,13 +187,13 @@
                 </p>
                 <hr>
                 <label class="map-label" for="speciesName">Enter the name of your find</label>
-                <input  class="map-input" name="speciesName" id="speciesName" type="text">
+                <input  class="map-input" name="speciesName" id="speciesName" type="text" required>
 
                 <label class="map-label" for="firstRef">Enter Longditude</label>
-                <input class="map-input"  name="firstRef" id="firstRef" type="text">
+                <input class="map-input"  name="firstRef" id="firstRef" type="text" required>
                 
                 <label class="map-label" for="secondRef">Enter Latitude</label>
-                <input class="map-input" name="secondRef" id="secondRef" type="text">
+                <input class="map-input" name="secondRef" id="secondRef" type="text" required>
                 
                 <label class="map-label" for="upload">Please upload you image here</label>
                 <input type="file" id="upload" name="upload" accept= "image/jpg, image/png, image/jpeg" >

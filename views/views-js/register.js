@@ -1,3 +1,5 @@
+//import validator from 'validator';//
+
 // Register new user api - post to /register & natureDopes postgresDB
 const postRegister = async (username, password, email) => {
       
@@ -43,10 +45,19 @@ const postRegister = async (username, password, email) => {
   let email = document.getElementById('email').value;
   
   if(username == "" || password == "" || email == ""){
-      
-    display.innerHTML  = 'Please complete all fields';
-  } else {
+      display.innerHTML  = 'Please complete all fields';
+  }
+  else if(!validator.isLength(password, {min:8, max:20 })){
+    display.innerHTML  = 'Password must be between 8 & 20 characters';
+  }
+  
+  else {
      console.log(username);
     postRegister( username, password, email); 
   }
   });
+
+  document.getElementById('cancelbtn').addEventListener('click', () => {
+    let display = document.getElementById('postRegister-response-msg')
+    display.innerHTML = 'Please complete the form below then click "register" to create a new user.';
+  })

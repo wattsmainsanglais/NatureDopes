@@ -91,30 +91,6 @@ app.set('view engine', 'ejs');
 
     });
     
-   /* userRecords.findByUsername(username, function(err, user){
-      if(err){
-        console.log('error')
-        return done(err);
-      }
-      if(!user){
-        console.log('user not found ' + username)
-        return done(null, false);
-      }
-      bcrypt.compare(password, user.password, function (err, result){
-          if(!result){
-          console.log('password incorrect')
-          return done (null, false);
-          }
-          if(result){
-
-          console.log('user found')
-          return done(null, user);
-          }
-
-      });
-    });*/
-
-
   }));
 
   passport.serializeUser((user, done) => {
@@ -126,12 +102,7 @@ app.set('view engine', 'ejs');
   });
 
   passport.deserializeUser((id, done) => {
-    /*userRecords.findById(id, function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      done(null, user);
-    });*/
+  
     console.log('deserialize')
     process.nextTick(function() {
       pool.query('SELECT * FROM users WHERE id = $1', [id], (err, user) => {
@@ -230,7 +201,7 @@ app.post('/imgUpload',  (req, res, next) => {
 app.post('/markerlist',  upload.single('upload'), addMarkerToArray,(req, res, next) => {
    
     console.log(req.file);
-    res.status(201).redirect('map');
+    res.status(201).redirect('map?param=thankyou');
     console.log(markerList);
    
 });
@@ -265,11 +236,12 @@ app.get('/maploginFail', (req, res) => {
 
 app.get('/map', (req, res,) =>{
   console.log(req.session);
-  
+  console.log(req.query.param)
   
   
   if(req.user) {
-    res.render('map');
+    res.render('map', {message: 'this is a message'});
+
   } else {
     res.redirect('maplogin');
   }
@@ -292,6 +264,7 @@ app.post("/register", async (req, res,) => {
   let hash = await bcrypt.hash(password, salt);
   console.log(hash);
   password = hash;
+  
   // Create new user, function stored in users.js:
 
   userFunctions.registerNewUser(username, password, email, function(err, msg){

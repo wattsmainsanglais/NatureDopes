@@ -68,20 +68,31 @@ const validator = require('validator');
     });
   };
 
+  checksTest = function(username, email, cb){
+    msg=''
+    if(!validator.isEmail(email)){
+       msg = 'Please use a valid email address';
+       return cb(msg);
+    } else if(!validator.isAlphanumeric(username, 'uk-UA')){
+      msg = 'Please use only letters and numbers for your Username';
+       return cb(msg);
+    }
+    
+     else {
+      return cb(null);
+    }
 
-   checkEmail = function(email, cb) {
-    const emailCheck = validator.isEmail(email)
-    console.log(emailCheck);
-    return cb(emailCheck)
-  } 
+  }
+
+
 
   exports.registerNewUser = function(username, password, email, cb){
     
   let msg = ''; 
-     checkEmail(email, function(check){
-      console.log(check);
-      if(!check){
-        msg = 'Please use a valid email address';
+     checksTest(password, email, function(checkmsg){
+      console.log(checkmsg);
+      if(checkmsg){
+        msg = checkmsg
         return cb(null, msg)
       } else {
 
@@ -94,7 +105,8 @@ const validator = require('validator');
         
           }
           else if (result.rows == 0){
-            pool.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING username', [username, password, email], function(err, result){
+            let safeEmail = validator.escape(email);
+            pool.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING username', [username, password, safeEmail], function(err, result){
             if(err){
               console.log(err)
               msg = 'Error posting data to server '
