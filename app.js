@@ -2,14 +2,17 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+
 const session = require('express-session');
 const store = new session.MemoryStore();``
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+
 const userFunctions = require('./users');
+
 const bcrypt = require('bcrypt');
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' });
+
+
 const randtoken = require('rand-token'); //token generator for login/password reset
 const helmet = require('helmet')
 const validator = require('validator');
@@ -18,6 +21,21 @@ const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
 
 dotenv.config();
+
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'views/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, uniqueSuffix + '-' + file.originalname )
+  }
+})
+
+const upload = multer({ storage: storage});
+
 
 //database connection
 const Pool = require('pg').Pool
@@ -154,10 +172,10 @@ function addMarkerToArray(req, res, next){
     let species = obj.speciesName;
     let first = obj.firstRef;
     let second = obj.secondRef;
-    let upload = req.body.upload; // will be on req.file 
+    let upload = req.file.filename; // will be on req.file 
     
 
-    markerList.push({'id': id, 'speciesName': species, 'firstRef': first, 'secondRef': second});
+    markerList.push({'id': id, 'speciesName': species, 'firstRef': first, 'secondRef': second, 'path': upload});
     next()
 }
 
@@ -166,13 +184,15 @@ let markerList = [
         id: 1,
         speciesName: 'Violet',
         firstRef: 2,
-        secondRef: 2
+        secondRef: 2,
+        path: '1686145623944-8982424-RedRobinOrig.jpg'
     },
     {
         id: 2,
         speciesName: 'Daisy',
         firstRef: 1,
-        secondRef: 1 
+        secondRef: 1 ,
+        path: '1686145623944-8982424-RedRobinOrig.jpg'
     }
 
 ]

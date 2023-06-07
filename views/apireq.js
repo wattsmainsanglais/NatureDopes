@@ -48,15 +48,19 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
 
    
 
-    const processPopulateMarkers = (first, second, name) => {
+    const processPopulateMarkers = (first, second, name, path) => {
   
+      const realPath = 'uploads/'+ path;
+      let pathTag = '<img width="75" height="75" src='+ realPath +'><h2>' + name +'</h2>'; 
+      console.log(pathTag);
+
       let marker = new maplibregl.Marker({
         color: '#5B9240',
         scale: 1,
     })
     
         .setLngLat([first, second])
-        .setPopup(new maplibregl.Popup().setHTML(name))
+        .setPopup(new maplibregl.Popup().setHTML(pathTag))
         .addTo(map);
      }  
     
@@ -78,7 +82,8 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
                   let first = array[i].firstRef;
                   let second = array[i].secondRef;
                   let name = array[i].speciesName;
-                  processPopulateMarkers(first, second, name);
+                  let path = array[i].path;
+                  processPopulateMarkers(first, second, name, path);
                   
               }
 
