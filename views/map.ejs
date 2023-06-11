@@ -54,7 +54,7 @@
    
    <section class="map-header">
     <h2 class="map-h2">Welcome to our Map page</h2>
-    <p class="map-aside-test"> This is currently a work in progress but please feel free to come and test.</p>
+    <p class="map-aside-test" style="display: none;"></p>
 
     <h1 id="screen-warning"></h1>
    </section>  
@@ -92,8 +92,8 @@
                 let map = new maplibregl.Map({
                 container: 'map',
                 style: 'https://api.maptiler.com/maps/streets/style.json?key=CMRIccwlZz6zI6QR2E5I ', // stylesheet location
-                center: [0, 46], // starting position [lng, lat]
-                zoom: 1 // starting zoom
+                center: [-1.17, 48.028], // starting position [lng, lat]
+                zoom: 4 // starting zoom
                     
                 }); 
         
@@ -110,7 +110,7 @@
                     .setLngLat([firstRef, secondRef])
                     .setPopup(new maplibregl.Popup().setHTML(speciesName))
                     .addTo(map);
-                changeColor();
+                
                 console.log(firstRef, secondRef);
                 
                 
@@ -166,7 +166,7 @@
                        <h3>Map instructions </h3>
                        <p> -Use the mouse wheel to zoom in and out of the map</p>
                        <p> -Clicking anywhere on the map will add that position as grid references onto the form below</p>
-                       <p> -Clicking on a marker will reveal further information</p> 
+                       <p> -Clicking on a marker will reveal further information and an image (if available)</p> 
                         </article>
                 
                     
@@ -183,9 +183,10 @@
                  
                 
                 <p class="map-aside"><span class='map-decor'>1 -</span> Please enter the name of the species that you have found <br><br>
-                    <span class='map-decor'>2 -</span> Then zoom in on the map to where you found it (try to be as accurate as possible). Click the location where and the grid references will fill in for you. <br><br> 
+                    <span class='map-decor'>2 -</span> Then zoom in on the map to where you found it (try to be as accurate as possible). Click the location and the grid references will fill in for you. <br><br> 
                     <span class='map-decor'>3 -</span> Then click the browse button and upload your photo (this is currently an optional step).<br><br>
-                    <span class='map-decor'>4 -</span> Click 'Add record' and your find will be added to our logs.
+                    <span class='map-decor'>4 -</span> Click 'Add record' and your find will be added to our logs.<br><br>
+                    <span class="map-decor">5 -</span> Clicking the 'Populate button will add markers to the map for all records'
                 </p>
                 <hr>
                 <label class="map-label" for="speciesName">Enter the name of your find</label>
@@ -201,7 +202,7 @@
                 <input type="file" id="upload" name="upload" accept= "image/jpg, image/png, image/jpeg" >
                 
                 <div class="map_aside_button_div">
-                <button id="map-button" class="map-button" type="submit" onclick="newMark()">Add record</button>
+                <button id="map-button" class="map-button" type="button" onclick="newMark()">Add record</button>
                 <button id="populateMarkers_button" class="map-button" type="button" >Populate</button>
                 </div>
                 <aside id="info">
@@ -238,14 +239,14 @@
 
     <section class="siteDetails">
         <h4>Application constructed & maintained by <a class="wattsLink" href="https://awattsdev.eu/" target="_blank">awattsdev</a> full stack applications.
-
+            <p><%= message %></p>
         </h4>
     </section>
 
 </footer>
 
 <script src='apireq.js'>
-                
+    console.log(req.body);            
     
 </script>
 </body>

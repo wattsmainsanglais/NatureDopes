@@ -164,7 +164,8 @@ app.set('view engine', 'ejs');
 let markerListId = 3;
 
 function addMarkerToArray(req, res, next){
-    const obj = Object.assign({},req.body)
+    
+  const obj = Object.assign({},req.body)
     
     console.log(obj);
     
@@ -221,7 +222,7 @@ app.post('/imgUpload',  (req, res, next) => {
 app.post('/markerlist',  upload.single('upload'), addMarkerToArray,(req, res, next) => {
    
     console.log(req.file);
-    res.status(201).redirect('map?param=thankyou');
+    res.status(201).send(req.body);
     console.log(markerList);
    
 });
@@ -256,8 +257,6 @@ app.get('/maploginFail', (req, res) => {
 
 app.get('/map', (req, res,) =>{
   console.log(req.session);
-  console.log(req.query.param)
-  
   
   if(req.user) {
     res.render('map', {message: 'this is a message'});

@@ -4,25 +4,27 @@
 
 
 const urlToPost = 'http://localhost:4001/markerList'
-const fetchMarkerSubmit = document.getElementById('map-button');
+const postMarkerSubmit = document.getElementById('map-button');
 
-/*
-// function to post new marker request to server with eventlistener
+
+//function to post new marker request to server with eventlistener
 const postMarker = async (speciesName, firstRef, secondRef, file) => {
-
+ 
   
   const formdata = new FormData()
 
-  const data = JSON.stringify({'speciesName': speciesName, 'firstRef': firstRef, 'secondRef': secondRef});
-  formdata.append('data', data);    
-  formdata.append('file', file);
+  formdata.append('firstRef', firstRef)
+  formdata.append('secondRef', secondRef)
+  formdata.append ('speciesName', speciesName)
+    
+  formdata.append('upload', file);
 
     try {
         const response = await fetch(urlToPost, {
             method: 'POST',
             body: formdata,
             headers: {
-              'Content-type': 'application/json',     
+                  
             }  
         });
             if(response.ok){
@@ -34,15 +36,16 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
         console.log('What is going on?', error);
       }
     }
-*/
-   /* fetchMarkerSubmit.addEventListener('click', () => {
-      let speciesName = document.getElementById('species-name').value;
+
+   postMarkerSubmit.addEventListener('click', () => {
+      let speciesName = document.getElementById('speciesName').value;
       let firstRef = document.getElementById('firstRef').value;
       let secondRef = document.getElementById('secondRef').value;
-      let file = document.getElementById('upload').value
+      let file = document.getElementById('upload').files[0]
+      console.log(file);
       console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef, file);
-    }); */
+    }); 
 
 
 
