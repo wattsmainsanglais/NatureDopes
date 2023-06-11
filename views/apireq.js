@@ -35,8 +35,15 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
       } catch (error) {
         console.log('What is going on?', error);
       }
-    }
+}
 
+// function to clear form after post
+function clearData(){
+  document.getElementById('map-form').reset();
+}
+
+
+// event listener for post marker function
    postMarkerSubmit.addEventListener('click', () => {
       let speciesName = document.getElementById('speciesName').value;
       let firstRef = document.getElementById('firstRef').value;
@@ -45,6 +52,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
       console.log(file);
       console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef, file);
+      clearData();
     }); 
 
 
