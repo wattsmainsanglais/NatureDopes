@@ -220,9 +220,9 @@ app.post('/imgUpload',  (req, res, next) => {
 
 /*, addMarkerToArray, */
 app.post('/markerlist',  upload.single('upload'), addMarkerToArray,(req, res, next) => {
-   
+    let message = JSON.stringify('Hi there');
     console.log(req.file);
-    res.status(201).send(req.body);
+    res.status(201).send(message);
     console.log(markerList);
    
 });
@@ -259,7 +259,7 @@ app.get('/map', (req, res,) =>{
   console.log(req.session);
   
   if(req.user) {
-    res.render('map', {message: 'this is a message'});
+    res.render('map');
 
   } else {
     res.redirect('maplogin');
