@@ -1,5 +1,5 @@
 
-
+// Javascript functions for map.ejs
 /*import maplibregl from 'maplibre-gl';*/ 
 
 
@@ -30,7 +30,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
             if(response.ok){
           const jsonResponse = await response.json();
           console.log(jsonResponse);
-          window.alert('Thank you for your upload')
+          
 
         }
       } catch (error) {
@@ -46,14 +46,24 @@ function clearData(){
 
 // event listener for post marker function
    postMarkerSubmit.addEventListener('click', () => {
+      let msg = ''; 
       let speciesName = document.getElementById('speciesName').value;
       let firstRef = document.getElementById('firstRef').value;
       let secondRef = document.getElementById('secondRef').value;
       let file = document.getElementById('upload').files[0]
+
+      if(speciesName == '' || firstRef == '' || secondRef == ''){
+        console.log('msg should display');
+        msg = 'Please ensure the first 3 fields are completed';
+        document.getElementById('postMarkerModal-p').innerText = msg
+      } else {
+
       console.log(file);
       console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef, file);
       clearData();
+      }
+
     }); 
 
 
@@ -112,6 +122,8 @@ function clearData(){
   // event listener for populate marker function
    document.getElementById("populateMarkers_button").addEventListener('click', populateMarkers)
     
+
+  //extra info box 
    function infoBoxReveal(){
     document.querySelector('.map_aside_info_box').style.display = 'block';
      }

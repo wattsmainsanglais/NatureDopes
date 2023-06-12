@@ -40,10 +40,10 @@ const upload = multer({ storage: storage});
 //database connection
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'watts',
+  user: USERDB,
   host: 'localhost',
   database: 'Nature_dopes',
-  password: 'kwjibo',
+  password: PASSDB,
   port: 5432,
 })
 
@@ -64,9 +64,6 @@ const PORT = process.env.PORT || 4001;
 app.use(express.static(__dirname + '/views/'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-
-
-
 
 
 

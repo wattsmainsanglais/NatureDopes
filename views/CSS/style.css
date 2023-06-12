@@ -189,6 +189,7 @@ main{
     align-items: center;
     flex-direction: column;
     background-color: #cdeebc;
+    padding-bottom: 2%;
 }
 
 
@@ -827,6 +828,7 @@ input[type=text], input[type=password], input[type=email] {
 
   /* end of modal postMarker css */
 footer{
+   
     border-top: 2px solid #5B9240;
     background-color: #ffffff;
     font-family: 'Figtree', sans-serif;
