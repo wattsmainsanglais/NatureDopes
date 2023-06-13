@@ -9,6 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const userFunctions = require('./users');
+const postMarker = require('./js/postNewMarker')
 
 const bcrypt = require('bcrypt');
 
@@ -40,10 +41,10 @@ const upload = multer({ storage: storage});
 //database connection
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: USERDB,
+  user: dotenv.USERDB,
   host: 'localhost',
   database: 'Nature_dopes',
-  password: PASSDB,
+  password: dotenv.PASSDB,
   port: 5432,
 })
 
@@ -120,18 +121,25 @@ app.set('view engine', 'ejs');
   
     console.log('deserialize')
     process.nextTick(function() {
-      pool.query('SELECT * FROM users WHERE id = $1', [id], (err, user) => {
+      pool.query('SELECT * FROM users WHERE id = $1', [id], (err, result) => {
+        console.log(id)
+          console.log(result.rows[0]);
+
         if(err){
           console.log('des error')
+         
           return done(err);
         }
       
-        if(user.rows[0] = id){
+        if(result.rows[0].id == id){
+         
           console.log('des sucess')
-          return done(null, user);
+          
+          return done(null, id);
         } else {
 
           err = "User " + id + " does not exist";
+         
           console.log(err);
           return done(err);
 
@@ -216,11 +224,32 @@ app.post('/imgUpload',  (req, res, next) => {
 });
 
 /*, addMarkerToArray, */
-app.post('/markerlist',  upload.single('upload'), addMarkerToArray,(req, res, next) => {
-    let message = JSON.stringify('Hi there');
-    console.log(req.file);
-    res.status(201).send(message);
-    console.log(markerList);
+app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
+   
+  console.log(req.body);
+  console.log(req.file);
+  console.log(req.user);
+  let {speciesName, firstRef, secondRef} = req.body;
+  let filePath = req.file.filename;
+  let userNum = req.user
+ 
+
+  postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
+
+    console.log(msg);
+    if (err){
+      res.status(500).send(err);
+    } 
+    
+    if(msg){
+      
+      const msgToClient = JSON.stringify(msg);
+      res.status(201).send(msgToClient);
+    }
+
+  })
+
+
    
 });
 
@@ -254,7 +283,7 @@ app.get('/maploginFail', (req, res) => {
 
 app.get('/map', (req, res,) =>{
   console.log(req.session);
-  
+  console.log(req.user);
   if(req.user) {
     res.render('map');
 

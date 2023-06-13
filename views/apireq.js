@@ -30,11 +30,13 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
             if(response.ok){
           const jsonResponse = await response.json();
           console.log(jsonResponse);
+          document.getElementById('postMarkerModal-p').innerText = jsonResponse
           
 
         }
       } catch (error) {
         console.log('What is going on?', error);
+        document.getElementById('postMarkerModal-p').innerText = error
       }
 }
 

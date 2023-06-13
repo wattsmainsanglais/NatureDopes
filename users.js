@@ -1,13 +1,16 @@
+const dotenv = require('dotenv');
+const validator = require('validator');
+
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: USERDB,
+  user: dotenv.USERDB,
   host: 'localhost',
   database: 'Nature_dopes',
-  password: PASSDB,
+  password: dotenv.PASSDB,
   port: 5432,
 })
 
-const validator = require('validator');
+
 
 
   const getNewId = (array) => {
@@ -69,7 +72,7 @@ const validator = require('validator');
   };
 
   checksTest = function(username, email, cb){
-    msg=''
+    let msg=''
     if(!validator.isEmail(email)){
        msg = 'Please use a valid email address';
        return cb(msg);
