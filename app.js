@@ -165,7 +165,7 @@ app.set('view engine', 'ejs');
 
   app.use(passport.authenticate('session'));
 
-
+/* Depracted function, used before hook upto database
 let markerListId = 3;
 
 function addMarkerToArray(req, res, next){
@@ -179,29 +179,13 @@ function addMarkerToArray(req, res, next){
     let first = obj.firstRef;
     let second = obj.secondRef;
     let upload = req.file.filename; // will be on req.file 
-    
-
+  
     markerList.push({'id': id, 'speciesName': species, 'firstRef': first, 'secondRef': second, 'path': upload});
     next()
 }
 
-let markerList = [
-    {
-        id: 1,
-        speciesName: 'Violet',
-        firstRef: 2,
-        secondRef: 2,
-        path: '1686145623944-8982424-RedRobinOrig.jpg'
-    },
-    {
-        id: 2,
-        speciesName: 'Daisy',
-        firstRef: 1,
-        secondRef: 1 ,
-        path: '1686145623944-8982424-RedRobinOrig.jpg'
-    }
+*/
 
-]
 
 app.get('/', (req, res) =>{
   console.log(req.session);
@@ -256,13 +240,20 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
 app.get('/markerlist', (req, res ,next) => {
     console.log('Populate Get request received');
 
-    let obj = {markerList}
-    let markerListApi = JSON.stringify(obj);
-    
+    pool.query('SELECT species_name, gps_long, gps_lat, image_path FROM images', function(err, result){
+      if(err){
+        console.log(err)
+        res.status(500).send('An error has occured attempting to access our database, please try again');
 
-    res.status(200).setHeader('content-type', 'application/json').send(markerListApi);
-    console.log('Populate Get request sent')
-});
+      } else {
+        let obj = result.rows
+        console.log(obj);
+        res.status(200).send(obj);
+        console.log('Populate Get request sent')
+      }
+      
+     })
+  });
 
 app.get('/maplogin', (req, res,) =>{
   

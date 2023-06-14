@@ -72,10 +72,10 @@ function clearData(){
 
    
 
-    const processPopulateMarkers = (first, second, name, path) => {
+    const processPopulateMarkers = (name, first, second, path) => {
   
       const realPath = 'uploads/'+ path;
-      let pathTag = '<img width="75" height="75" src='+ realPath +'><h2>' + name +'</h2>'; 
+      let pathTag = '<img width="100" height="100" src='+ realPath +'><h2>' + name +'</h2>'; 
       console.log(pathTag);
 
       let marker = new maplibregl.Marker({
@@ -100,15 +100,16 @@ function clearData(){
             if(response.ok){
             
               const jsonResponse = await response.json();
-             
-              let array = jsonResponse.markerList;
+              console.log(jsonResponse);
+              let array = jsonResponse;
                 for(let i in array){
-                  let first = array[i].firstRef;
-                  let second = array[i].secondRef;
-                  let name = array[i].speciesName;
-                  let path = array[i].path;
-                  processPopulateMarkers(first, second, name, path);
-                  
+                  let name = array[i].species_name;
+                  console.log(name);
+                  let first = array[i].gps_long;
+                  let second = array[i].gps_lat;
+                   let path = array[i].image_path;
+                  processPopulateMarkers(name, first, second, path);
+                
               }
 
             } else {
