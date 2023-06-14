@@ -20,11 +20,12 @@ function checkTestPost(species, first, second, cb){
   if (!validator.isFloat(first && second)){
     msg = 'Grid references must be decimal numbers, click the location on the map and the fields will fill in automatically.';
     return cb(msg);
-  } else if (!validator.isAlpha(species)){
-    msg= 'Species name must only contain letters';
-    return cb(msg);
+  } else if (validator.isAlpha(species, ['en-GB'], { ignore: " -,",})){
+    
+    return cb(null);
   } else {
-    return cb(null)
+    msg= 'Species name must only contain letters';
+    return cb(msg)
   }
 
 }

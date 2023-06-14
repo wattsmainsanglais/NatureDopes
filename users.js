@@ -76,7 +76,7 @@ const pool = new Pool({
     if(!validator.isEmail(email)){
        msg = 'Please use a valid email address';
        return cb(msg);
-    } else if(!validator.isAlphanumeric(username, 'uk-UA')){
+    } else if(!validator.isAlphanumeric(username, 'en-GB')){
       msg = 'Please use only letters and numbers for your Username';
        return cb(msg);
     }
