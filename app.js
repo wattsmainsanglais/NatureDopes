@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv');
+require('dotenv').config()
 const bodyParser = require('body-parser');
 
 const session = require('express-session');
@@ -21,7 +21,7 @@ const validator = require('validator');
 const nodemailer = require('nodemailer');
 const sendMail = require('./JS/sendmail');
 
-dotenv.config();
+
 
 const multer = require('multer')
 
@@ -41,10 +41,10 @@ const upload = multer({ storage: storage});
 //database connection
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: dotenv.USERDB,
+  user: process.env.USERDB,
   host: 'localhost',
-  database: 'Nature_dopes',
-  password: dotenv.PASSDB,
+  database: process.env.DB,
+  password: process.env.PASSDB,
   port: 5432,
 })
 

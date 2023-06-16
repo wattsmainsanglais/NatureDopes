@@ -1,12 +1,12 @@
-const dotenv = require('dotenv');
+require('dotenv').config()
 const validator = require('validator');
 
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: dotenv.USERDB,
+  user: process.env.USERDB,
   host: 'localhost',
-  database: 'Nature_dopes',
-  password: dotenv.PASSDB,
+  database: process.env.DB,
+  password: process.env.PASSDB,
   port: 5432,
 })
 
