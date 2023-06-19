@@ -24,31 +24,7 @@
 
 <body>
 
-<header>
-    <nav>
-        <div class="nav-logo-text-container">   
-            <div class="logo">
-               <a href="index"><img src="Images\logomini.png" alt="small naturedopes logo" aria-label="Nature Dopes logo" ></a>
-     
-             </div>
-             <div class="logotext">
-                 <h2>Nature Dopes</h2>
-     
-             </div>
-        </div>  
-        <div class="navitems">
-                <ul class="navlinks">
-                    <li class="links"><a href="index">Home</a></li>
-                    <li class="links"><a href="gallery">Gallery</a></li>
-                    <li class="links"><a href="index#about" onclick="displayAbout()">About</a></li>
-                    <li class="links"><a href="index#Social-links" onclick="displayAbout()">Links</a></li>
-                    <li class="links"><a href="maplogin">Map</a></li>
-                    <li class="links"><a href="nft">NFT</a></li>
-                </ul>
-        </div>
-
-    </nav>
-</header>
+    <%- include('./partials/header') %>
 
 <main>
    
@@ -183,8 +159,8 @@
                  
                 
                 <p class="map-aside"><span class='map-decor'>1 -</span> Please enter the name of the species that you have found <br><br>
-                    <span class='map-decor'>2 -</span> Then zoom in on the map to where you found it (try to be as accurate as possible). Click the location and the grid references will fill in for you. <br><br> 
-                    <span class='map-decor'>3 -</span> Then click the browse button and upload your photo (this is currently an optional step).<br><br>
+                    <span class='map-decor'>2 -</span> Zoom in on the map to the location where you found it (try to be as accurate as possible). Click the location and the grid references will fill in for you. <br><br> 
+                    <span class='map-decor'>3 -</span> Click the browse button and upload your photo (this is currently an optional step).<br><br>
                     <span class='map-decor'>4 -</span> Click 'Add record' and your find will be added to our logs.<br><br>
                     <span class="map-decor">5 -</span> Clicking the 'Populate' button will display all our records on the map'
                 </p>
@@ -229,8 +205,11 @@
 
   <!-- Modal content -->
         <div id='postMarkerModal-content' class="postMarkerModal-content">
-            <span class="closePostMarker">&times;</span>
+            <aside class="postMarkerModal-img">
+                <img src="Images/logomini.png" >
+            </aside>
             <p  id="postMarkerModal-p"></p>
+            <span class="closePostMarker">&times;</span>
         </div>
 
     </section> 
@@ -240,9 +219,7 @@
  
     <section class="aboutmap">
     
-        <p>One of the goals of Nature Dopes is to build up a log of where wild flowers are found. Sure we don't need to log a Dandelion (as valuable as they are!) every time we find one. 
-            But there are many genres of flowers which are much less common and becoming even more rare due to degradation of their natural environments. 
-            With that, the knowledge and appreciation of these flowers disappears too. We would like users to input their finds onto the map to build up a working knowledge of where communities of such flowers are found.  </p>
+        <p>With thanks to <a href="https://maplibre.org/" target="_blank">MapLibre</a> and <a href="https://www.openstreetmap.org/#map=7/47.532/-2.648" target="_blank">OpenStreetMap</a> for their open source map libraries & tools</p>
 
     </section>
 

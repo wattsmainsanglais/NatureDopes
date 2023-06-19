@@ -18,33 +18,11 @@
     <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
+<%- include('./partials/header') %>
+
 <body>
 
-<header>
-    <nav>
-        <div class="nav-logo-text-container">   
-            <div class="logo">
-               <a href="index"><img src="Images\logomini.png" alt="small naturedopes logo" aria-label="Nature Dopes logo" ></a>
-     
-             </div>
-             <div class="logotext">
-                 <h2>Nature Dopes</h2>
-     
-             </div>
-        </div>  
-        <div class="navitems">
-                <ul class="navlinks">
-                    <li class="links"><a href="index">Home</a></li>
-                    <li class="links"><a href="gallery">Gallery</a></li>
-                    <li class="links"><a href="#about" onclick="displayAbout()">About</a></li>
-                    <li class="links"><a href="#Social-links" onclick="displayAbout()">Links</a></li>
-                    <li class="links"><a href="maplogin">Map</a></li>
-                    <li class="links"><a href="nft">NFT</a></li>
-                </ul>
-        </div>
 
-    </nav>
-</header>
 
 <main>
     <div class="banner"  onwheel="displayAbout()">
@@ -139,9 +117,10 @@
             <H1> Social Media & Links</H1>
         </div>
         <div class="social-logos">
-            <img class="social" src="Images\Instagram_Glyph_Black.jpg" alt="Instagram Logo">
+            <a href="https://www.instagram.com/nature.dopes/" target="_blank"><img class="social" src="Images\Instagram_Glyph_Black.jpg" alt="Instagram Logo"></a>
             <img class="social" src="Images\2021 Twitter logo - blue.png" alt="Twitter logo">
-            <img class="social" src="Images\OpenSea-Full-Logo (dark).png" alt="Opensea Logo">
+            
+            <img class="social" src="Images/email_logo.png" alt="Email Logo">
         </div>
     </section>
 </main>

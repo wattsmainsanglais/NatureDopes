@@ -277,10 +277,11 @@ main{
     border-top: 2px solid #5B9240;
 }
 
-.feature-title, .about-title, .gallery-title, .map-header h1{
+.feature-title, .about-title, .gallery-title, .map-header h1, .socialmedia-title h1{
     font-size: 3rem;
     font-family: 'Indie Flower', cursive;
     color: #5B9240;
+    text-shadow: 1px 1px #fff;
     
     
 }
@@ -325,6 +326,47 @@ main{
     height: 100%;
 }
 
+.Social-links{
+    margin: 2rem 3rem;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: 'Indie Flower', cursive;
+    color: #5B9240;
+    font-size: 3rem;
+    flex-direction: column;
+    border-top: 2px solid #5B9240;
+
+
+}
+
+.social-logos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.2rem .8rem;
+
+}
+
+.social{
+    width: 100px;
+    margin: 0px 1.5rem;
+    height: auto;
+}
+
+.social:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+
 /* gallery.html css */
 
 .gallery-title{
@@ -357,37 +399,7 @@ main{
 
 }
 
-.Social-links{
-    margin: 2rem 3rem;
-    padding-top: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    font-family: 'Indie Flower', cursive;
-    color: #5B9240;
-    font-size: 3rem;
-    flex-direction: column;
-    border-top: 2px solid #5B9240;
 
-
-}
-
-.social-logos{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1.2rem .8rem;
-
-}
-
-.social{
-    width: 100px;
-    margin: 0px 1.5rem;
-    height: auto;
-}
 /* NFT page CSS */
 
 
@@ -466,7 +478,7 @@ main{
 .map-overlay{
    
     margin-left: 2%;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     margin-right: 2%;
     display: flex;
@@ -576,6 +588,7 @@ main{
 .map-form button,  .logout-box button {
     background-color:  #cdeebc;
     border: .5px solid #5B9240;
+    border-radius: 5px;
     
 }
 
@@ -711,7 +724,9 @@ input[type=text], input[type=password], input[type=email] {
   }
   
   /* Change styles for span and cancel button on extra small screens */
-  @media screen and (max-width: 300px) {
+  
+
+  @media screen and (max-width: 420px) {
     span.psw {
       display: block;
       float: none;
@@ -804,24 +819,39 @@ input[type=text], input[type=password], input[type=email] {
   
   /* Modal Content/Box */
   .postMarkerModal-content{
+    display: grid;
+    grid-template-columns: 20% 75% 5%;
+    
+    align-items: center;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 60%; /* Could be more or less, depending on screen size */
+  }
+
+  .postMarkerModal-img{
+    grid-column: 1;
+  }
+
+  #postMarkerModal-p{
+    grid-column: 2;
+    padding-right: 20%;
   }
   
   /* The Close Button */
   .closePostMarker {
+    grid-column: 3;
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    vertical-align: top;
   }
   
   .closePostMarker:hover,
   .closePostMarker:focus {
-    color: black;
+    color: #5B9240;
     text-decoration: none;
     cursor: pointer;
   }
@@ -886,10 +916,12 @@ footer{
     padding: 5% 0% 
 }
 
+/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* Css for mobile and smaller screen sizes */
 
 @media only screen and (max-width: 420px) {
     body{
+        font-size: .6em;
         width: 100%;
         height: auto;
         display: flex;
@@ -914,7 +946,7 @@ footer{
 
    .navitems{
     font-size: .6rem;
-    margin-right: 15%;
+    margin-right: 10%;
    }
 
    .links{
@@ -943,6 +975,10 @@ footer{
     margin-top: 1em;
     width: 90%;
 
+    }
+
+    .slide-wrapper_1, .slide-wrapper_2{
+        position: static;
     }
 
     .feature-title, .about-title{
@@ -1031,6 +1067,18 @@ footer{
         flex-direction: column;
         justify-content: flex-start;
     }
+
+    .aboutmap{
+        font-size: .6rem;
+    }
+
+    .loginButton, .registerButton{
+        font-size: .8em;
+    }
+
+    .mapSideBar{
+        width: 80%;
+    }
     
     .map-form{
         margin-top: 2%;
@@ -1111,6 +1159,13 @@ footer{
 @media only screen and (min-width: 480px) and (max-width: 1100px) {
     body{
         height: auto;
+        font-size: .6em;
+    }
+
+    
+    .slide-wrapper_1, .slide-wrapper_2{
+        position: static;
+        width: 85%;
     }
 
 
@@ -1143,8 +1198,9 @@ footer{
         margin-left: 2%;
         margin-top: 2%;
         margin-bottom: 1%;
-        flex-direction: column-reverse;
+        flex-direction: column;
         display: flex;
+        align-items: center;
     
         justify-content: flex-start;
     }
@@ -1153,6 +1209,11 @@ footer{
     
         width: 650px;
         height: 325px;
+    }
+
+    .mapSideBar{
+        width: 80%;
+        margin-top: 1%;
     }
 
     .map-form{
@@ -1166,6 +1227,7 @@ footer{
 
 
     }
+
 
     .aboutmap{
         margin-top: 1%;
