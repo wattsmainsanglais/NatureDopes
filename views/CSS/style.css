@@ -9,6 +9,7 @@ nav{
     justify-content: flex-start;
     align-items: center;
     z-index: 1;
+    
 }
 
 .nav-logo-text-container{
@@ -180,7 +181,7 @@ links a:visited{
 }
 
 
-/* Juicer Feed CSS */
+
 
 
 main{
@@ -188,7 +189,9 @@ main{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #cdeebc;
+    
+    border-top: 2px solid #5B9240;
+    background-color: #cdeebc ;
     padding-bottom: 2%;
 }
 
@@ -304,6 +307,7 @@ main{
 }
 
 .flowerfeature{
+    position: relative;
     width: 270px;    
     height: 300px;
     border: 1px solid #5B9240;
@@ -391,11 +395,12 @@ main{
 }
 
 .nftflowerfeature:hover, .flowerfeature:hover {
-    border-right: 2px solid #3bbcf0;
+    left: -1px;
+    border-right: 2px solid #cdeebc;
     border-left: none;
     border-top: none;
-    border-bottom: 2px solid #3bbcf0;;
-    box-shadow: 1px 2px 2px #023549;
+    border-bottom: 2px solid #cdeebc;;
+   
 
 }
 
@@ -561,6 +566,10 @@ main{
     font-weight: 800;
     color: #5b9240;
     padding: 2%;
+}
+
+.mapAsideMsg .fail{
+    color: #da1616;
 }
 
 .mapSideBar hr {
