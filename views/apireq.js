@@ -29,7 +29,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
         });
             if(response.ok){
           const jsonResponse = await response.json();
-          console.log(jsonResponse);
+          
           document.getElementById('postMarkerModal-p').innerText = jsonResponse
           
 
@@ -55,13 +55,11 @@ function clearData(){
       let file = document.getElementById('upload').files[0]
 
       if(speciesName == '' || firstRef == '' || secondRef == ''){
-        console.log('msg should display');
+        
         msg = 'Please ensure the first 3 fields are completed';
         document.getElementById('postMarkerModal-p').innerText = msg
       } else {
 
-      console.log(file);
-      console.log(speciesName);
       postMarker(speciesName, firstRef, secondRef, file);
       clearData();
       }
@@ -76,7 +74,7 @@ function clearData(){
   
       const realPath = 'uploads/'+ path;
       let pathTag = '<img width="100" height="100" src='+ realPath +'><h2>' + name +'</h2>'; 
-      console.log(pathTag);
+      
 
       let marker = new maplibregl.Marker({
         color: '#5B9240',
@@ -100,11 +98,11 @@ function clearData(){
             if(response.ok){
             
               const jsonResponse = await response.json();
-              console.log(jsonResponse);
+              
               let array = jsonResponse;
                 for(let i in array){
                   let name = array[i].species_name;
-                  console.log(name);
+                  
                   let first = array[i].gps_long;
                   let second = array[i].gps_lat;
                    let path = array[i].image_path;

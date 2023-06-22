@@ -15,11 +15,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
     
-
-    <script src='https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.js'></script>
+    <script src='https://unpkg.com/maplibre-gl@3.1.0/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.css' rel='stylesheet' />   
    
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+    <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script> -->
 </head>
 
 <body>
@@ -36,8 +35,7 @@
    </section>  
     
     <script>
-    
-    
+
     let message = 'Please Rotate Device for mobiles';
     
     function resizeMessage(){    
@@ -54,6 +52,7 @@
     window.onresize = resizeMessage    
     console.log(window.innerWidth);
 
+    
     </script>
 
 
@@ -62,9 +61,6 @@
 
         <div id='map' alt="awaiting map, please wait"></div>
             <script>
-        
-        
-         
                 let map = new maplibregl.Map({
                 container: 'map',
                 style: 'https://api.maptiler.com/maps/streets/style.json?key=CMRIccwlZz6zI6QR2E5I ', // stylesheet location
@@ -87,7 +83,7 @@
                     .setPopup(new maplibregl.Popup().setHTML(speciesName))
                     .addTo(map);
                 
-                console.log(firstRef, secondRef);
+                
                 
                 
               }
@@ -98,34 +94,14 @@
                 let pos = d.lngLat;
                 
                 let firstRef = pos.lng
-                console.log(firstRef);
                 let secondRef = pos.lat
                 
                 document.getElementById("firstRef").value = firstRef;
                 document.getElementById("secondRef").value = secondRef
                 
               });
-            
-            
-        
-              /*map.on('mousemove', function (e) {
-               
-                document.getElementById('info').innerHTML =
-                    // e.point is the x, y coordinates of the mousemove event relative
-                    // to the top-left corner of the map
-                JSON.stringify(e.point) +
-                '<br />' +
-                // e.lngLat is the longitude, latitude geographical position of the event
-                JSON.stringify(e.lngLat);
-                });
-            
-             */
-            
-            
-                
-                    
-        
-        
+    
+
                
             </script>
         
@@ -227,8 +203,9 @@
 
 <%- include('./partials/footer') %>
 
+
 <script src='apireq.js'>
-    console.log(req.body);            
+                
     
 </script>
 </body>

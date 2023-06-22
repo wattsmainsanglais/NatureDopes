@@ -18,7 +18,7 @@ const handleEmail = async(email) => {
       
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse)
+        
         displayTag.innerHTML = jsonResponse;
 
 

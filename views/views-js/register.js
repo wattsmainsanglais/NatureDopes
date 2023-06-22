@@ -19,9 +19,9 @@ const postRegister = async (username, password, email) => {
     });
         if(response.ok){
       const jsonResponse = await response.json();
-      console.log(jsonResponse[0]);
+      
       if (jsonResponse[0] == 'T'){
-        console.log('true');
+       
         displayTag.innerHTML = jsonResponse + ' <a href="maplogin">login</a>';
       } else {
         displayTag.innerHTML = jsonResponse;
@@ -29,7 +29,7 @@ const postRegister = async (username, password, email) => {
     }
   } catch (error) {
 
-    console.log('What is going on?', error);
+    console.log(error);
     displayTag.innerHTML = 'There is a problem with registration, please try again. If problem persists, please contact us.'
   }
 }
@@ -39,7 +39,7 @@ const postRegister = async (username, password, email) => {
   document.getElementById('register_button').addEventListener('click', () => {
   let display = document.getElementById('postRegister-response-msg');
     
-  console.log('button clicked');
+ 
   let username = document.getElementById('username_r').value;
   let password = document.getElementById('password_r').value;
   let email = document.getElementById('email').value;

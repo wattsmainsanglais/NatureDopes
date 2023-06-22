@@ -49,15 +49,22 @@ const pool = new Pool({
 })
 
 
+app.use(function (req, res, next) {
+  res.setHeader(
+    'Content-Security-Policy',
+      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' 'unsafe-inline' unpkg.com assets.juicer.io; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001; worker-src blob:; child-src blob:"
+  );
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  next();
+});
 
-/*app.use(
-    helmet({
-      contentSecurityPolicy: false, 
-      
-    })
-    
-  
-);*/
+
+                       /* "assets.juicer.io", 
+                        "https://unpkg.com/validator@latest/validator.min.js",
+                        "https://fonts.googleapis.com",
+                        "https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.js",
+                     */
+           
 
 const { render } = require('ejs');
 
@@ -74,7 +81,7 @@ app.set('view engine', 'ejs');
 
   passport.use(new LocalStrategy(function(username, password, done){
     console.log('passport starting')
-    console.log(username)
+    
 
     pool.query('SELECT * FROM users WHERE username = $1', [username], (err, result) => {
       if(err){
@@ -114,7 +121,7 @@ app.set('view engine', 'ejs');
    
     process.nextTick(function(){
       done(null, user.id);
-      console.log(user.id + 'serialize')
+      
     }); 
   });
 
@@ -123,19 +130,14 @@ app.set('view engine', 'ejs');
     console.log('deserialize')
     process.nextTick(function() {
       pool.query('SELECT * FROM users WHERE id = $1', [id], (err, result) => {
-        console.log(id)
-          console.log(result.rows[0]);
+        
 
         if(err){
-          console.log('des error')
-         
           return done(err);
         }
       
         if(result.rows[0].id == id){
-         
-          console.log('des sucess')
-          
+
           return done(null, id);
         } else {
 
@@ -143,7 +145,6 @@ app.set('view engine', 'ejs');
          
           console.log(err);
           return done(err);
-
         }
 
       });
@@ -189,13 +190,13 @@ function addMarkerToArray(req, res, next){
 
 
 app.get('/', (req, res) =>{
-  console.log(req.session);
+  
   
   res.render('index');
 })
 
 app.get('/index', (req, res) =>{
-  console.log(req.session);
+  
   res.render('index');
 })
 
@@ -211,9 +212,6 @@ app.post('/imgUpload',  (req, res, next) => {
 /*, addMarkerToArray, */
 app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    
-  console.log(req.body);
-  console.log(req.file);
-  console.log(req.user);
   let {speciesName, firstRef, secondRef} = req.body;
   let filePath = req.file.filename;
   let userNum = req.user
@@ -257,8 +255,6 @@ app.get('/markerlist', (req, res ,next) => {
   });
 
 app.get('/maplogin', (req, res,) =>{
-  
-  console.log(req.session);
   if(req.user) {
     res.redirect('map');
   } else {
@@ -274,7 +270,7 @@ app.get('/maploginFail', (req, res) => {
 });
 
 app.get('/map', (req, res,) =>{
-  console.log(req.session);
+
   console.log(req.user);
   if(req.user) {
     res.render('map');
@@ -292,14 +288,13 @@ app.get('/register', (req, res, next) => {
 })
 
 app.post("/register", async (req, res,) => {
-  console.log(req.body);
+
   let { username, password, email } = req.body;
  
 
   //hash the password before storage
   const salt = await bcrypt.genSalt(10);
   let hash = await bcrypt.hash(password, salt);
-  console.log(hash);
   password = hash;
   
   // Create new user, function stored in users.js:
@@ -342,7 +337,7 @@ app.get('/reset-password-email', function(req, res, next){
 })
 
 app.post('/reset-password-email', function (req, res, next) {
-    console.log(req.body);
+   
     let email = req.body.email;
    
     /*userRecords.findByEmail(email, function(err, record) {
@@ -417,14 +412,14 @@ app.get('/reset-password', function(req, res, next) {
   title: 'Reset Password Page',
   token: req.query.token 
   });
-  console.log(req.token);
+
   });
 
 app.post('/update-password', function(req, res, next) {
  
   let token = req.body.token;
   let password = req.body.password;
-  console.log(token);
+ 
 
  pool.query('SELECT * FROM users WHERE token = $1', [token], function(err, result) {
       if (err) throw err;
@@ -443,7 +438,6 @@ app.post('/update-password', function(req, res, next) {
           bcrypt.genSalt(saltRounds, function(err, salt) {
                 bcrypt.hash(password, salt, function(err, hash) {
 
-                  console.log(hash);
                   let password = hash
 
                   pool.query('UPDATE users SET password = $1 WHERE email = $2', [password, email] , function(err, result) {
@@ -462,8 +456,6 @@ app.post('/update-password', function(req, res, next) {
           msg = 'Your password has been updated successfully';
             
       } else {
-
-          console.log('2');
           type = 'success';
           msg = 'Invalid link; please try again';
 
@@ -478,11 +470,7 @@ app.post('/update-password', function(req, res, next) {
    
     res.render('Thanks-email')
     
-
-  
     });
-  
-  
   
 
 app.listen(PORT, () =>{
