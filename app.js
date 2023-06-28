@@ -19,7 +19,7 @@ const helmet = require('helmet')
 const validator = require('validator');
 
 const nodemailer = require('nodemailer');
-const sendMail = require('./JS/sendmail');
+const sendMail = require('/js/sendmail');
 
 
 
@@ -68,7 +68,7 @@ app.use(function (req, res, next) {
 
 const { render } = require('ejs');
 
-const PORT = process.env.PORT || 4001;
+const port = process.env.PORT || 4001;
 
 app.use(express.static(__dirname + '/views/'));
 app.engine('html', require('ejs').renderFile);
@@ -473,7 +473,7 @@ app.post('/update-password', function(req, res, next) {
     });
   
 
-app.listen(PORT, '0.0.0.0' , () =>{
-    console.log('Server is listening on port 4001...' )
+app.listen(port, '0.0.0.0' , () =>{
+    console.log('Server is listening on port ...' )
     
 });
