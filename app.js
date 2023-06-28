@@ -9,7 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const userFunctions = require('./users');
-const postMarker = require('./js/postNewMarker')
+const postMarker = require('./postNewMarker')
 
 const bcrypt = require('bcrypt');
 
@@ -19,7 +19,7 @@ const helmet = require('helmet')
 const validator = require('validator');
 
 const nodemailer = require('nodemailer');
-const sendMail = require('./js/sendmail');
+const sendMail = require('./sendmail');
 
 
 
