@@ -14,8 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Genos&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
-    <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
-    <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+   
 </head>
 
 <%- include('./partials/header') %>
@@ -25,7 +24,7 @@
 
 
 <main>
-    <div class="banner"  onwheel="displayAbout()">
+    <div id='banner' class="banner" onmousewheel="displayAbout()"" >
         <div class="welcome">
             <h1>Nature Dopes</h1>
             <br>
@@ -34,7 +33,7 @@
 
     </div>
    
-    <section id="about" onwheel="displayAbout()" class="about" >
+    <section id="about"  class="about" onmousewheel="displayAbout()"">
         <h1 class="about-title">About</h1>
         <article class="slide-wrapper_1" >
               
@@ -48,7 +47,7 @@
             <p id="slide_2" class="slide_2">
              This site features a Gallery page, a collection of photos of flowers & trees found growing in nature. It's linked directly to our instagram account and is updated regularly. <br><br> There is a Map page, the aim is to allow users to create an account and then post photos of their own finds and their locations. 
              The information will be stored in order to build a working database of where wildflowers & trees are found. The map tool is still in beta testing so please visit the page and test it out. 
-             <br><br>There are links to our other social media activities and a means of contacting us directly. Please come and enjoy the site.      
+             <br><br>There are links to our other social media activities and an email address to contact us directly. Please come and enjoy the site.      
             </p>
         </article>
 
@@ -103,8 +102,13 @@
             <a href="https://www.instagram.com/nature.dopes/" target="_blank"><img class="social" src="Images\Instagram_Glyph_Black.jpg" alt="Instagram Logo"></a>
             <img class="social" src="Images\2021 Twitter logo - blue.png" alt="Twitter logo">
             
-            <img class="social" src="Images/email_logo.png" alt="Email Logo">
+            <img id='email-logo' class="social" src="Images/email_logo.png" alt="Email Logo">
+            
         </div>
+
+        <aside id="email-contact">
+                <p>naturedopes@gmx.fr</p>                         
+        </aside>
     </section>
 </main>
 
@@ -112,16 +116,8 @@
 
 
 
-<script>
-   
-   
-    function displayAbout(){
-        
-        document.getElementById("slide_1").classList.add("left");
-        document.getElementById("slide_2").classList.add("right");
-    };
-</script>
 
+<script src="./views-js/indexjs.js"></script>
 
 </body>
 </html>

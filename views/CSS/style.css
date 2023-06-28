@@ -366,6 +366,23 @@ main{
     cursor: pointer;
 }
 
+#email-contact{
+    border-radius: 10%;
+    position: relative;
+    top: 5%;
+    visibility: hidden ;
+    background-color: #ffffff;
+    padding: 4%;
+    cursor: pointer;
+}
+
+#email-contact p{
+    
+    font-size: .5em;
+
+}
+
+
 
 
 
