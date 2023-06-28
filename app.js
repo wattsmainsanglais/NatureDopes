@@ -19,7 +19,7 @@ const helmet = require('helmet')
 const validator = require('validator');
 
 const nodemailer = require('nodemailer');
-const sendMail = require('/js/sendmail');
+const sendMail = require('./js/sendmail');
 
 
 
