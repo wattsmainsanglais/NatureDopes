@@ -473,7 +473,7 @@ app.post('/update-password', function(req, res, next) {
     });
   
 
-app.listen(PORT, () =>{
+app.listen(PORT, '0.0.0.0' , () =>{
     console.log('Server is listening on port 4001...' )
     
 });
