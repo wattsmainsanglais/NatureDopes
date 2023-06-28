@@ -1,8 +1,11 @@
 {
   "name": "naturedopes",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=18.14.2"
+  },
   "description": "Nature dopes web project",
-  "main": "index.html",
+  "main": "index.ejs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
