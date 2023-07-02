@@ -9,7 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const userFunctions = require('./users');
-const postMarker = require('./js/postNewMarker')
+const postMarker = require('./postNewMarker')
 
 const bcrypt = require('bcrypt');
 
@@ -19,7 +19,7 @@ const helmet = require('helmet')
 const validator = require('validator');
 
 const nodemailer = require('nodemailer');
-const sendMail = require('./JS/sendmail');
+const sendMail = require('./sendmail');
 
 
 
@@ -52,7 +52,7 @@ const pool = new Pool({
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
-      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' unsafe-inline data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001; worker-src blob:; child-src blob:"
+      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001; worker-src blob:; child-src blob:"
   );
   res.setHeader('X-Content-Type-Options', 'nosniff');
   next();
@@ -68,7 +68,7 @@ app.use(function (req, res, next) {
 
 const { render } = require('ejs');
 
-const PORT = process.env.PORT || 4001;
+const port = process.env.PORT || 4001;
 
 app.use(express.static(__dirname + '/views/'));
 app.engine('html', require('ejs').renderFile);
@@ -473,7 +473,10 @@ app.post('/update-password', function(req, res, next) {
     });
   
 
+
 app.listen(PORT, '0.0.0.0' , () =>{
     console.log('Server is listening on port 4001...' )
+
+
     
 });
