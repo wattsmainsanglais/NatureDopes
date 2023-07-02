@@ -1,6 +1,6 @@
 //post email address to server and handle response
 
-const emailPasswordResetURL = 'http://localhost:4001/reset-password-email'
+const emailPasswordResetURL = 'https://naturedopes-production.up.railway.app/reset-password-email'
 
 const handleEmail = async(email) => {
 
