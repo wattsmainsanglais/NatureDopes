@@ -70,7 +70,7 @@ const pool = new Pool({
     });
   };
 
-  checksTest = function(username, email, cb){
+  checksTest = function(email, username, cb){
     let msg=''
     if(!validator.isEmail(email)){
        msg = 'Please use a valid email address';
@@ -91,7 +91,7 @@ const pool = new Pool({
   exports.registerNewUser = function(username, password, email, cb){
     
   let msg = ''; 
-     checksTest(password, email, function(checkmsg){
+     checksTest(email, username, function(checkmsg){
       console.log(checkmsg);
       if(checkmsg){
         msg = checkmsg

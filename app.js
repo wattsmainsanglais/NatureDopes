@@ -52,7 +52,7 @@ const pool = new Pool({
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
-      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src https://naturedopes-production.up.railway.app http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001; worker-src blob:; child-src blob:"
+      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001 https://naturedopes-production.up.railway.app; worker-src blob:; child-src blob:"
   );
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Access-Control-Allow-Origin', 'https://naturedopes-production.up.railway.app');
