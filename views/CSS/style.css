@@ -59,7 +59,7 @@ nav{
     padding: 3px 8px 3px 8px;
     font-family: 'Figtree', sans-serif;
     font-weight: 800;
-    color: #000000;
+    color: #5B9240;
     position: relative;
 
 }
@@ -82,24 +82,11 @@ nav{
     
 }
 
-
-
-links:active{
-    color: #cdfcb6;
+.links a:active{
+    color: #d7f0ca;
+    background-color: #96bd83;
 }
 
-links:visited{
-    color: inherit;
-}
-
-
-links a:active{
-    color: #cdfcb6;
-}
-
-links a:visited{
-    color: inherit;
-}
 
 /*Banner on homepage & NFT page (index.html & nft.html) css*/
 
