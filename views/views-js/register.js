@@ -5,7 +5,7 @@ const postRegister = async (username, password, email) => {
       
     console.log('The username is' + username);
     const data = JSON.stringify({'username': username, 'password': password, 'email': email});
-    const urlToPostSubmit = 'http://localhost:4001/register';
+    const urlToPostSubmit = 'https://naturedopes-production.up.railway.app/register';
     const displayTag = document.getElementById('postRegister-response-msg')
 
     try{
