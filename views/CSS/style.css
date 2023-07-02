@@ -280,7 +280,7 @@ main{
     border-top: 2px solid #5B9240;
 }
 
-.feature-title, .about-title, .gallery-title, .map-header h1, .socialmedia-title h1{
+.feature-title, .about-title, .gallery-title, .map-header h1, .socialmedia-title{
     font-size: 3rem;
     font-family: 'Indie Flower', cursive;
     color: #5B9240;
@@ -976,7 +976,7 @@ footer{
    }
 
    .links{
-    padding: 0% 2%;
+    padding: 0% 2.5%;
     font-family: 'Figtree', sans-serif;
     font-weight: 800;
     font-size: .9em;
@@ -1007,7 +1007,7 @@ footer{
         position: static;
     }
 
-    .feature-title, .about-title{
+    .feature-title, .about-title, .socialmedia-title{
         font-size: 2rem;
     }
 
@@ -1069,8 +1069,28 @@ footer{
       }
 
     .Social-links{
-        font-size: 2rem;
+        margin: 1em 2em 0em 2em;
+        padding: 1em .2em 0em .2em;
 
+    }
+
+    .slide_1{
+        transform: translateX(0em);
+    }
+    
+    .slide_2{
+        transform: translateX(0em);
+    }
+    
+    .slide_1.left{
+        
+        transform: translateX(0em);
+        transition: 1s;
+    }
+    
+    .slide_2.right{
+        transform: translateX(0em);
+        transition: 2s;
     }
 
     .social{
@@ -1104,6 +1124,7 @@ footer{
 
     .mapSideBar{
         width: 80%;
+        margin-top: 5%;
     }
     
     .map-form{
@@ -1188,6 +1209,10 @@ footer{
         font-size: .6em;
     }
 
+    .about{
+        width: 90%;
+    }
+
     
     .slide-wrapper_1, .slide-wrapper_2{
         position: static;
@@ -1202,7 +1227,7 @@ footer{
 
     .navitems{
         font-size: .8rem;
-        margin-right: 15%;
+        margin-right: 5%;
        }
 
     .recent{
