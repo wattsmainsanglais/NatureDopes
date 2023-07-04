@@ -3,7 +3,7 @@
 /*import maplibregl from 'maplibre-gl';*/ 
 
 
-const urlToPost = 'https://localhost:4001/markerList'
+const urlToPost = 'https://naturedopes-production.up.railway.app/markerList'
 const postMarkerSubmit = document.getElementById('map-button');
 
 
