@@ -126,20 +126,36 @@ function clearData(){
 
   //extra info box 
    function infoBoxReveal(){
+    
     document.querySelector('.map_aside_info_box').style.display = 'block';
      }
+
     let infoLogo =  document.getElementById('map_aside_info_logo')
     const infoLogoOn = infoLogo.addEventListener('mouseover', infoBoxReveal);
+
   
     function infoBoxhide(){
     document.querySelector('.map_aside_info_box').style.display = 'none';
     }
-    const inforLogoOut = infoLogo.addEventListener('mouseout', infoBoxhide);
 
-    if(infoLogoOn){
-      infoBoxReveal();
-    } else if (inforLogoOut) {
-      infoBoxhide();
+    const inforLogoOut = infoLogo.addEventListener('mouseout', infoBoxhide);
+    const mobileLogoOn = infoLogo.addEventListener('touchstart', infoBoxReveal);
+    const mobileLogoOut = infoLogo.addEventListener('touchend', infoBoxhide); 
+
+
+    if(window.matchMedia("(max-width: 1100px)").matches){
+      if(mobileLogoOn){
+        infoBoxReveal();
+      } else if (mobileLogoOut){
+        infoBoxhide();
+      }
+      
+    } else {
+      if(infoLogoOn){
+        infoBoxReveal();
+      } else if (inforLogoOut){
+        infoBoxhide()
+      }
     }
 
     // functions to display post marker Modal success/fail
