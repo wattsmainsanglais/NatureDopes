@@ -1148,6 +1148,11 @@ footer{
     .maplibregl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-right{
         font-size: .3rem;
     }
+    .map_aside_info_box{
+        right: 0em;
+        left: 25%;
+        width: 20%;
+    }
 
     
     .nftbanner::before{
@@ -1312,6 +1317,11 @@ footer{
 
     .map-input{
         width: 50%;
+    }
+
+    .map_aside_info_box{
+        right: 0em;
+        left: 25%;
     }
 }
 
