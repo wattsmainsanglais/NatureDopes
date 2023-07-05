@@ -156,7 +156,7 @@ app.set('view engine', 'ejs');
   app.use(
     session({
       secret: process.env.COOKIESECRET,
-      cookie: {maxAge: 172800000, secure: true, sameSite: true},
+      cookie: {maxAge: 172800000, secure: true, sameSite: 'lax'},
       resave: false,
       saveUninitialized: false,
       store
