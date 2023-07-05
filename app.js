@@ -4,7 +4,7 @@ require('dotenv').config()
 const bodyParser = require('body-parser');
 
 const session = require('express-session');
-const store = new session.MemoryStore();``
+const MemoryStore = require('memorystore')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -153,13 +153,15 @@ app.set('view engine', 'ejs');
     
   });
   
-  app.use(
+ app.use(
     session({
       secret: process.env.COOKIESECRET,
-      cookie: {maxAge: 172800000, secure: false, sameSite: 'lax'},
+      cookie: {maxAge: 172800000, secure: false, sameSite: true},
       resave: false,
       saveUninitialized: false,
-      store
+      store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+      }),
     })
   );
 
