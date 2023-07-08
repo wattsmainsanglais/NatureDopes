@@ -47,18 +47,32 @@ exports.heicToJpg = async function  (file, output) {
 //function to validate data received from post to /markerlist
 
 function checkTestPost(species, first, second, cb){
-  let msg= '';
-    if (!validator.isFloat(first && second)){
-    msg = 'Grid references must be decimal numbers, click the location on the map and the fields will fill in automatically.';
-    return cb(msg);
-  } else if (validator.isAlpha(species, ['en-GB'], { ignore: " -,",})){
-    
-    return cb(null);
-  } else {
-    msg= 'Species name must only contain letters';
-    return cb(msg)
-  }
+ 
 
+  let msg= '';
+
+    if(validator.isDecimal(first, {decimal_digits: '3,' ,locale: 'en-GB'})){
+   
+      if (validator.isDecimal(second, {decimal_digits: '3,' ,locale: 'en-GB'})){
+        
+        if (validator.isAlpha(species, ['en-GB'], { ignore: " -,",})){
+    
+        return cb(null);
+        } else {
+          msg= 'Species name must only contain letters';
+          return cb(msg)
+        }
+
+      } else {
+
+        msg = 'Grid references must be decimal numbers, click the location on the map and the fields will fill in automatically.';
+        return cb(msg);
+      } 
+    } else {
+      msg = 'Grid references must be decimal numbers, click the location on the map and the fields will fill in automatically.';
+      return cb(msg);
+
+    }
 }
 
 //function to add a record to the images table in DB
