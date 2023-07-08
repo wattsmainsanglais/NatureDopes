@@ -5,15 +5,6 @@ const fs = require('fs');
 const { promisify } = require('util');
 const convert = require('heic-convert');
 
-//database connection
-const Pool = require('pg').Pool
-const pool = new Pool({
-  user: process.env.USERDB,
-  host: 'localhost',
-  database: process.env.DB,
-  password: process.env.PASSDB,
-  port: 5432,
-});
 
 /*
 //database connection
