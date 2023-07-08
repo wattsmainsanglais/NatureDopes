@@ -41,6 +41,17 @@ const upload = multer({ storage: storage});
 //database connection
 const Pool = require('pg').Pool
 const pool = new Pool({
+  user: process.env.USERDB,
+  host: 'localhost',
+  database: process.env.DB,
+  password: process.env.PASSDB,
+  port: 5432,
+});
+
+//railway production database connection
+/*
+const Pool = require('pg').Pool
+const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   database: process.env.PGDATABASE,
@@ -48,14 +59,15 @@ const pool = new Pool({
   port: process.env.PGPORT,
 })
 
+*/
 
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
-      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001 https://naturedopes-production.up.railway.app; worker-src blob:; child-src blob:"
+      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001 https://localhost:4001 https://naturedopes-production.up.railway.app; worker-src blob:; child-src blob:"
   );
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Access-Control-Allow-Origin', 'https://naturedopes-production.up.railway.app');
+  //res.setHeader('Access-Control-Allow-Origin', 'https://naturedopes-production.up.railway.app');
   next();
 });
 
@@ -217,9 +229,20 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    
   let {speciesName, firstRef, secondRef} = req.body;
   let filePath = req.file.filename;
+  
+  if (req.file.mimetype == 'image/heic' || req.file.mimetype == 'application/octet-stream' ){
+    let trimFilePath = filePath.replace('.heic', '');
+    filePath = trimFilePath + '.jpg';
+    let file = req.file.path;
+   
+    let newFile = './views/uploads/' + filePath
+    postMarker.heicToJpg(file, newFile);
+
+  }
+   // write if statment here to check req.file.mimetype ?
   let userNum = req.user
  
-
+  console.log(filePath)
   postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
 
     console.log(msg);
@@ -273,7 +296,7 @@ app.get('/maploginFail', (req, res) => {
 });
 
 app.get('/map', (req, res,) =>{
-
+  console.log(req.session)
   console.log(req.user);
   if(req.user) {
     res.render('map');
