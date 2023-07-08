@@ -1,7 +1,33 @@
 
 require('dotenv').config()
 const validator = require('validator');
+const fs = require('fs');
+const { promisify } = require('util');
+const convert = require('heic-convert');
 
+//database connection
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: process.env.USERDB,
+  host: 'localhost',
+  database: process.env.DB,
+  password: process.env.PASSDB,
+  port: 5432,
+});
+
+/*
+//database connection
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: process.env.USERDB,
+  host: 'localhost',
+  database: process.env.DB,
+  password: process.env.PASSDB,
+  port: 5432,
+});
+
+//railway production database connection
+*/
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: process.env.PGUSER,
@@ -12,12 +38,26 @@ const pool = new Pool({
 })
 
 
+exports.heicToJpg = async function  (file, output) {
+  console.log(file, output)
+  const inputBuffer = await promisify(fs.readFile)(file);
+  const outputBuffer = await convert({
+    buffer: inputBuffer, // the HEIC file buffer
+    format: 'JPEG',      // output format
+    quality: 1           // the jpeg compression quality, between 0 and 1
+  });
+
+  await promisify(fs.writeFile)(output, outputBuffer);
+  
+}
+
+
 
 //function to validate data received from post to /markerlist
 
 function checkTestPost(species, first, second, cb){
   let msg= '';
-  if (!validator.isFloat(first && second)){
+    if (!validator.isFloat(first && second)){
     msg = 'Grid references must be decimal numbers, click the location on the map and the fields will fill in automatically.';
     return cb(msg);
   } else if (validator.isAlpha(species, ['en-GB'], { ignore: " -,",})){
