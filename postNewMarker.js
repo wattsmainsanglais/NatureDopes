@@ -15,8 +15,19 @@ const pool = new Pool({
   port: 5432,
 });
 
-//railway production database connection
 /*
+//database connection
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: process.env.USERDB,
+  host: 'localhost',
+  database: process.env.DB,
+  password: process.env.PASSDB,
+  port: 5432,
+});
+
+//railway production database connection
+*/
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: process.env.PGUSER,
@@ -26,8 +37,6 @@ const pool = new Pool({
   port: process.env.PGPORT,
 })
 
-*/
-// function to convert Heic to JPG
 
 exports.heicToJpg = async function  (file, output) {
   console.log(file, output)
