@@ -6,10 +6,10 @@
 const urlToPost = 'https://naturedopes-production.up.railway.app/markerList'
 const postMarkerSubmit = document.getElementById('map-button');
 
-
 //function to post new marker request to server with eventlistener
 const postMarker = async (speciesName, firstRef, secondRef, file) => {
- 
+
+  document.getElementById('postMarkerModal-p').innerText = '';
   
   const formdata = new FormData()
 
