@@ -3,13 +3,22 @@
 /*import maplibregl from 'maplibre-gl';*/ 
 
 
+
 const urlToPost = 'https://naturedopes-production.up.railway.app/markerList'
+
 const postMarkerSubmit = document.getElementById('map-button');
+
+// create element for loading gif
+const uploadModalP = document.getElementById('postMarkerModal-p');
+const imgContainer = document.createElement('img');
+imgContainer.setAttribute('src', 'Images/Growing_flower.gif');
+
 
 
 //function to post new marker request to server with eventlistener
 const postMarker = async (speciesName, firstRef, secondRef, file) => {
  
+  document.getElementById('postMarkerModal-p').innerText = '';
   
   const formdata = new FormData()
 
@@ -27,12 +36,11 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
                   
             }  
         });
+         uploadModalP.appendChild(imgContainer);
             if(response.ok){
           const jsonResponse = await response.json();
-          
-          document.getElementById('postMarkerModal-p').innerText = jsonResponse
-          
-
+            uploadModalP.innerText = jsonResponse
+           
         }
       } catch (error) {
         console.log('What is going on?', error);
@@ -126,20 +134,36 @@ function clearData(){
 
   //extra info box 
    function infoBoxReveal(){
+    
     document.querySelector('.map_aside_info_box').style.display = 'block';
      }
+
     let infoLogo =  document.getElementById('map_aside_info_logo')
     const infoLogoOn = infoLogo.addEventListener('mouseover', infoBoxReveal);
+
   
     function infoBoxhide(){
     document.querySelector('.map_aside_info_box').style.display = 'none';
     }
-    const inforLogoOut = infoLogo.addEventListener('mouseout', infoBoxhide);
 
-    if(infoLogoOn){
-      infoBoxReveal();
-    } else if (inforLogoOut) {
-      infoBoxhide();
+    const inforLogoOut = infoLogo.addEventListener('mouseout', infoBoxhide);
+    const mobileLogoOn = infoLogo.addEventListener('touchstart', infoBoxReveal);
+    const mobileLogoOut = infoLogo.addEventListener('touchend', infoBoxhide); 
+
+
+    if(window.matchMedia("(max-width: 1100px)").matches){
+      if(mobileLogoOn){
+        infoBoxReveal();
+      } else if (mobileLogoOut){
+        infoBoxhide();
+      }
+      
+    } else {
+      if(infoLogoOn){
+        infoBoxReveal();
+      } else if (inforLogoOut){
+        infoBoxhide()
+      }
     }
 
     // functions to display post marker Modal success/fail

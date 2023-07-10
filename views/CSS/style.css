@@ -61,6 +61,7 @@ nav{
     font-weight: 800;
     color: #5B9240;
     position: relative;
+    font-size: 1.2em;
 
 }
 
@@ -208,9 +209,9 @@ main{
     color: #5B9240;
     font-weight: 800;
     padding: 3% 3% 3% 0%;
-    
+    font-size: 1.2em;
     background-color: #ffffff;
-    line-height: 1.2;
+    line-height: 1.3;
     
 }
 
@@ -588,17 +589,18 @@ main{
     flex-wrap: wrap;
     background-color: #eff7f2;
     font-family: 'Figtree', sans-serif;
-    font-size: 0.8rem;
+    font-size: 1em;
     
 }
 
 .map-form button, .map-form input[type=file]::file-selector-button, .map-form input[type=file], .logout-box button {
-  
+   
     font-family: 'Figtree', sans-serif;
     padding: 0, 3% 0 3%;
 }
 
 .map-form button,  .logout-box button {
+     width: 10em;
     background-color:  #cdeebc;
     border: .5px solid #5B9240;
     border-radius: 5px;
@@ -649,6 +651,8 @@ main{
     font-family: 'Figtree', sans-serif;
     color: #5B9240;
     font-weight: 800;
+    font-size: 1.2em;
+    line-height: 1.1em;
     margin-right: 7%;
     border-radius: 8px;
 }
@@ -850,6 +854,8 @@ input[type=text], input[type=password], input[type=email] {
   #postMarkerModal-p{
     grid-column: 2;
     padding-right: 20%;
+    display: flex;
+    justify-content: center;
   }
   
   /* The Close Button */
@@ -868,6 +874,23 @@ input[type=text], input[type=password], input[type=email] {
     text-decoration: none;
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 420px){
+    .postMarkerModal-img img{
+       width: 35px;
+      }
+    
+
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 1100px) {
+    
+    .postMarkerModal-img img{
+        width: 45px;
+       }
+  }
+
+
 
   /* end of modal postMarker css */
 footer{
@@ -940,6 +963,11 @@ footer{
         display: flex;
         flex-direction: column;
     }
+
+    nav{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
    
     .logo{
     max-width: 60%;
@@ -978,9 +1006,10 @@ footer{
     width: 90%;
     height: fit-content;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    align-content: center;
+   
     background-color: #cdeebc;
     }
 
@@ -1003,19 +1032,20 @@ footer{
     }
 
     .flowerfeature{
-    width: 90px;
-    height: 100px;
+    width: 150px;
+    height: 165px;
+    
     }
 
     .flowerinfo{
-        font-size: 60%;
+        font-size: 1.5em;
     }
 
     .flowerinfo-inside{
         font-family: 'Indie Flower', cursive;
         padding: 10%;
         
-        font-size: 60%;
+        font-size: 1.5em;
         background-color: #cdeebc;
         text-align: center;
         height: 100%;
@@ -1093,17 +1123,16 @@ footer{
     
     .map-overlay{
         width: auto;
-        margin-left: 2%;
-        margin-top: 2%;
+        margin-left: 1%;
+        margin-top: 1%;
         margin-bottom: 5%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
     }
 
-    .aboutmap{
-        font-size: .6rem;
-    }
 
     .loginButton, .registerButton{
         font-size: .8em;
@@ -1122,11 +1151,16 @@ footer{
         flex-wrap: wrap;
         background-color: #eff7f2;
         font-family: 'Figtree', sans-serif;
-        font-size: 0.8rem;
+        font-size: 1.4em;
         padding: .5%;
     }
     .maplibregl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-right{
         font-size: .3rem;
+    }
+    .map_aside_info_box{
+        right: 0em;
+        left: 25%;
+        width: 20%;
     }
 
     
@@ -1220,6 +1254,7 @@ footer{
     .recent{
         margin-top: 1em;
         width: 90%;
+        
     }
     
     .flowerfeature{
@@ -1252,8 +1287,8 @@ footer{
 
     .map-overlay{
         width: auto;
-        margin-left: 2%;
-        margin-top: 2%;
+        margin-left: 1%;
+        margin-top: 1%;
         margin-bottom: 1%;
         flex-direction: column;
         display: flex;
@@ -1264,13 +1299,14 @@ footer{
 
     #map{
     
-        width: 650px;
-        height: 325px;
+        width: 800px;
+        height: 400px;
     }
 
     .mapSideBar{
         width: 80%;
         margin-top: 1%;
+        font-size: 2em;
     }
 
     .map-form{
@@ -1292,6 +1328,11 @@ footer{
 
     .map-input{
         width: 50%;
+    }
+
+    .map_aside_info_box{
+        right: 0em;
+        left: 25%;
     }
 }
 
