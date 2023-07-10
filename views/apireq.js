@@ -6,9 +6,16 @@
 const urlToPost = 'https://naturedopes-production.up.railway.app/markerList'
 const postMarkerSubmit = document.getElementById('map-button');
 
+// create element for loading gif
+const uploadModalP = document.getElementById('postMarkerModal-p');
+const imgContainer = document.createElement('img');
+imgContainer.setAttribute('src', 'Images/Growing_flower.gif');
+
+
+
 //function to post new marker request to server with eventlistener
 const postMarker = async (speciesName, firstRef, secondRef, file) => {
-
+ 
   document.getElementById('postMarkerModal-p').innerText = '';
   
   const formdata = new FormData()
@@ -27,12 +34,11 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
                   
             }  
         });
+         uploadModalP.appendChild(imgContainer);
             if(response.ok){
           const jsonResponse = await response.json();
-          
-          document.getElementById('postMarkerModal-p').innerText = jsonResponse
-          
-
+            uploadModalP.innerText = jsonResponse
+           
         }
       } catch (error) {
         console.log('What is going on?', error);
