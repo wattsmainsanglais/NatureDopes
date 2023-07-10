@@ -3,7 +3,9 @@
 /*import maplibregl from 'maplibre-gl';*/ 
 
 
+
 const urlToPost = 'https://naturedopes-production.up.railway.app/markerList'
+
 const postMarkerSubmit = document.getElementById('map-button');
 
 //function to post new marker request to server with eventlistener
