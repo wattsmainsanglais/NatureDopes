@@ -226,7 +226,7 @@ app.post('/imgUpload',  (req, res, next) => {
 
 /*, addMarkerToArray, */
 app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
-   
+   console.log(req.body);
   let {speciesName, firstRef, secondRef} = req.body;
   let filePath = req.file.filename;
   

@@ -594,12 +594,13 @@ main{
 }
 
 .map-form button, .map-form input[type=file]::file-selector-button, .map-form input[type=file], .logout-box button {
-    width: 10em;
+   
     font-family: 'Figtree', sans-serif;
     padding: 0, 3% 0 3%;
 }
 
 .map-form button,  .logout-box button {
+     width: 10em;
     background-color:  #cdeebc;
     border: .5px solid #5B9240;
     border-radius: 5px;
@@ -853,6 +854,8 @@ input[type=text], input[type=password], input[type=email] {
   #postMarkerModal-p{
     grid-column: 2;
     padding-right: 20%;
+    display: flex;
+    justify-content: center;
   }
   
   /* The Close Button */
