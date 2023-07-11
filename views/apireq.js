@@ -29,14 +29,15 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
   formdata.append('upload', file);
 
     try {
-        const response = await fetch(urlToPost, {
+       uploadModalP.appendChild(imgContainer);
+     const response = await fetch(urlToPost, {
             method: 'POST',
             body: formdata,
             headers: {
                   
             }  
         });
-         uploadModalP.appendChild(imgContainer);
+         
             if(response.ok){
           const jsonResponse = await response.json();
             uploadModalP.innerText = jsonResponse
