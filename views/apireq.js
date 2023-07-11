@@ -79,11 +79,16 @@ function clearData(){
 
    
 
-    const processPopulateMarkers = (name, first, second, path) => {
+  const processPopulateMarkers = (name, first, second, path) => {
   
       const realPath = 'uploads/'+ path;
-      let pathTag = '<img width="100" height="100" src='+ realPath +'><h2>' + name +'</h2>'; 
-      
+      let pathTag
+      if(path === 'null'){
+        pathTag = '<img width="100" height="100" src="" alt=" No photo for this find, but just as valuable, Thanks!"><h2>' + name +'</h2>';
+
+      } else {
+        pathTag = '<img width="100" height="100" src='+ realPath +' aria-label="picture of a ' + name + '!"><h2>' + name +'</h2>'; 
+      }
 
       let marker = new maplibregl.Marker({
         color: '#5B9240',
@@ -95,7 +100,6 @@ function clearData(){
         .addTo(map);
      }  
     
-
     // post request function to fetch markers/ objects from server and populate them on the map.
    const populateMarkers = async () => {
       try {

@@ -209,38 +209,52 @@ app.post('/imgUpload',  (req, res, next) => {
 app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    console.log(req.body);
   let {speciesName, firstRef, secondRef} = req.body;
-  let filePath = req.file.filename;
-  
-  if (req.file.mimetype == 'image/heic' || req.file.mimetype == 'application/octet-stream' ){
-    let trimFilePath = filePath.replace('.heic', '');
-    filePath = trimFilePath + '.jpg';
-    let file = req.file.path;
-   
-    let newFile = './views/uploads/' + filePath
-    postMarker.heicToJpg(file, newFile);
-
-  }
-   // write if statment here to check req.file.mimetype ?
   let userNum = req.user
- 
-  console.log(filePath)
-  postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
-
-    console.log(msg);
-    if (err){
-      res.status(500).send(err);
-    } 
-    
-    if(msg){
-      
-      const msgToClient = JSON.stringify(msg);
-      res.status(201).send(msgToClient);
-    }
-
-  })
-
-
+  // uploading a photo is currently an optional step
+  
+  if(req.file){
+    let filePath = req.file.filename;
+    // write if statment here to check req.file.mimetype ?
+    if (req.file.mimetype == 'image/heic' || req.file.mimetype == 'application/octet-stream' ){
+      let trimFilePath = filePath.replace('.heic', '');
+      filePath = trimFilePath + '.jpg';
+      let file = req.file.path;
    
+      let newFile = './views/uploads/' + filePath
+      postMarker.heicToJpg(file, newFile);
+
+      postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
+
+        console.log(msg);
+        if (err){
+          res.status(500).send(err);
+        } 
+        
+        if(msg){
+          
+          const msgToClient = JSON.stringify(msg);
+          res.status(201).send(msgToClient);
+        }
+      })
+    }
+  } else {
+
+    filePath = 'null'
+
+    postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
+
+      console.log(msg);
+      if (err){
+        res.status(500).send(err);
+      } 
+      
+      if(msg){
+        
+        const msgToClient = JSON.stringify(msg);
+        res.status(201).send(msgToClient);
+      }
+    })
+  }   
 });
 
 app.get('/markerlist', (req, res ,next) => {
