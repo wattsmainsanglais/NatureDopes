@@ -222,6 +222,8 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    
       let newFile = './views/uploads/' + filePath
       postMarker.heicToJpg(file, newFile);
+     
+    }
 
       postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
 
@@ -236,7 +238,7 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
           res.status(201).send(msgToClient);
         }
       })
-    }
+    
   } else {
 
     filePath = 'null'
