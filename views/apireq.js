@@ -34,9 +34,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
             method: 'POST',
             credentials: 'include',
             body: formdata,
-            headers: {
-                  
-            }  
+            
         });
          
             if(response.ok){
