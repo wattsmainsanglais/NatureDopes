@@ -209,8 +209,9 @@ app.post('/imgUpload',  (req, res, next) => {
 /*, addMarkerToArray, */
 app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    console.log(req.body);
+  console.log(req.user);
   let {speciesName, firstRef, secondRef} = req.body;
-  let userNum = req.user
+  let userNum = req.user;
   // uploading a photo is currently an optional step
   
   if(req.file){
@@ -225,10 +226,10 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
       postMarker.heicToJpg(file, newFile);
      
     }
-
+      console.log(userNum);
       postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
 
-        console.log(msg);
+        
         if (err){
           res.status(500).send(err);
         } 
