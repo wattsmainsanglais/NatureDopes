@@ -64,10 +64,10 @@ const pool = new Pool({
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
-      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001 https://localhost:4001 https://naturedopes-production.up.railway.app; worker-src blob:; child-src blob:"
+      "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001 https://localhost:4001 https://naturedopes-production.up.railway.app https://www.naturedopes.com https://naturedopes.com; worker-src blob:; child-src blob:"
   );
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Access-Control-Allow-Origin', 'https://naturedopes-production.up.railway.app');
+  res.setHeader('Access-Control-Allow-Origin','https://www.naturedopes.com', 'https://naturedopes.com', 'https://naturedopes-production.up.railway.app');
   next();
 });
 
@@ -494,12 +494,10 @@ app.post('/update-password', function(req, res, next) {
     res.render('Thanks-email')
     
     });
-  
 
 
-app.listen(0.0.0.0:$PORT, () =>{
+
+app.listen(port, '0.0.0.0', () =>{
     console.log('Server is listening on port 4001...' )
 
-
-    
 });
