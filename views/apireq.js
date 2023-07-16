@@ -32,6 +32,7 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
        uploadModalP.appendChild(imgContainer);
      const response = await fetch(urlToPost, {
             method: 'POST',
+            credentials: 'include',
             body: formdata,
             headers: {
                   
