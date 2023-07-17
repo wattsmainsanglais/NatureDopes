@@ -67,7 +67,9 @@ app.use(function (req, res, next) {
       "default-src 'self'; font-src 'self' https://fonts.gstatic.com static.juicer.io; img-src 'self' 'unsafe-inline' data: blob: https://www.juicer.io; script-src 'self' unpkg.com assets.juicer.io 'unsafe-inline'; style-src 'self' 'unsafe-inline' unpkg.com https://fonts.googleapis.com assets.juicer.io; frame-src 'self'; connect-src http://www.juicer.io https://www.juicer.io https://api.maptiler.com http://localhost:4001 https://localhost:4001 https://naturedopes-production.up.railway.app https://www.naturedopes.com https://naturedopes.com; worker-src blob:; child-src blob:"
   );
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Access-Control-Allow-Origin','https://www.naturedopes.com', 'https://naturedopes.com', 'https://naturedopes-production.up.railway.app');
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.naturedopes.com', 'https://naturedopes.com');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
@@ -208,8 +210,9 @@ app.post('/imgUpload',  (req, res, next) => {
 /*, addMarkerToArray, */
 app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    console.log(req.body);
+  console.log(req.user);
   let {speciesName, firstRef, secondRef} = req.body;
-  let userNum = req.user
+  let userNum = req.user;
   // uploading a photo is currently an optional step
   
   if(req.file){
@@ -224,10 +227,10 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
       postMarker.heicToJpg(file, newFile);
      
     }
-
+      console.log(userNum);
       postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
 
-        console.log(msg);
+        
         if (err){
           res.status(500).send(err);
         } 

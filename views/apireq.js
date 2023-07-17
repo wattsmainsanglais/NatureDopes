@@ -4,7 +4,7 @@
 
 
 
-const urlToPost = 'https://naturedopes.com/markerList'
+const urlToPost = 'https://www.naturedopes.com/markerList'
 
 const postMarkerSubmit = document.getElementById('map-button');
 
@@ -32,10 +32,9 @@ const postMarker = async (speciesName, firstRef, secondRef, file) => {
        uploadModalP.appendChild(imgContainer);
      const response = await fetch(urlToPost, {
             method: 'POST',
+            credentials: 'include',
             body: formdata,
-            headers: {
-                  
-            }  
+            
         });
          
             if(response.ok){
