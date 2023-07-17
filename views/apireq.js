@@ -80,7 +80,7 @@ function clearData(){
 
   const processPopulateMarkers = (name, first, second, path) => {
   
-      const realPath = process.env.RAILWAY_VOLUME_MOUNT_PATH + '/'+ path;
+      const realPath = '/views/uploads/' + path;
       console.log(realPath);
       let pathTag
       if(path === 'null'){
