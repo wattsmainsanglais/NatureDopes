@@ -80,7 +80,7 @@ function clearData(){
 
   const processPopulateMarkers = (name, first, second, path) => {
   
-      const realPath = '/views/uploads/' + path;
+      const realPath = '../../data/' + path;
       console.log(realPath);
       let pathTag
       if(path === 'null'){
