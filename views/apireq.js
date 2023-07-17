@@ -81,7 +81,7 @@ function clearData(){
 
   const processPopulateMarkers = (name, first, second, path) => {
   
-      const realPath = 'uploads/'+ path;
+      const realPath = './data/uploads/'+ path;
       let pathTag
       if(path === 'null'){
         pathTag = '<img width="100" height="100" src="" alt=" No photo for this find, but just as valuable, Thanks!"><h2>' + name +'</h2>';

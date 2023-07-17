@@ -27,7 +27,7 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'views/uploads')
+    cb(null, '/data/uploads')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -220,7 +220,7 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
       filePath = trimFilePath + '.jpg';
       let file = req.file.path;
    
-      let newFile = './views/uploads/' + filePath
+      let newFile = './data/uploads/' + filePath
       postMarker.heicToJpg(file, newFile);
      
     }
