@@ -4,7 +4,7 @@
 
 
 
-const urlToPost = 'https://naturedopes-production.up.railway.app/markerList'
+const urlToPost = 'https://naturedopes.com/markerList'
 
 const postMarkerSubmit = document.getElementById('map-button');
 
