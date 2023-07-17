@@ -223,7 +223,7 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
       filePath = trimFilePath + '.jpg';
       let file = req.file.path;
    
-      let newFile = '/views/uploads/' + filePath
+      let newFile = './views/uploads/' + filePath
       postMarker.heicToJpg(file, newFile);
      
     }
