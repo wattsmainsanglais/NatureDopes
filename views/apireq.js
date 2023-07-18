@@ -80,7 +80,7 @@ function clearData(){
 
   const processPopulateMarkers = (name, first, second, path) => {
   
-      const realPath = '/data/' + path;
+      const realPath = 'https://www.naturedopes.com/data/' + path;
       console.log(realPath);
       let pathTag
       if(path === 'null'){
