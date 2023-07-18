@@ -27,7 +27,7 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/data/')
+    cb(null, './views/uploads')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -73,13 +73,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-                       /* "assets.juicer.io", 
-                        "https://unpkg.com/validator@latest/validator.min.js",
-                        "https://fonts.googleapis.com",
-                        "https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.js",
-                     */
-           
+  
 
 const { render } = require('ejs');
 
