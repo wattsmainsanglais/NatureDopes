@@ -20,7 +20,7 @@ function sendMail(email, token){
         to: email,
         subject: 'Reset Password Link - NatureDopes' ,
         text: 'please find password rest link',
-        html: '<p>You requested for reset password, kindly use this <a href="http://naturedopes.com/reset-password?token=' + token + '">link</a> to reset your password</p>',
+        html: '<p>You requested for reset password, kindly use this <a href="http://www.naturedopes.com/reset-password?token=' + token + '">link</a> to reset your password</p>',
     }
     
     transporter.sendMail(mailOptions, function(error, info) {
