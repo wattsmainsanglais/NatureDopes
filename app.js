@@ -73,13 +73,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-                       /* "assets.juicer.io", 
-                        "https://unpkg.com/validator@latest/validator.min.js",
-                        "https://fonts.googleapis.com",
-                        "https://unpkg.com/maplibre-gl@3.0.1/dist/maplibre-gl.js",
-                     */
-           
+  
 
 const { render } = require('ejs');
 
