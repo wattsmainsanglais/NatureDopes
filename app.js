@@ -274,7 +274,7 @@ app.get('/markerlist', (req, res ,next) => {
 
       } else {
         let obj = result.rows
-        console.log(obj);
+        
         res.status(200).send(obj);
         console.log('Populate Get request sent')
       }
