@@ -68,11 +68,13 @@ app.use(function (req, res, next) {
   );
   res.setHeader('X-Content-Type-Options', 'nosniff');
 
+
   const allowedOrigins = ['https://naturedopes.com', 'https://www.naturedopes.com'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
   }
+
 
   res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
