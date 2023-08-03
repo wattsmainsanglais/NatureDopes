@@ -144,7 +144,7 @@ app.set('view engine', 'ejs');
 
   passport.deserializeUser((id, done) => {
   
-    console.log('deserialize')
+    
     process.nextTick(function() {
       pool.query('SELECT * FROM users WHERE id = $1', [id], (err, result) => {
         
@@ -154,7 +154,7 @@ app.set('view engine', 'ejs');
         }
       
         if(result.rows[0].id == id){
-
+          console.log('deserialized')
           return done(null, id);
         } else {
 
