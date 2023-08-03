@@ -1023,6 +1023,26 @@ footer{
         position: static;
     }
 
+    .slide_1{
+        transform: translateX(0em);
+    }
+    
+    .slide_2{
+        transform: translateX(0em);
+    }
+    
+    .slide_1.left{
+        
+        transform: translateX(0em);
+        transition: 1s;
+    }
+    
+    .slide_2.right{
+        transform: translateX(0em);
+        transition: 2s;
+    }
+
+
     .feature-title, .about-title, .socialmedia-title{
         font-size: 2rem;
     }
@@ -1091,25 +1111,7 @@ footer{
 
     }
 
-    .slide_1{
-        transform: translateX(0em);
-    }
-    
-    .slide_2{
-        transform: translateX(0em);
-    }
-    
-    .slide_1.left{
-        
-        transform: translateX(0em);
-        transition: 1s;
-    }
-    
-    .slide_2.right{
-        transform: translateX(0em);
-        transition: 2s;
-    }
-
+   
     .social{
         width: 45px;
     }
