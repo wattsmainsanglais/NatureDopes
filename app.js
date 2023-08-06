@@ -214,7 +214,13 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    console.log(req.file);
   console.log(req.user);
   let {speciesName, firstRef, secondRef} = req.body;
-  let userNum = req.user;
+  let userNum = ''
+  //bug with some user sessions not persisiting, this will allow uploads to go through attached to the admin account until better solution is found 
+  if(req.user){
+    userNum = req.user
+  } else {
+    userNum = 1
+  }
   // uploading a photo is currently an optional step
   
   if(req.file){
