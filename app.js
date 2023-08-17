@@ -212,7 +212,7 @@ app.post('/imgUpload',  (req, res, next) => {
 /*, addMarkerToArray, */
 app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
    console.log(req.file);
-  console.log(req.user);
+  console.log('The user id is '+ req.user);
   let {speciesName, firstRef, secondRef} = req.body;
   let userNum = ''
   //bug with some user sessions not persisiting, this will allow uploads to go through attached to the admin account until better solution is found 
@@ -220,6 +220,7 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
     userNum = req.user
   } else {
     userNum = 1
+    console.log('User session has not persisted, failsafe user has been allocated... num  ' + userNum);
   }
   // uploading a photo is currently an optional step
   
@@ -235,7 +236,7 @@ app.post('/markerlist',  upload.single('upload'), (req, res, next) => {
       postMarker.heicToJpg(file, newFile);
      
     }
-      console.log(userNum);
+      
       postMarker.addMarkertoDatabase(speciesName, firstRef, secondRef, filePath, userNum, function(err, msg){
 
         
