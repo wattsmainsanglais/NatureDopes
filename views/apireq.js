@@ -95,7 +95,7 @@ function clearData(){
         color: '#5B9240',
         scale: 1,
     })
-    
+  
         .setLngLat([first, second])
         .setPopup(new maplibregl.Popup().setHTML(pathTag))
         .addTo(map);

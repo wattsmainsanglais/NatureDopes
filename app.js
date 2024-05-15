@@ -355,6 +355,7 @@ app.post("/maplogin", passport.authenticate("local", {failureRedirect: "/maplogi
 });
 
 
+
 //Post request for logging out of passportJS
 app.post('/logout', function(req, res, next) {
   req.logout(function(err) {
